@@ -1,0 +1,188 @@
+.sacramentos {
+  background: linear-gradient(180deg, var(--white-pure) 0%, var(--cream) 100%);
+}
+
+/* Tabs horizontales */
+.sacramentos__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.sacramentos__tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.1rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  background: var(--white-pure);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  box-shadow: var(--shadow-card);
+  color: var(--stone);
+  min-width: 100px;
+}
+
+.sacramentos__tab:hover {
+  border-color: var(--blue-light);
+  color: var(--blue-deep);
+}
+
+.sacramentos__tab--active {
+  border-color: var(--blue-deep);
+  background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+  color: var(--white-pure) !important;
+  box-shadow: 0 4px 16px rgba(27,79,138,0.28);
+}
+
+.sacramentos__tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sacramentos__tab-label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Panel */
+.sacramentos__panel {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.sacramentos__panel-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(201,168,76,0.25);
+}
+
+.sacramentos__panel-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-light);
+  box-shadow: 0 4px 16px rgba(27,79,138,0.25);
+}
+
+.sacramentos__panel-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--blue-deep);
+  margin-bottom: 0.2rem;
+}
+
+.sacramentos__panel-sub {
+  font-size: 0.9rem;
+  color: var(--stone);
+  font-style: italic;
+}
+
+.sacramentos__panel-desc {
+  font-size: 0.97rem;
+  color: var(--stone-dark);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+}
+
+.sacramentos__panel-body {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Requisitos */
+.sacramentos__requisitos h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--blue-deep);
+  margin-bottom: 0.75rem;
+}
+
+.sacramentos__requisitos ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.sacramentos__requisitos li {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.93rem;
+  color: var(--stone-dark);
+  line-height: 1.5;
+}
+
+.sacramentos__bullet {
+  color: var(--gold-mid);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+}
+
+/* Caja contacto */
+.sacramentos__contacto-box {
+  background: linear-gradient(135deg, var(--blue-deep) 0%, #0D2E5A 100%);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: var(--white-pure);
+}
+
+.sacramentos__contacto-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+.sacramentos__contacto-val {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(250,248,245,0.9);
+}
+
+.sacramentos__contacto-box .btn-primary {
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold-mid));
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .sacramentos__panel-body {
+    grid-template-columns: 1fr;
+  }
+  .sacramentos__tabs {
+    gap: 0.4rem;
+  }
+  .sacramentos__tab {
+    min-width: 80px;
+    padding: 0.6rem 0.75rem;
+  }
+}

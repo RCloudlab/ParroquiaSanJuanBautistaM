@@ -1,0 +1,92 @@
+.galeria {
+  background: var(--stone-dark);
+  color: var(--white-pure);
+}
+
+.galeria .section-title {
+  color: var(--white-pure);
+}
+
+.galeria .section-subtitle {
+  color: rgba(232,201,122,0.75);
+}
+
+/* Grid tipo mosaico asimétrico */
+.galeria__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 340px 240px;
+  gap: 0.5rem;
+}
+
+/* La primera foto ocupa columna completa en la primera fila */
+.galeria__item--featured {
+  grid-column: 1 / -1;
+}
+
+.galeria__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  margin: 0;
+  cursor: pointer;
+}
+
+.galeria__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.galeria__item:hover .galeria__img {
+  transform: scale(1.04);
+}
+
+/* Caption sobre la imagen */
+.galeria__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(to top, rgba(13,46,90,0.85) 0%, transparent 100%);
+  color: var(--white-pure);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-style: italic;
+  color: rgba(232,201,122,0.95);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.galeria__item:hover .galeria__caption {
+  transform: translateY(0);
+}
+
+/* En items no destacados: foto 3 vertical, foto 4 horizontal */
+.galeria__item:nth-child(3) .galeria__img {
+  object-position: center 20%;
+}
+
+.galeria__item:nth-child(4) .galeria__img {
+  object-position: center 60%;
+}
+
+@media (max-width: 700px) {
+  .galeria__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .galeria__item--featured {
+    grid-column: 1;
+  }
+  .galeria__item {
+    height: 220px;
+  }
+  .galeria__caption {
+    transform: translateY(0);
+  }
+}
