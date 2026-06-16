@@ -1,20 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
 
 /* ─── Paleta San Juan Bautista ─────────────────────────────────────────────
-   Azul cobalto (manto):   #1B4F8A
-   Rojo martirio:          #8B1A1A
-   Dorado sagrado:         #C9A84C
-   Blanco pureza:          #FAF8F5
-   Crema pergamino:        #F0EBE1
-   Morado (Virgen Dolores):#6B2C6B
+   Inspirada en la fachada y el mural reales del templo:
+   Rojo martirio (heráldica SJB):  #8B1A1A
+   Terracota (cornisa/techo):      #A8552E
+   Café cantera (puertas/marcos):  #6B4226
+   Arena/cantera (muro fachada):   #D8C8A8
+   Crema pergamino:                #F0EBE1
+   Dorado mural:                   #C9A84C
+   Verde zócalo (interior):        #1F6B5C
+   Azul (acento secundario, manto):#1B4F8A
+   Morado (Virgen Dolores):        #6B2C6B
    ──────────────────────────────────────────────────────────────────────── */
 
 :root {
-  --blue-deep:    #1B4F8A;
-  --blue-mid:     #2563A8;
-  --blue-light:   #4A86C8;
-  --red-dark:     #8B1A1A;
+  --red-deep:     #8B1A1A;
   --red-mid:      #A52020;
+  --red-light:    #C23B3B;
+  --terracotta:   #A8552E;
+  --terracotta-dark: #7A3B1E;
+  --brown-warm:   #6B4226;
+  --brown-deep:   #4A2C18;
+  --sand:         #D8C8A8;
+  --sand-light:   #E8DCC8;
+  --teal-zocalo:  #1F6B5C;
+  --teal-deep:    #134A40;
   --gold-deep:    #A07A28;
   --gold-mid:     #C9A84C;
   --gold-light:   #E8C97A;
@@ -24,12 +34,16 @@
   --stone-dark:   #3D3530;
   --purple-sorrow:#6B2C6B;
   --purple-light: #9B4A9B;
+  /* Acento secundario heredado del manto de San Juan; uso puntual */
+  --blue-deep:    #1B4F8A;
+  --blue-mid:     #2563A8;
+  --blue-light:   #4A86C8;
 
   --font-display: 'Cinzel', serif;
   --font-body:    'Lato', sans-serif;
 
   --shadow-gold: 0 4px 24px rgba(201,168,76,0.18);
-  --shadow-card: 0 2px 16px rgba(27,79,138,0.10);
+  --shadow-card: 0 2px 16px rgba(139,26,26,0.10);
   --radius:       12px;
   --radius-lg:    20px;
 }
@@ -86,7 +100,7 @@ img {
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.4rem);
-  color: var(--blue-deep);
+  color: var(--red-deep);
   text-align: center;
   margin-bottom: 0.5rem;
 }
@@ -100,12 +114,35 @@ img {
   font-style: italic;
 }
 
+/* Línea dorada con un pequeño rombo central — usado como remate visual
+   bajo los títulos de sección en lugar de la barra simple anterior */
 .gold-divider {
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
-  margin: 0.75rem auto 1.5rem;
-  border-radius: 2px;
+  width: 90px;
+  height: 8px;
+  margin: 0.85rem auto 1.5rem;
+  position: relative;
+}
+
+.gold-divider::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, transparent, var(--gold-mid) 35%, var(--gold-mid) 65%, transparent);
+}
+
+.gold-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  background: var(--gold-deep);
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 1px;
 }
 
 .card {
@@ -113,18 +150,33 @@ img {
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
   padding: 2rem;
+  position: relative;
+  overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Filete superior dorado/rojo — detalle recurrente que conecta con el
+   friso del mural, sin depender de border-image (mejor soporte de
+   border-radius en todos los navegadores) */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-mid), var(--red-deep) 50%, var(--gold-mid));
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(27,79,138,0.16);
+  box-shadow: 0 8px 32px rgba(139,26,26,0.16);
 }
 
 .btn-primary {
   display: inline-block;
   padding: 0.75rem 2rem;
-  background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+  background: linear-gradient(135deg, var(--red-deep), var(--red-mid));
   color: var(--white-pure);
   font-family: var(--font-display);
   font-size: 0.95rem;
@@ -161,4 +213,34 @@ img {
 
 section {
   padding: 5rem 0;
+}
+
+/* Wrapper para páginas que montan una sección existente fuera de la home
+   (ej. /horarios, /eventos, /contacto) — solo aporta el espacio para que
+   el navbar fijo no tape el contenido. */
+.page-standalone {
+  padding-top: 76px;
+}
+
+/* ─── Animación de entrada al hacer scroll ─────────────────────────────────
+   Se activa vía useRevealOnScroll(); usa transform/opacity (composición en
+   GPU, no repinta layout) para que el costo de rendimiento sea mínimo. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

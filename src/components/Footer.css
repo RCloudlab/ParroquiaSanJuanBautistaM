@@ -1,13 +1,19 @@
 .footer {
-  background: linear-gradient(160deg, #0D2E5A 0%, #1B4F8A 100%);
+  background: linear-gradient(160deg, #4A2C18 0%, #8B1A1A 100%);
   color: rgba(250,248,245,0.85);
 }
 
 .footer__top-band {
   height: 4px;
-  background: linear-gradient(90deg, var(--red-dark), var(--gold-mid), var(--red-dark));
+  background: linear-gradient(90deg, var(--teal-zocalo), var(--gold-mid), var(--teal-zocalo));
 }
 
+.footer__codeserve-link {
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
 .footer__body {
   padding: 3.5rem 1.5rem 2rem;
 }

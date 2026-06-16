@@ -1,0 +1,150 @@
+/* Nota: .sacramento-card ahora vive dentro del panel derecho de
+   SacramentosLayout (src/pages/SacramentosLayout.tsx) en vez de ser una
+   página de pantalla completa por sí misma. */
+.sacramento-card {
+  width: 100%;
+  background: var(--white-pure);
+  border-radius: var(--radius-lg);
+  border-top: 5px solid var(--red-deep);
+  box-shadow: var(--shadow-card);
+  padding: 2.5rem 2.5rem 2rem;
+  position: relative;
+}
+
+.sacramento-card--notfound {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.sacramento-header {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.sacramento-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red-deep), var(--red-mid));
+  color: var(--gold-light);
+  box-shadow: 0 4px 16px rgba(139,26,26,0.25);
+  margin-bottom: 1rem;
+}
+
+.sacramento-parroquia {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 0.75rem;
+}
+
+.sacramento-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  color: var(--red-deep);
+  margin-bottom: 0.4rem;
+}
+
+.sacramento-subtitulo {
+  font-size: 0.95rem;
+  color: var(--stone);
+  font-style: italic;
+}
+
+.sacramento-desc {
+  font-size: 0.97rem;
+  color: var(--stone-dark);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.sacramento-section-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--red-deep);
+  margin-bottom: 0.85rem;
+}
+
+.sacramento-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+
+.sacramento-lista li {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--stone-dark);
+  line-height: 1.5;
+}
+
+.sacramento-bullet {
+  color: var(--gold-mid);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
+}
+
+.sacramento-notas {
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sacramento-notas p {
+  font-size: 0.85rem;
+  color: var(--stone-dark);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.sacramento-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: linear-gradient(135deg, var(--teal-zocalo), var(--teal-deep));
+  color: var(--white-pure);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.sacramento-contacto-label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+.sacramento-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--red-deep);
+  text-decoration: none;
+}
+
+.sacramento-volver:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 540px) {
+  .sacramento-card {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+}
+

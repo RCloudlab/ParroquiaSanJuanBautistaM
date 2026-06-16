@@ -1,0 +1,44 @@
+.section-divider {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.section-divider__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor);
+}
+
+.section-divider__line:last-of-type {
+  background: linear-gradient(90deg, currentColor, transparent);
+}
+
+.section-divider__diamond {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+@media (max-width: 700px) {
+  .section-divider {
+    padding: 1.75rem 1.5rem;
+    max-width: 320px;
+  }
+}
+
+/* Tonos: el color hereda de currentColor para que la línea y el rombo
+   tengan siempre el mismo tono dorado, ajustado al fondo de la sección. */
+.section-divider--cream {
+  color: var(--gold-deep);
+}
+
+.section-divider--dark {
+  color: var(--gold-mid);
+}

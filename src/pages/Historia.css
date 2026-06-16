@@ -1,0 +1,103 @@
+.historia-page {
+  min-height: 100vh;
+  padding: 2rem 0 5rem;
+  background: linear-gradient(160deg, var(--sand-light) 0%, var(--cream) 100%);
+}
+
+.historia-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--stone);
+  margin-bottom: 1.5rem;
+  transition: color 0.2s;
+}
+
+.historia-back:hover {
+  color: var(--red-deep);
+}
+
+.historia-timeline {
+  list-style: none;
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+/* Línea vertical continua que atraviesa todos los hitos */
+.historia-timeline::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold-mid), var(--red-deep));
+}
+
+.historia-timeline__item {
+  position: relative;
+  margin-bottom: 1.75rem;
+}
+
+.historia-timeline__item:last-child {
+  margin-bottom: 0;
+}
+
+.historia-timeline__marker {
+  position: absolute;
+  left: -2.5rem;
+  top: 0.6rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--white-pure);
+  border: 3px solid var(--red-deep);
+  box-shadow: 0 0 0 4px var(--cream);
+}
+
+.historia-timeline__card {
+  padding: 1.5rem 1.75rem;
+}
+
+.historia-timeline__anio {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 0.4rem;
+}
+
+.historia-timeline__titulo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--red-deep);
+  margin-bottom: 0.6rem;
+}
+
+.historia-timeline__desc {
+  font-size: 0.95rem;
+  color: var(--stone-dark);
+  line-height: 1.75;
+}
+
+@media (max-width: 540px) {
+  .historia-timeline {
+    padding-left: 2rem;
+  }
+
+  .historia-timeline__marker {
+    left: -2rem;
+  }
+
+  .historia-timeline__card {
+    padding: 1.25rem 1.4rem;
+  }
+}

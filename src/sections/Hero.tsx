@@ -8,6 +8,18 @@ export default function Hero() {
 
   return (
     <section id="hero" className="hero">
+      {/* Foto real de la fachada — es el LCP de la página, se carga con
+          alta prioridad y sin lazy, pero en WebP responsive para pesar poco */}
+      <img
+        className="hero__bg-img"
+        src="/optimized/hero-2200.webp"
+        srcSet="/optimized/hero-480.webp 480w, /optimized/hero-960.webp 960w, /optimized/hero-1600.webp 1600w, /optimized/hero-2200.webp 2200w"
+        sizes="100vw"
+        alt=""
+        fetchPriority="high"
+        decoding="async"
+      />
+
       {/* Overlay decorativo */}
       <div className="hero__overlay" />
 
@@ -17,19 +29,12 @@ export default function Hero() {
       <div className="hero__content">
         {/* Escudo / imagen del santo representativa con SVG decorativo */}
         <div className="hero__emblem">
-          <div className="hero__emblem-circle">
-            <img
-              src="/sanJuan.png"
-              alt="Estatua de San Juan Bautista Apóstol"
-              className="hero__emblem-img"
-            />
-          </div>
+          
         </div>
 
-        <p className="hero__eyebrow">Parroquia Católica</p>
+        <p className="hero__eyebrow">Parroquia de</p>
         <h1 className="hero__title">
           San Juan Bautista
-          <span className="hero__title-apostol">Apóstol</span>
         </h1>
         <div className="hero__gold-line" />
         <p className="hero__quote">
@@ -39,14 +44,7 @@ export default function Hero() {
           <span className="hero__quote-ref">Jn 1,29</span>
         </p>
 
-        <div className="hero__buttons">
-          <a className="btn-primary" href="#horarios" onClick={e => { e.preventDefault(); scrollDown(); }}>
-            Ver Horarios de Misas
-          </a>
-          <a className="btn-gold" href="#contacto" onClick={e => { e.preventDefault(); document.querySelector('#contacto')?.scrollIntoView({ behavior: 'smooth' }); }}>
-            Contacto
-          </a>
-        </div>
+        
       </div>
 
       <button className="hero__scroll-hint" onClick={scrollDown} aria-label="Ir a la sección siguiente">

@@ -25,7 +25,7 @@
 .contacto__info-title {
   font-family: var(--font-display);
   font-size: 1.1rem;
-  color: var(--blue-deep);
+  color: var(--red-deep);
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid rgba(201,168,76,0.3);
@@ -48,7 +48,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+  background: linear-gradient(135deg, var(--red-deep), var(--red-mid));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,7 +62,7 @@
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--blue-deep);
+  color: var(--red-deep);
   margin-bottom: 0.2rem;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .contacto__item a {
-  color: var(--blue-mid);
+  color: var(--terracotta-dark);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -101,13 +101,13 @@
 
 /* Formulario */
 .contacto__form-card {
-  border-top: 4px solid var(--blue-deep);
+  border-top: 4px solid var(--red-deep);
 }
 
 .contacto__form-title {
   font-family: var(--font-display);
   font-size: 1.1rem;
-  color: var(--blue-deep);
+  color: var(--red-deep);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -115,12 +115,12 @@
 }
 
 .contacto__success {
-  background: linear-gradient(135deg, rgba(27,79,138,0.08), rgba(201,168,76,0.08));
+  background: linear-gradient(135deg, rgba(139,26,26,0.08), rgba(201,168,76,0.08));
   border: 1.5px solid var(--gold-mid);
   border-radius: var(--radius);
   padding: 0.85rem 1.25rem;
   font-size: 0.9rem;
-  color: var(--blue-deep);
+  color: var(--red-deep);
   margin-bottom: 1.25rem;
   text-align: center;
 }
@@ -141,7 +141,7 @@
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: var(--blue-deep);
+  color: var(--red-deep);
   font-family: var(--font-display);
 }
 
@@ -164,8 +164,8 @@
 .contacto__field input:focus,
 .contacto__field select:focus,
 .contacto__field textarea:focus {
-  border-color: var(--blue-mid);
-  box-shadow: 0 0 0 3px rgba(37,99,168,0.12);
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(168,85,46,0.14);
   background: var(--white-pure);
 }
 

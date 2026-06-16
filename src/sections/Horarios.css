@@ -9,6 +9,18 @@
   align-items: start;
 }
 
+.horarios__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.horarios__cta .btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .horarios__card-header {
   display: flex;
   align-items: center;
@@ -19,7 +31,7 @@
 .horarios__card-header h3 {
   font-family: var(--font-display);
   font-size: 1.15rem;
-  color: var(--blue-deep);
+  color: var(--red-deep);
 }
 
 .horarios__icon {
@@ -42,7 +54,7 @@
   font-family: var(--font-display);
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--blue-deep);
+  color: var(--red-deep);
   letter-spacing: 0.08em;
   text-align: left;
   padding: 0.5rem 0.75rem 0.75rem;
@@ -54,7 +66,7 @@
 }
 
 .horarios__table tbody tr:hover {
-  background: rgba(37,99,168,0.04);
+  background: rgba(139,26,26,0.04);
 }
 
 .horarios__row--highlight {
@@ -63,7 +75,7 @@
 
 .horarios__row--highlight .horarios__dia {
   font-weight: 700;
-  color: var(--blue-deep);
+  color: var(--red-deep);
 }
 
 .horarios__dia {
@@ -81,7 +93,7 @@
 }
 
 .horarios__hora-badge {
-  background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+  background: linear-gradient(135deg, var(--teal-zocalo), var(--teal-deep));
   color: var(--white-pure);
   font-size: 0.78rem;
   font-weight: 600;
@@ -136,7 +148,7 @@
 }
 
 .horarios__schedule-time {
-  color: var(--blue-mid);
+  color: var(--terracotta-dark);
   font-weight: 500;
   text-align: right;
 }

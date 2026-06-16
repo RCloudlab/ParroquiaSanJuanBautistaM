@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Parroquia Católica San Juan Bautista — Horarios de misas, sacramentos, eventos y contacto." />
     <title>Parroquia San Juan Bautista — Apóstol</title>
+
+    <!-- Conexión anticipada a Google Fonts para que la tipografía no
+         bloquee el primer render más de lo necesario -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- La foto de fondo del Hero es el LCP de la página: se precarga
+         para que el navegador la pida desde el primer instante -->
+    <link
+      rel="preload"
+      as="image"
+      href="/optimized/hero-1600.webp"
+      imagesrcset="/optimized/hero-480.webp 480w, /optimized/hero-960.webp 960w, /optimized/hero-1600.webp 1600w, /optimized/hero-2200.webp 2200w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
   </head>
   <body>
     <div id="root"></div>

@@ -1,27 +1,14 @@
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { FOTOS } from '../data/galeria';
 import './Galeria.css';
 
-const FOTOS = [
-  {
-    src: '/gallery2.png',
-    alt: 'Vista aérea de la Parroquia San Juan Bautista al atardecer',
-    caption: 'Nuestra parroquia desde el cielo',
-  },
-  {
-    src: '/interior.png',
-    alt: 'Interior de la parroquia durante celebración solemne',
-    caption: 'Una celebración que ilumina el alma',
-  },
-  {
-    src: '/gallery.png',
-    alt: 'Celebración especial en la parroquia',
-    caption: 'Momentos de fe y comunidad',
-  },
-  {
-    src: '/hero-backgorund.png',
-    alt: 'Fachada de la Parroquia San Juan Bautista al atardecer',
-    caption: 'La torre que guía a nuestra comunidad',
-  },
-];
+// El resumen en home muestra solo las primeras 4 fotos de la fuente
+// compartida (src/data/galeria.ts); la página /galeria (GaleriaPage.tsx)
+// muestra el set completo. Cada foto navega a /galeria — no hay URL por
+// foto individual, el detalle "en grande" se resuelve con un lightbox
+// dentro de esa página.
+const FOTOS_HOME = FOTOS.slice(0, 4);
 
 export default function Galeria() {
   return (
@@ -34,12 +21,35 @@ export default function Galeria() {
         </p>
 
         <div className="galeria__grid">
-          {FOTOS.map((foto, i) => (
-            <figure key={i} className={`galeria__item ${i === 0 ? 'galeria__item--featured' : ''}`}>
-              <img src={foto.src} alt={foto.alt} className="galeria__img" loading="lazy" />
-              <figcaption className="galeria__caption">{foto.caption}</figcaption>
-            </figure>
-          ))}
+          {FOTOS_HOME.map((foto, i) => {
+            const maxW = foto.widths[foto.widths.length - 1];
+            const srcSet = foto.widths.map(w => `/optimized/${foto.name}-${w}.webp ${w}w`).join(', ');
+            return (
+              <Link
+                to="/galeria"
+                key={i}
+                className={`galeria__item reveal ${i === 0 ? 'galeria__item--featured' : ''}`}
+                style={{ transitionDelay: `${i * 70}ms` }}
+              >
+                <img
+                  src={`/optimized/${foto.name}-${maxW}.webp`}
+                  srcSet={srcSet}
+                  sizes={i === 0 ? '100vw' : '50vw'}
+                  alt={foto.alt}
+                  className="galeria__img"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="galeria__caption">{foto.caption}</span>
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="galeria__cta">
+          <Link to="/galeria" className="btn-gold">
+            Ver galería completa <ArrowRight size={16} />
+          </Link>
         </div>
       </div>
     </section>

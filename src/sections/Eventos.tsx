@@ -1,4 +1,5 @@
-import { Calendar, MapPin, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Calendar, MapPin, Clock, ArrowRight } from 'lucide-react';
 import './Eventos.css';
 
 interface Evento {
@@ -77,9 +78,9 @@ const EVENTOS: Evento[] = [
 
 const TIPO_COLORS: Record<string, string> = {
   especial: 'var(--gold-mid)',
-  liturgico: 'var(--blue-mid)',
+  liturgico: 'var(--terracotta)',
   pastoral:  'var(--red-mid)',
-  social:    '#2E8B57',
+  social:    'var(--teal-zocalo)',
   cultural:  'var(--purple-sorrow)',
 };
 
@@ -106,8 +107,12 @@ export default function Eventos() {
       <div className="section-container" style={{ paddingTop: '3rem' }}>
 
         <div className="eventos__grid">
-          {EVENTOS.map(ev => (
-            <article key={ev.id} className="card eventos__card">
+          {EVENTOS.map((ev, i) => (
+            <article
+              key={ev.id}
+              className="card eventos__card reveal"
+              style={{ transitionDelay: `${Math.min(i, 4) * 60}ms` }}
+            >
               {/* Fecha */}
               <div className="eventos__date" style={{ background: TIPO_COLORS[ev.tipo] }}>
                 <span className="eventos__day">{ev.fecha}</span>
@@ -137,12 +142,18 @@ export default function Eventos() {
           ))}
         </div>
 
+        <div className="eventos__more">
+          <Link to="/eventos" className="btn-gold">
+            Ver calendario completo <ArrowRight size={16} />
+          </Link>
+        </div>
+
         <div className="eventos__cta">
           <Calendar size={20} />
           <span>¿Tienes un evento parroquial? Contacta con la secretaría para incluirlo en el calendario.</span>
-          <a className="btn-primary" href="#contacto" onClick={e => { e.preventDefault(); document.querySelector('#contacto')?.scrollIntoView({ behavior: 'smooth' }); }}>
+          <Link className="btn-primary" to="/contacto">
             Proponer evento
-          </a>
+          </Link>
         </div>
       </div>
     </section>

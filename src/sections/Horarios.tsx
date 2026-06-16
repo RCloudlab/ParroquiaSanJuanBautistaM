@@ -1,4 +1,5 @@
-import { Clock, BookOpen, FileText } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Clock, BookOpen, FileText, ArrowRight } from 'lucide-react';
 import './Horarios.css';
 
 interface MisaRow {
@@ -40,7 +41,7 @@ export default function Horarios() {
 
         <div className="horarios__grid">
           {/* Tabla de misas */}
-          <div className="card horarios__card-misas">
+          <div className="card horarios__card-misas reveal">
             <div className="horarios__card-header">
               <Clock size={22} className="horarios__icon" />
               <h3>Horario de Misas</h3>
@@ -72,7 +73,7 @@ export default function Horarios() {
 
           {/* Notaría y Librería */}
           <div className="horarios__side">
-            <div className="card horarios__card-notaria">
+            <div className="card horarios__card-notaria reveal">
               <div className="horarios__card-header">
                 <FileText size={22} className="horarios__icon" />
                 <h3>Notaría Parroquial</h3>
@@ -90,7 +91,7 @@ export default function Horarios() {
               </ul>
             </div>
 
-            <div className="card horarios__card-libreria">
+            <div className="card horarios__card-libreria reveal">
               <div className="horarios__card-header">
                 <BookOpen size={22} className="horarios__icon" />
                 <h3>Librería / Tienda Religiosa</h3>
@@ -108,6 +109,12 @@ export default function Horarios() {
               </ul>
             </div>
           </div>
+        </div>
+
+        <div className="horarios__cta">
+          <Link to="/horarios" className="btn-gold">
+            Ver horario completo <ArrowRight size={16} />
+          </Link>
         </div>
       </div>
     </section>

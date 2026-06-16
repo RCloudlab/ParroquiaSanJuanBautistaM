@@ -1,14 +1,16 @@
+import { Link } from 'react-router-dom';
 import { Church, Heart } from 'lucide-react';
 import './Footer.css';
 
+// Mismo criterio que el Navbar: cada sección vive en su propia ruta.
 const LINKS = [
-  { label: 'Horarios',       href: '#horarios' },
-  { label: 'Sacramentos',    href: '#sacramentos' },
-  { label: 'Eventos',        href: '#eventos' },
-  { label: 'Galería',        href: '#galeria' },
-  { label: 'Vatican News',   href: '#vatican-news' },
-  { label: 'Virgen Dolores', href: '#virgen-dolores' },
-  { label: 'Contacto',       href: '#contacto' },
+  { label: 'Horarios',       route: '/horarios' },
+  { label: 'Virgen Dolores', route: '/virgen-de-los-dolores' },
+  { label: 'Sacramentos',    route: '/sacramentos' },
+  { label: 'Historia',       route: '/historia' },
+  { label: 'Eventos',        route: '/eventos' },
+  { label: 'Galería',        route: '/galeria' },
+  { label: 'Contacto',       route: '/contacto' },
 ];
 
 export default function Footer() {
@@ -23,7 +25,6 @@ export default function Footer() {
           <div className="footer__brand">
             <Church size={32} strokeWidth={1.2} className="footer__brand-icon" />
             <h3 className="footer__brand-name">San Juan Bautista</h3>
-            <p className="footer__brand-sub">Parroquia Católica — Apóstol</p>
             <p className="footer__brand-quote">
               «Ecce Agnus Dei»
             </p>
@@ -34,14 +35,10 @@ export default function Footer() {
             <h4 className="footer__nav-title">Secciones</h4>
             <ul className="footer__nav-list">
               {LINKS.map(l => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className="footer__nav-link"
-                    onClick={e => { e.preventDefault(); document.querySelector(l.href)?.scrollIntoView({ behavior: 'smooth' }); }}
-                  >
+                <li key={l.route}>
+                  <Link to={l.route} className="footer__nav-link">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -80,7 +77,7 @@ export default function Footer() {
           © {new Date().getFullYear()} Parroquia San Juan Bautista · Todos los derechos reservados
         </p>
         <p className="footer__made-with">
-          Hecho con <Heart size={13} className="footer__bottom-heart" fill="currentColor" /> para la comunidad
+          Donado por <a href="https://www.facebook.com/codeservemx?locale=vi_VN" target="_blank" className="footer__codeserve-link" rel="noopener noreferrer">CodeServe</a>
         </p>
       </div>
     </footer>

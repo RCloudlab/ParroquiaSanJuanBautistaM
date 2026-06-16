@@ -37,7 +37,7 @@ export default function Contacto() {
         <div className="contacto__grid">
           {/* Info de contacto */}
           <div className="contacto__info">
-            <div className="card contacto__info-card">
+            <div className="card contacto__info-card reveal">
               <h3 className="contacto__info-title">Parroquia San Juan Bautista</h3>
 
               <ul className="contacto__list">
@@ -104,7 +104,7 @@ export default function Contacto() {
           </div>
 
           {/* Formulario */}
-          <div className="card contacto__form-card">
+          <div className="card contacto__form-card reveal" style={{ transitionDelay: '100ms' }}>
             <h3 className="contacto__form-title">
               <Send size={20} /> Envíanos un mensaje
             </h3>

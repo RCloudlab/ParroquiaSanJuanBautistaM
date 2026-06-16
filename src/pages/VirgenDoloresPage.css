@@ -1,0 +1,234 @@
+.virgen-page {
+  background: var(--cream);
+}
+
+/* ─── Hero de cabecera ──────────────────────────────────────────────── */
+.virgen-page__hero {
+  position: relative;
+  min-height: 56vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: #3D1640;
+}
+
+.virgen-page__hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+.virgen-page__hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(20,8,22,0.92) 0%, rgba(20,8,22,0.35) 55%, rgba(20,8,22,0.15) 100%);
+}
+
+.virgen-page__hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 6rem 1.5rem 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--white-pure);
+}
+
+.virgen-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(250,248,245,0.8);
+  margin-bottom: 1.5rem;
+}
+
+.virgen-page__back:hover {
+  color: var(--gold-light);
+}
+
+.virgen-page__crown {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: var(--gold-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.virgen-page__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin-bottom: 0.5rem;
+}
+
+.virgen-page__subtitle {
+  font-style: italic;
+  color: rgba(232,201,122,0.92);
+}
+
+/* ─── Cuerpo ────────────────────────────────────────────────────────── */
+.virgen-page__body {
+  padding: 3.5rem 1.5rem 5rem;
+  max-width: 860px;
+}
+
+.virgen-page__section {
+  margin-bottom: 3.5rem;
+}
+
+.virgen-page__section-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--purple-sorrow);
+}
+
+.virgen-page__text {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--stone-dark);
+  margin-bottom: 1rem;
+}
+
+.virgen-page__text--lead {
+  font-style: italic;
+  color: var(--stone);
+}
+
+/* Novena (acordeón) */
+.virgen-page__novena {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.virgen-page__novena-item {
+  background: var(--white-pure);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.virgen-page__novena-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.9rem 1.25rem;
+  text-align: left;
+}
+
+.virgen-page__novena-day {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--purple-sorrow);
+  flex-shrink: 0;
+}
+
+.virgen-page__novena-titulo {
+  flex: 1;
+  font-weight: 700;
+  color: var(--stone-dark);
+  font-size: 0.95rem;
+}
+
+.virgen-page__novena-chevron {
+  color: var(--stone);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.virgen-page__novena-chevron--open {
+  transform: rotate(180deg);
+}
+
+.virgen-page__novena-texto {
+  padding: 0 1.25rem 1.1rem 1.25rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--stone);
+}
+
+/* Tabla de cultos */
+.virgen-page__table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white-pure);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.virgen-page__table th,
+.virgen-page__table td {
+  padding: 0.75rem 1.1rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.virgen-page__table th {
+  background: var(--purple-sorrow);
+  color: var(--white-pure);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.virgen-page__table tr:nth-child(even) {
+  background: var(--cream);
+}
+
+.virgen-page__table-dia {
+  font-weight: 700;
+  color: var(--purple-sorrow);
+}
+
+/* Galería propia */
+.virgen-page__galeria {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.virgen-page__galeria-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.virgen-page__galeria-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.virgen-page__galeria-item figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.6rem 0.8rem;
+  background: linear-gradient(to top, rgba(20,8,22,0.85), transparent);
+  color: var(--white-pure);
+  font-size: 0.78rem;
+  font-style: italic;
+}
+
+@media (max-width: 700px) {
+  .virgen-page__galeria {
+    grid-template-columns: 1fr;
+  }
+}
