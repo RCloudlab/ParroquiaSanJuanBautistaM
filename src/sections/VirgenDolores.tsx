@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Star, ArrowRight } from 'lucide-react';
 import { useParallax } from '../hooks/useParallax';
@@ -14,7 +15,7 @@ const SIETE_DOLORES = [
 ];
 
 export default function VirgenDolores() {
-  const { containerRef, targetRef } = useParallax<HTMLDivElement>(70);
+  const { containerRef } = useParallax<HTMLDivElement>(70);
 
   return (
     <section id="virgen-dolores" className="virgen-dolores">
@@ -25,7 +26,6 @@ export default function VirgenDolores() {
       <div className="virgen-dolores__hero" ref={containerRef}>
         <div className="virgen-dolores__img-wrap">
           <img
-            ref={targetRef}
             src="/optimized/virgen-780.webp"
             srcSet="/optimized/virgen-480.webp 480w, /optimized/virgen-780.webp 780w"
             sizes="(max-width: 860px) 100vw, 64vw"
