@@ -18,6 +18,7 @@ import VirgenDoloresPage from './pages/VirgenDoloresPage';
 import HorariosPage from './pages/HorariosPage';
 import EventosPage from './pages/EventosPage';
 import ContactoPage from './pages/ContactoPage';
+import CapillasPage from './pages/CapillasPage';
 import { REQUISITOS } from './data/requisitos';
 import { useRevealOnScroll } from './hooks/useRevealOnScroll';
 
@@ -57,6 +58,7 @@ export default function App() {
       <Route path="/eventos" element={<EventosPage />} />
       <Route path="/galeria" element={<GaleriaPage />} />
       <Route path="/contacto" element={<ContactoPage />} />
+      <Route path="/capillas" element={<CapillasPage />} />
       <Route path="/sacramentos" element={<SacramentosLayout />}>
         <Route index element={<Navigate to={`/sacramentos/${REQUISITOS[0].id}`} replace />} />
         <Route path=":id" element={<Sacramento />} />

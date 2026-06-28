@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ZoomIn } from 'lucide-react';
 import { FOTOS } from '../data/galeria';
 import './Galeria.css';
 
@@ -40,6 +40,9 @@ export default function Galeria() {
                   loading="lazy"
                   decoding="async"
                 />
+                <div className="galeria__hover-overlay" aria-hidden="true">
+                  <ZoomIn size={36} strokeWidth={1.5} />
+                </div>
                 <span className="galeria__caption">{foto.caption}</span>
               </Link>
             );

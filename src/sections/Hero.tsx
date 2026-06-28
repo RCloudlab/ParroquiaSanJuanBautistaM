@@ -23,19 +23,17 @@ export default function Hero() {
       {/* Overlay decorativo */}
       <div className="hero__overlay" />
 
-      {/* Ornamento central superior */}
-      <div className="hero__cross-ornament" aria-hidden="true">✝</div>
+      {/* Cruz ornamental SVG — reemplaza el emoji ✝ */}
+      <div className="hero__cross-ornament" aria-hidden="true">
+        <svg viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="hero__cross-svg">
+          <rect x="17" y="0"  width="6" height="60" rx="2" fill="currentColor"/>
+          <rect x="0"  y="16" width="40" height="6"  rx="2" fill="currentColor"/>
+        </svg>
+      </div>
 
       <div className="hero__content">
-        {/* Escudo / imagen del santo representativa con SVG decorativo */}
-        <div className="hero__emblem">
-          
-        </div>
-
         <p className="hero__eyebrow">Parroquia de</p>
-        <h1 className="hero__title">
-          San Juan Bautista
-        </h1>
+        <h1 className="hero__title">San Juan Bautista</h1>
         <div className="hero__gold-line" />
         <p className="hero__quote">
           «Ecce Agnus Dei, qui tollit peccatum mundi»
@@ -43,8 +41,6 @@ export default function Hero() {
           <em>«He aquí el Cordero de Dios, que quita el pecado del mundo»</em>
           <span className="hero__quote-ref">Jn 1,29</span>
         </p>
-
-        
       </div>
 
       <button className="hero__scroll-hint" onClick={scrollDown} aria-label="Ir a la sección siguiente">

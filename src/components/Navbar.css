@@ -457,4 +457,21 @@
     align-items: center;
     justify-content: center;
   }
+  /* Logo más grande cuando no hay texto al lado */
+  .navbar__logo {
+    height: 52px;
+  }
+  .navbar__inner {
+    height: 66px;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar__logo {
+    height: 48px;
+  }
+  .navbar__inner {
+    height: 62px;
+  }
 }

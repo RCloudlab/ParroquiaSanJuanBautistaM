@@ -61,6 +61,13 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 0.28s cubic-bezier(0.34,1.2,0.64,1),
+              box-shadow 0.28s ease;
+}
+
+.eventos__card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 14px 36px rgba(139,26,26,0.18);
 }
 
 .eventos__date {
@@ -71,6 +78,11 @@
   padding: 1rem;
   color: var(--white-pure);
   min-width: 64px;
+  transition: filter 0.25s ease;
+}
+
+.eventos__card:hover .eventos__date {
+  filter: brightness(1.12);
 }
 
 .eventos__day {

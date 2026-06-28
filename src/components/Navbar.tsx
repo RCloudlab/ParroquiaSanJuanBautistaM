@@ -25,9 +25,10 @@ const NAV_LINKS: NavLink[] = [
   {
     label: 'Parroquia',
     children: [
-      { label: 'Historia',             route: '/historia' },
+      { label: 'Historia',              route: '/historia' },
+      { label: 'Capillas',              route: '/capillas' },
       { label: 'Virgen de los Dolores', route: '/virgen-de-los-dolores' },
-      { label: 'Galería',              route: '/galeria' },
+      { label: 'Galería',               route: '/galeria' },
     ],
   },
   {

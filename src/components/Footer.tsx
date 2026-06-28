@@ -76,7 +76,7 @@ export default function Footer() {
               Fiesta: 15 de Septiembre
             </p>
             <div className="footer__diocese">
-              <p>Diócesis de Zamora, Michoacán</p>
+              <p>Diócesis de Morelia, Michoacán</p>
               <a
                 href="https://www.vaticannews.va/es.html"
                 target="_blank"
