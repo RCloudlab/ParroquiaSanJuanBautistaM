@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Church, Heart } from 'lucide-react';
+import { Church, Heart, Facebook, Instagram } from 'lucide-react';
 import './Footer.css';
 
 // Mismo criterio que el Navbar: cada sección vive en su propia ruta.
@@ -44,7 +44,7 @@ export default function Footer() {
             </ul>
           </nav>
 
-          {/* Copatronato badge */}
+          {/* Copatronato + Redes sociales */}
           <div className="footer__copatronato">
             <h4 className="footer__nav-title">Copatrona</h4>
             <div className="footer__copatronato-badge">
@@ -58,7 +58,7 @@ export default function Footer() {
               Fiesta: 15 de Septiembre
             </p>
             <div className="footer__diocese">
-              <p>Diócesis de …</p>
+              <p>Diócesis de Zamora, Michoacán</p>
               <a
                 href="https://www.vaticannews.va/es.html"
                 target="_blank"
@@ -67,6 +67,32 @@ export default function Footer() {
               >
                 Vatican News
               </a>
+            </div>
+
+            <div className="footer__social">
+              <h4 className="footer__nav-title">Síguenos</h4>
+              <div className="footer__social-links">
+                <a
+                  href="https://www.facebook.com/ParroquiaSanJuanBautistaMaravatioMich"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer__social-link footer__social-link--fb"
+                  aria-label="Facebook de la parroquia"
+                >
+                  <Facebook size={18} />
+                  <span>Facebook</span>
+                </a>
+                <a
+                  href="https://www.instagram.com/psjbautistamaravatio/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer__social-link footer__social-link--ig"
+                  aria-label="Instagram de la parroquia"
+                >
+                  <Instagram size={18} />
+                  <span>Instagram</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

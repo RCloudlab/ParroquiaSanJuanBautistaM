@@ -1,6 +1,9 @@
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, Facebook, Instagram, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import './Contacto.css';
+
+// Crea tu formulario en https://formspree.io → New Form → copia el ID aquí
+const FORMSPREE_ID = 'TU_FORMSPREE_ID';
 
 interface FormData {
   nombre: string;
@@ -9,20 +12,36 @@ interface FormData {
   mensaje: string;
 }
 
+type Estado = 'idle' | 'enviando' | 'ok' | 'error';
+
 export default function Contacto() {
   const [form, setForm] = useState<FormData>({ nombre: '', email: '', asunto: '', mensaje: '' });
-  const [sent, setSent] = useState(false);
+  const [estado, setEstado] = useState<Estado>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Placeholder — conectar con backend / EmailJS / Formspree
-    setSent(true);
-    setTimeout(() => setSent(false), 5000);
-    setForm({ nombre: '', email: '', asunto: '', mensaje: '' });
+    setEstado('enviando');
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          nombre: form.nombre,
+          email: form.email,
+          asunto: form.asunto,
+          mensaje: form.mensaje,
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setEstado('ok');
+      setForm({ nombre: '', email: '', asunto: '', mensaje: '' });
+    } catch {
+      setEstado('error');
+    }
   };
 
   return (
@@ -47,7 +66,7 @@ export default function Contacto() {
                   </span>
                   <div>
                     <strong>Dirección</strong>
-                    <p>Calle de la Parroquia, 1<br />28001 – Tu Ciudad, España</p>
+                    <p>Calle Madero s/n, Colonia Centro<br />Maravatío, Michoacán, México C.P. 61250</p>
                   </div>
                 </li>
                 <li className="contacto__item">
@@ -57,8 +76,7 @@ export default function Contacto() {
                   <div>
                     <strong>Teléfono</strong>
                     <p>
-                      <a href="tel:+34900000000">+34 900 000 000</a><br />
-                      <span className="contacto__note">Urgencias 24h disponible</span>
+                      <a href="tel:+524474782005">447 478 2005</a>
                     </p>
                   </div>
                 </li>
@@ -69,7 +87,7 @@ export default function Contacto() {
                   <div>
                     <strong>Correo electrónico</strong>
                     <p>
-                      <a href="mailto:parrquia@sjbautista.es">parroquia@sjbautista.es</a>
+                      <a href="mailto:pastoraldemediospsjb@gmail.com">pastoraldemediospsjb@gmail.com</a>
                     </p>
                   </div>
                 </li>
@@ -78,18 +96,42 @@ export default function Contacto() {
                     <Clock size={20} />
                   </span>
                   <div>
-                    <strong>Secretaría</strong>
-                    <p>Lun–Vie: 9:00 – 14:00 / 16:00 – 19:00<br />Sáb: 9:00 – 13:00</p>
+                    <strong>Notaría y Librería</strong>
+                    <p>Mar–Vie: 9:00 – 14:00 / 16:00 – 19:00<br />Sáb: 9:00 – 13:00 · Dom: 10:00 – 14:00</p>
                   </div>
                 </li>
               </ul>
+
+              {/* Redes sociales */}
+              <div className="contacto__social">
+                <a
+                  href="https://www.facebook.com/ParroquiaSanJuanBautistaMaravatioMich"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contacto__social-link contacto__social-link--fb"
+                  aria-label="Facebook de la parroquia"
+                >
+                  <Facebook size={18} />
+                  <span>ParroquiaSanJuanBautistaMaravatioMich</span>
+                </a>
+                <a
+                  href="https://www.instagram.com/psjbautistamaravatio/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contacto__social-link contacto__social-link--ig"
+                  aria-label="Instagram de la parroquia"
+                >
+                  <Instagram size={18} />
+                  <span>@psjbautistamaravatio</span>
+                </a>
+              </div>
             </div>
 
             {/* Mapa embebido — Google Maps embed genérico */}
             <div className="contacto__map-wrapper">
               <iframe
                 title="Ubicación de la Parroquia San Juan Bautista"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12141.556!2d-3.7037902!3d40.4167754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2sMadrid%2C%20Spain!5e0!3m2!1sen!2s!4v1600000000000!5m2!1sen!2s"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3747.4!2d-100.4498!3d19.9009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842d4b2b2b2b2b2b%3A0x0!2sParroquia%20San%20Juan%20Bautista%2C%20Calle%20Madero%20s%2Fn%2C%20Maravat%C3%ADo%2C%20Mich.!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
                 width="100%"
                 height="220"
                 style={{ border: 0, borderRadius: 'var(--radius)' }}
@@ -98,7 +140,7 @@ export default function Contacto() {
                 referrerPolicy="no-referrer-when-downgrade"
               />
               <p className="contacto__map-note">
-                * Reemplaza el enlace del mapa con la ubicación exacta de tu parroquia
+                Calle Madero s/n, Col. Centro · Maravatío, Michoacán
               </p>
             </div>
           </div>
@@ -109,73 +151,105 @@ export default function Contacto() {
               <Send size={20} /> Envíanos un mensaje
             </h3>
 
-            {sent && (
+            {estado === 'ok' && (
               <div className="contacto__success">
                 ¡Mensaje enviado! Te responderemos a la brevedad. Dios te bendiga.
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="contacto__form">
-              <div className="contacto__field">
-                <label htmlFor="nombre">Nombre completo</label>
-                <input
-                  id="nombre"
-                  name="nombre"
-                  type="text"
-                  required
-                  placeholder="Tu nombre"
-                  value={form.nombre}
-                  onChange={handleChange}
-                />
+            {estado === 'error' && (
+              <div className="contacto__error">
+                Ocurrió un error al enviar. Por favor escríbenos directamente a{' '}
+                <a href="mailto:pastoraldemediospsjb@gmail.com">pastoraldemediospsjb@gmail.com</a>
               </div>
-              <div className="contacto__field">
-                <label htmlFor="email">Correo electrónico</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="tu@email.com"
-                  value={form.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="contacto__field">
-                <label htmlFor="asunto">Asunto</label>
-                <select
-                  id="asunto"
-                  name="asunto"
-                  required
-                  value={form.asunto}
-                  onChange={handleChange}
+            )}
+
+            {estado !== 'ok' && (
+              <form onSubmit={handleSubmit} className="contacto__form">
+                {/* Honeypot anti-spam: campo oculto que los bots llenan y los humanos no */}
+                <input type="text" name="_gotcha" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+
+                <div className="contacto__field">
+                  <label htmlFor="nombre">Nombre completo</label>
+                  <input
+                    id="nombre"
+                    name="nombre"
+                    type="text"
+                    required
+                    placeholder="Tu nombre"
+                    value={form.nombre}
+                    onChange={handleChange}
+                    disabled={estado === 'enviando'}
+                  />
+                </div>
+                <div className="contacto__field">
+                  <label htmlFor="email">Correo electrónico</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="tu@email.com"
+                    value={form.email}
+                    onChange={handleChange}
+                    disabled={estado === 'enviando'}
+                  />
+                </div>
+                <div className="contacto__field">
+                  <label htmlFor="asunto">Asunto</label>
+                  <select
+                    id="asunto"
+                    name="asunto"
+                    required
+                    value={form.asunto}
+                    onChange={handleChange}
+                    disabled={estado === 'enviando'}
+                  >
+                    <option value="">Selecciona un asunto…</option>
+                    <option value="bautismo">Bautismo</option>
+                    <option value="comunion">Primera Comunión / Confirmación</option>
+                    <option value="matrimonio">Matrimonio</option>
+                    <option value="difuntos">Difuntos</option>
+                    <option value="notaria">Notaría / Certificados</option>
+                    <option value="eventos">Eventos y actividades</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+                <div className="contacto__field">
+                  <label htmlFor="mensaje">Mensaje</label>
+                  <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    rows={5}
+                    required
+                    placeholder="Escríbenos tu consulta…"
+                    value={form.mensaje}
+                    onChange={handleChange}
+                    disabled={estado === 'enviando'}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="btn-primary contacto__submit"
+                  disabled={estado === 'enviando'}
                 >
-                  <option value="">Selecciona un asunto…</option>
-                  <option value="bautismo">Bautismo</option>
-                  <option value="comunion">Primera Comunión / Confirmación</option>
-                  <option value="matrimonio">Matrimonio</option>
-                  <option value="difuntos">Difuntos</option>
-                  <option value="notaria">Notaría / Certificados</option>
-                  <option value="eventos">Eventos y actividades</option>
-                  <option value="otro">Otro</option>
-                </select>
-              </div>
-              <div className="contacto__field">
-                <label htmlFor="mensaje">Mensaje</label>
-                <textarea
-                  id="mensaje"
-                  name="mensaje"
-                  rows={5}
-                  required
-                  placeholder="Escríbenos tu consulta…"
-                  value={form.mensaje}
-                  onChange={handleChange}
-                />
-              </div>
-              <button type="submit" className="btn-primary contacto__submit">
-                <Send size={16} />
-                Enviar mensaje
+                  {estado === 'enviando' ? (
+                    <><Loader2 size={16} className="contacto__spinner" /> Enviando…</>
+                  ) : (
+                    <><Send size={16} /> Enviar mensaje</>
+                  )}
+                </button>
+              </form>
+            )}
+
+            {estado === 'ok' && (
+              <button
+                className="btn-gold contacto__retry"
+                onClick={() => setEstado('idle')}
+              >
+                Enviar otro mensaje
               </button>
-            </form>
+            )}
           </div>
         </div>
       </div>

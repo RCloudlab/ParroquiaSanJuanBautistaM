@@ -1,32 +1,43 @@
 import { Link } from 'react-router-dom';
-import { Clock, BookOpen, FileText, ArrowRight } from 'lucide-react';
+import { Clock, BookOpen, FileText, ArrowRight, Tv2 } from 'lucide-react';
 import './Horarios.css';
 
 interface MisaRow {
   dia: string;
   horas: string[];
+  nota?: string;
 }
 
 const MISAS: MisaRow[] = [
-  { dia: 'Lunes',     horas: ['07:00', '19:00'] },
-  { dia: 'Martes',    horas: ['07:00', '19:00'] },
-  { dia: 'Miércoles', horas: ['07:00', '19:00'] },
-  { dia: 'Jueves',    horas: ['07:00', '19:00'] },
-  { dia: 'Viernes',   horas: ['07:00', '19:00'] },
-  { dia: 'Sábado',    horas: ['08:00', '12:00', '19:00'] },
-  { dia: 'Domingo',   horas: ['07:00', '09:00', '11:00', '13:00', '19:00'] },
+  { dia: 'Lunes a Viernes', horas: ['7:00 am', '7:00 pm'] },
+  { dia: 'Sábado',          horas: ['7:00 am', '8:00 pm'] },
+  {
+    dia: 'Domingo',
+    horas: ['6:00', '7:00', '8:00', '9:00', '11:00 am'],
+    nota: '12 md "Misa Pro Pópulo" · 1:00 pm · 6:00 pm',
+  },
+];
+
+const CONFESIONES = [
+  { dia: 'Lunes a Viernes', horario: 'Durante las misas de 7:00 am y 7:00 pm' },
 ];
 
 const NOTARIA = [
-  { dia: 'Lunes – Viernes', horario: '09:00 – 14:00 / 16:00 – 19:00' },
-  { dia: 'Sábado',          horario: '09:00 – 13:00' },
-  { dia: 'Domingo',         horario: 'Cerrado' },
+  { dia: 'Lunes',          horario: 'No hay servicio' },
+  { dia: 'Martes a Viernes', horario: '9:00 am – 2:00 pm / 4:00 – 7:00 pm' },
+  { dia: 'Sábado',         horario: '9:00 am – 1:00 pm' },
+  { dia: 'Domingo',        horario: '10:00 am – 2:00 pm' },
 ];
 
 const LIBRERIA = [
-  { dia: 'Lunes – Viernes', horario: '09:00 – 14:00 / 16:00 – 18:30' },
-  { dia: 'Sábado',          horario: '10:00 – 13:00' },
-  { dia: 'Domingo',         horario: 'Cerrado' },
+  { dia: 'Lunes',          horario: 'No hay servicio' },
+  { dia: 'Martes a Viernes', horario: '9:00 am – 2:00 pm / 4:00 – 7:00 pm' },
+  { dia: 'Sábado',         horario: '9:00 am – 1:00 pm' },
+  { dia: 'Domingo',        horario: '10:00 am – 2:00 pm' },
+];
+
+const TRANSMISIONES = [
+  { dia: 'Domingo', horario: '9:00 am y 12:00 del medio día' },
 ];
 
 export default function Horarios() {
@@ -44,7 +55,7 @@ export default function Horarios() {
           <div className="card horarios__card-misas reveal">
             <div className="horarios__card-header">
               <Clock size={22} className="horarios__icon" />
-              <h3>Horario de Misas</h3>
+              <h3>Santa Misa</h3>
             </div>
             <table className="horarios__table">
               <thead>
@@ -61,11 +72,56 @@ export default function Horarios() {
                       {row.horas.map(h => (
                         <span key={h} className="horarios__hora-badge">{h}</span>
                       ))}
+                      {row.nota && <span className="horarios__hora-nota">{row.nota}</span>}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+
+            {/* Confesiones */}
+            <div className="horarios__confesiones">
+              <div className="horarios__card-header horarios__card-header--sub">
+                <FileText size={18} className="horarios__icon" />
+                <h4>Confesiones</h4>
+              </div>
+              <ul className="horarios__schedule-list">
+                {CONFESIONES.map(c => (
+                  <li key={c.dia} className="horarios__schedule-item">
+                    <span className="horarios__schedule-day">{c.dia}</span>
+                    <span className="horarios__schedule-time">{c.horario}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Transmisiones en vivo */}
+            <div className="horarios__confesiones">
+              <div className="horarios__card-header horarios__card-header--sub">
+                <Tv2 size={18} className="horarios__icon" />
+                <h4>Transmisiones de Misa</h4>
+              </div>
+              <ul className="horarios__schedule-list">
+                {TRANSMISIONES.map(t => (
+                  <li key={t.dia} className="horarios__schedule-item">
+                    <span className="horarios__schedule-day">{t.dia}</span>
+                    <span className="horarios__schedule-time">{t.horario}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="horarios__note">
+                En vivo por{' '}
+                <a
+                  href="https://www.facebook.com/ParroquiaSanJuanBautistaMaravatioMich"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="horarios__fb-link"
+                >
+                  Facebook
+                </a>
+              </p>
+            </div>
+
             <p className="horarios__note">
               * Los horarios pueden variar en días festivos. Consulta el tablón de avisos.
             </p>
@@ -83,7 +139,7 @@ export default function Horarios() {
               </p>
               <ul className="horarios__schedule-list">
                 {NOTARIA.map(n => (
-                  <li key={n.dia} className="horarios__schedule-item">
+                  <li key={n.dia} className={`horarios__schedule-item${n.horario === 'No hay servicio' ? ' horarios__schedule-item--closed' : ''}`}>
                     <span className="horarios__schedule-day">{n.dia}</span>
                     <span className="horarios__schedule-time">{n.horario}</span>
                   </li>
@@ -101,7 +157,7 @@ export default function Horarios() {
               </p>
               <ul className="horarios__schedule-list">
                 {LIBRERIA.map(n => (
-                  <li key={n.dia} className="horarios__schedule-item">
+                  <li key={n.dia} className={`horarios__schedule-item${n.horario === 'No hay servicio' ? ' horarios__schedule-item--closed' : ''}`}>
                     <span className="horarios__schedule-day">{n.dia}</span>
                     <span className="horarios__schedule-time">{n.horario}</span>
                   </li>

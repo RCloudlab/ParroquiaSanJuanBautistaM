@@ -153,6 +153,47 @@
   text-align: right;
 }
 
+.horarios__hora-nota {
+  display: block;
+  width: 100%;
+  font-size: 0.8rem;
+  color: var(--stone);
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+.horarios__confesiones {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed rgba(107,101,96,0.2);
+}
+
+.horarios__card-header--sub {
+  margin-bottom: 0.75rem;
+}
+
+.horarios__card-header--sub h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--red-deep);
+}
+
+.horarios__schedule-item--closed .horarios__schedule-time {
+  color: var(--stone);
+  font-style: italic;
+}
+
+.horarios__fb-link {
+  color: var(--blue-mid);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.horarios__fb-link:hover {
+  color: var(--blue-deep);
+}
+
 @media (max-width: 860px) {
   .horarios__grid {
     grid-template-columns: 1fr;
