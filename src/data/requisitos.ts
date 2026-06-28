@@ -1,7 +1,3 @@
-// Fuente única de los datos de cada sacramento/trámite parroquial.
-// Sacramentos.tsx usa esto para las tarjetas de acceso en la home; Sacramento.tsx
-// (página /sacramentos/:id) lo usa para la vista de detalle a página completa.
-
 export interface RequisitoSacramento {
   id: string;
   titulo: string;
@@ -18,48 +14,91 @@ export const REQUISITOS: RequisitoSacramento[] = [
     titulo: 'Bautismo',
     subtitulo: 'El primer sacramento de la vida cristiana',
     descripcion:
-      'El bautismo incorpora al cristiano en la Iglesia y borra el pecado original. Celebramos el bautismo de infantes y adultos con toda la solemnidad que merece este sacramento.',
+      'El bautismo incorpora al cristiano en la Iglesia y borra el pecado original. En la Parroquia San Juan Bautista de Maravatío celebramos el bautismo los sábados y domingos a las 12:00 md en la Capilla de la Purísima. Presentar todo en copia.',
     requisitos: [
-      'Solicitar cita en la notaría parroquial',
-      'Carta de compromiso de los padres padrinos',
-      'Fotocopia del acta de nacimiento del bautizando',
-      'Asistir al curso prebautismal (2 sesiones)',
-      'Al menos uno de los padres debe ser católico bautizado',
+      'Acta de nacimiento del niño o niña (de 0 a 6 años)',
+      'Credencial de elector de los papás; si son menores de edad, carta de identidad',
+      'Boleta de Matrimonio por la Iglesia de los papás, si están casados',
+      'Boleta de Matrimonio por la Iglesia de los padrinos',
+      'Boleta de Confirmación reciente del padrino o madrina, si es soltero(a) — solo es una persona que no viva en unión libre ni esté casado(a) por el civil',
+      'Comprobante de plática pre-bautismal de papás y padrinos vigente (si no tienen, se les programará)',
+      'Realizar el pago de la boleta el día del registro',
+      'La documentación debe entregarse el mes anterior al Bautismo',
     ],
     notas: [
-      'Los padrinos deben ser católicos practicantes, mayores de edad y con vida sacramental al día.',
+      'No hay padrinos ausentes ni representantes.',
+      'Los bautismos se celebran sábados y domingos a las 12:00 md en la Capilla de la Purísima.',
+      'Si pertenecen a otra parroquia: traer permiso expedido por el Párroco con vigencia no mayor de un mes, y comprobantes de plática de papás y padrinos vigente.',
     ],
-    contacto: 'Notaría parroquial: Lun–Vie 9–14h',
+    contacto: 'Notaría Parroquial: Mar–Vie 9:00–14:00 / 16:00–19:00 · Sáb: 9:00–13:00 · Dom: 10:00–14:00',
   },
   {
     id: 'primera-comunion',
-    titulo: 'Primera Comunión y Confirmación',
-    subtitulo: 'Sacramentos de iniciación cristiana',
+    titulo: 'Primera Comunión',
+    subtitulo: 'Sacramento de la Eucaristía',
     descripcion:
-      'La Primera Comunión y la Confirmación son sacramentos de madurez en la fe. La preparación catequética ayuda a los jóvenes a acoger el Espíritu Santo y comprometerse con la comunidad.',
+      'La Primera Comunión es el sacramento por el que el fiel recibe por primera vez el Cuerpo y la Sangre de Cristo. Presentar todo en copia.',
     requisitos: [
-      'Haber recibido el bautismo',
-      'Inscripción en catequesis (inicio en octubre)',
-      'Edad mínima: 8 años para Primera Comunión, 14 para Confirmación',
-      'Asistencia regular a la Misa dominical',
-      'Participar en las convivencias de preparación',
+      'Boleta de Bautismo',
+      'Acta de nacimiento del niño o niña',
+      'Credencial de elector de los papás; si son menores de edad, carta de identidad',
+      'Boleta de Matrimonio por la Iglesia de los papás, si están casados',
+      'Boleta de Matrimonio por la Iglesia de los padrinos',
+      'Boleta de Confirmación reciente del padrino o madrina, si es soltero(a) — solo es una persona que no viva en unión libre ni esté casado(a) por el civil',
+      'Comprobante de plática pre-bautismal de papás y padrinos vigente (si no tienen, se les programará)',
+      'Realizar el pago de la boleta el día del registro',
+      'La documentación debe entregarse el mes anterior a la celebración',
     ],
-    contacto: 'Secretaría de catequesis: Sábados 10–12h',
+    notas: [
+      'No hay padrinos ausentes ni representantes.',
+      'Si pertenecen a otra parroquia: traer permiso expedido por el Párroco con vigencia no mayor de un mes.',
+    ],
+    contacto: 'Notaría Parroquial: Mar–Vie 9:00–14:00 / 16:00–19:00 · Sáb: 9:00–13:00 · Dom: 10:00–14:00',
+  },
+  {
+    id: 'confirmacion',
+    titulo: 'Confirmación',
+    subtitulo: 'Sacramento del Espíritu Santo',
+    descripcion:
+      'La Confirmación perfecciona la gracia bautismal y fortalece al cristiano con los dones del Espíritu Santo para vivir y defender la fe. Presentar todo en copia.',
+    requisitos: [
+      'Boleta de Primera Comunión',
+      'Acta de nacimiento',
+      'Credencial de elector de los papás; si son menores de edad, carta de identidad',
+      'Boleta de Matrimonio por la Iglesia de los papás, si están casados',
+      'Boleta de Matrimonio por la Iglesia de los padrinos',
+      'Boleta de Confirmación reciente del padrino o madrina, si es soltero(a) — solo es una persona que no viva en unión libre ni esté casado(a) por el civil',
+      'Comprobante de plática de papás y padrinos vigente (si no tienen, se les programará)',
+      'Realizar el pago de la boleta el día del registro',
+      'La documentación debe entregarse el mes anterior a la celebración',
+    ],
+    notas: [
+      'No hay padrinos ausentes ni representantes.',
+      'Si pertenecen a otra parroquia: traer permiso expedido por el Párroco con vigencia no mayor de un mes.',
+    ],
+    contacto: 'Notaría Parroquial: Mar–Vie 9:00–14:00 / 16:00–19:00 · Sáb: 9:00–13:00 · Dom: 10:00–14:00',
   },
   {
     id: 'boda',
     titulo: 'Matrimonio',
     subtitulo: 'Sacramento del amor y la alianza',
     descripcion:
-      'El matrimonio cristiano es un sacramento permanente y fructífero. Acompañamos a las parejas desde la preparación hasta la celebración de su Misa nupcial.',
+      'El matrimonio cristiano es un sacramento permanente. Acompañamos a las parejas desde la preparación hasta la celebración de su Misa nupcial en la Parroquia San Juan Bautista de Maravatío.',
     requisitos: [
-      'Solicitar fecha con al menos 6 meses de antelación',
-      'Ambos contrayentes bautizados en la Iglesia Católica',
-      'Partidas de bautismo recientes (menos de 6 meses)',
-      'Curso prematrimonial (obligatorio)',
-      'DNI de los contrayentes y testigos',
+      '1. Reservar la fecha con 6 meses de anticipación presentando boletas de: Bautismo, Primera Comunión, Confirmación, Credencial de elector vigente, Acta de Matrimonio por el civil (si ya se casaron). Con el 50% de anticipo del estipendio de la Misa',
+      '2. Solicitar 3 meses antes de la boda la Presentación Matrimonial en la Notaría Parroquial: presentar boletas de Bautismo, Primera Comunión y Confirmación de los contrayentes',
+      '3. El día de la Presentación Matrimonial traer: boletas de Bautismo, Primera Comunión y Confirmación de los contrayentes · Fotografías tamaño infantil recientes (no instantáneas) · Dos testigos por cada contrayente · Credencial de elector de contrayentes y testigos · Acta de Matrimonio civil · Si algún contrayente es viudo o divorciado por el civil, presentar el acta correspondiente (indispensable) · El estipendio de la Presentación Matrimonial es $350.00',
+      '4. Asistir a Catequesis Pre-Matrimonial (primer y segundo domingo de mes) — Cooperación $150.00 por pareja, en el Salón Parroquial de 9:00 am a 2:00 pm',
+      '5. Entregar el Rezo 15 días antes de la boda en la Notaría Parroquial, de martes a sábado por la tarde',
+      '6. Presentar Boleta de Matrimonio por la Iglesia de los Padrinos de Velación',
+      '7. Haber cubierto el estipendio total de la celebración de la Misa 15 días antes',
     ],
-    contacto: 'Notaría: con cita previa — cita@parroquiasjb.es',
+    notas: [
+      'No pueden contraer matrimonio menores de edad.',
+      'No hay padrinos ausentes ni representantes.',
+      'Si no se cumplen todos los requisitos, no se celebrará el Matrimonio.',
+    ],
+    contacto: 'Notaría Parroquial: Mar–Vie 9:00–14:00 / 16:00–19:00 · Sáb: 9:00–13:00 · Dom: 10:00–14:00',
   },
   {
     id: 'difuntos',
@@ -73,7 +112,7 @@ export const REQUISITOS: RequisitoSacramento[] = [
       'Indicar si se desea misa de cuerpo presente o posterior',
       'Se pueden solicitar misas de aniversario en cualquier momento',
     ],
-    contacto: 'Urgencias: disponible las 24h — Tel. 900 000 000',
+    contacto: 'Tel. 447 478 2005 · Notaría Parroquial: Mar–Vie 9:00–14:00 / 16:00–19:00',
   },
   {
     id: 'notaria',
@@ -85,9 +124,12 @@ export const REQUISITOS: RequisitoSacramento[] = [
       'Certificados de bautismo, confirmación y matrimonio',
       'Inscripciones marginales (matrimonio, confirmación)',
       'Certificados para procesos de nulidad matrimonial',
-      'Solicitudes con DNI del interesado o familiar directo',
+      'Solicitudes con identificación oficial del interesado o familiar directo',
     ],
-    contacto: 'Lun–Vie: 9:00–14:00 / 16:00–19:00 · Sáb: 9:00–13:00',
+    notas: [
+      'Lunes: no hay servicio.',
+    ],
+    contacto: 'Mar–Vie: 9:00–14:00 / 16:00–19:00 · Sáb: 9:00–13:00 · Dom: 10:00–14:00 · Tel. 447 478 2005',
   },
 ];
 

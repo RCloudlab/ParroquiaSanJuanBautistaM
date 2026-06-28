@@ -2,7 +2,7 @@ import { Outlet, useLocation, Link } from 'react-router-dom';
 import { Cross, Scroll, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { IconBautismo, IconEucaristia, IconMatrimonio } from '../components/icons/ParishIcons';
+import { IconBautismo, IconEucaristia, IconConfirmacion, IconMatrimonio } from '../components/icons/ParishIcons';
 import { REQUISITOS } from '../data/requisitos';
 import './SacramentosLayout.css';
 
@@ -13,6 +13,7 @@ const ICON_SIZE = 22;
 const ICONS: Record<string, React.ReactNode> = {
   bautizo: <IconBautismo width={ICON_SIZE} height={ICON_SIZE} />,
   'primera-comunion': <IconEucaristia width={ICON_SIZE} height={ICON_SIZE} />,
+  confirmacion: <IconConfirmacion width={ICON_SIZE} height={ICON_SIZE} />,
   boda: <IconMatrimonio width={ICON_SIZE} height={ICON_SIZE} />,
   difuntos: <Cross size={ICON_SIZE} strokeWidth={1.5} />,
   notaria: <Scroll size={ICON_SIZE} strokeWidth={1.5} />,
