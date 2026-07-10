@@ -39,6 +39,10 @@
   clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
+.virgen-dolores__img-wrap picture {
+  display: contents;
+}
+
 .virgen-dolores__img {
   position: absolute;
   /* margen extra para que el parallax nunca deje huecos en los bordes */
@@ -46,7 +50,7 @@
   width: 108%;
   height: 116%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 32%;
   display: block;
   will-change: transform;
 }

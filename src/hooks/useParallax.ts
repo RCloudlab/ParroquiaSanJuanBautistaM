@@ -11,9 +11,9 @@ import { useEffect, useRef } from 'react';
  *
  * @param strength desplazamiento máximo en px aplicado en el eje Y
  */
-export function useParallax<T extends HTMLElement>(strength = 60) {
+export function useParallax<T extends HTMLElement, U extends HTMLElement = HTMLElement>(strength = 60) {
   const containerRef = useRef<T>(null);
-  const targetRef = useRef<HTMLElement>(null);
+  const targetRef = useRef<U>(null);
 
   useEffect(() => {
     const container = containerRef.current;

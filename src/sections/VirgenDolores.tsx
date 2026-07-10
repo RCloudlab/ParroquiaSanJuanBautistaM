@@ -15,7 +15,7 @@ const SIETE_DOLORES = [
 ];
 
 export default function VirgenDolores() {
-  const { containerRef } = useParallax<HTMLDivElement>(70);
+  const { containerRef, targetRef } = useParallax<HTMLDivElement, HTMLImageElement>(70);
 
   return (
     <section id="virgen-dolores" className="virgen-dolores">
@@ -25,15 +25,26 @@ export default function VirgenDolores() {
           imagen y el fondo morado para dar sensación de profundidad. */}
       <div className="virgen-dolores__hero" ref={containerRef}>
         <div className="virgen-dolores__img-wrap">
-          <img
-            src="/optimized/virgen-780.webp"
-            srcSet="/optimized/virgen-480.webp 480w, /optimized/virgen-780.webp 780w"
-            sizes="(max-width: 860px) 100vw, 64vw"
-            alt="Nuestra Señora de los Dolores — imagen de la parroquia"
-            className="virgen-dolores__img"
-            loading="lazy"
-            decoding="async"
-          />
+          {/* Art direction: en escritorio la toma amplia del altar (se ve
+              la escena casi completa dentro del recorte diagonal); en
+              móvil, el retrato vertical que llena mejor la pantalla. */}
+          <picture>
+            <source
+              media="(max-width: 860px)"
+              srcSet="/optimized/virgen-480.webp 480w, /optimized/virgen-960.webp 960w, /optimized/virgen-1600.webp 1600w"
+              sizes="100vw"
+            />
+            <img
+              ref={targetRef}
+              src="/optimized/virgen-dolores-cal-960.webp"
+              srcSet="/optimized/virgen-dolores-cal-480.webp 480w, /optimized/virgen-dolores-cal-960.webp 960w, /optimized/virgen-dolores-cal-1600.webp 1600w, /optimized/virgen-dolores-cal-2200.webp 2200w"
+              sizes="(max-width: 860px) 100vw, 70vw"
+              alt="Nuestra Señora de los Dolores en su altar — imagen de la parroquia"
+              className="virgen-dolores__img"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <div className="virgen-dolores__img-scrim" aria-hidden="true" />
         </div>
 

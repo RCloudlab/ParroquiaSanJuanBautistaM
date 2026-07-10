@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -21,6 +22,13 @@ import ContactoPage from './pages/ContactoPage';
 import CapillasPage from './pages/CapillasPage';
 import { REQUISITOS } from './data/requisitos';
 import { useRevealOnScroll } from './hooks/useRevealOnScroll';
+
+// La sección del rosario se carga bajo demanda (code splitting): sus textos
+// y componentes no pesan en el bundle inicial de quien solo visita el home.
+const RosarioPage = lazy(() => import('./pages/RosarioPage'));
+const RosarioGuiado = lazy(() => import('./pages/RosarioGuiado'));
+const RosarioContador = lazy(() => import('./pages/RosarioContador'));
+const RosarioLibro = lazy(() => import('./pages/RosarioLibro'));
 
 function Home() {
   useRevealOnScroll();
@@ -50,6 +58,7 @@ function Home() {
 
 export default function App() {
   return (
+    <Suspense fallback={null}>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/historia" element={<Historia />} />
@@ -59,10 +68,15 @@ export default function App() {
       <Route path="/galeria" element={<GaleriaPage />} />
       <Route path="/contacto" element={<ContactoPage />} />
       <Route path="/capillas" element={<CapillasPage />} />
+      <Route path="/rosario" element={<RosarioPage />} />
+      <Route path="/rosario/guiado" element={<RosarioGuiado />} />
+      <Route path="/rosario/contador" element={<RosarioContador />} />
+      <Route path="/rosario/libro" element={<RosarioLibro />} />
       <Route path="/sacramentos" element={<SacramentosLayout />}>
         <Route index element={<Navigate to={`/sacramentos/${REQUISITOS[0].id}`} replace />} />
         <Route path=":id" element={<Sacramento />} />
       </Route>
     </Routes>
+    </Suspense>
   );
 }

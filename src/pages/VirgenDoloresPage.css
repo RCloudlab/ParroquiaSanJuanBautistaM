@@ -2,14 +2,24 @@
   background: var(--cream);
 }
 
-/* ─── Hero de cabecera ──────────────────────────────────────────────── */
+/* ─── Hero de cabecera ──────────────────────────────────────────────────
+   El contenedor replica la proporción nativa de la foto (aspect-ratio),
+   de modo que object-fit: cover no recorta nada: la imagen se ve entera
+   a todo el ancho. En móvil (<861px) el <picture> sirve el retrato
+   vertical y el aspect-ratio cambia con él. */
 .virgen-page__hero {
   position: relative;
-  min-height: 56vh;
+  aspect-ratio: 4096 / 1896;
+  min-height: 420px;
+  max-height: 94vh;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  background: #3D1640;
+  background: #2a0f2c;
+}
+
+.virgen-page__hero picture {
+  display: contents;
 }
 
 .virgen-page__hero-img {
@@ -18,23 +28,90 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 30%;
+  animation: virgen-hero-zoom 2.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Halo dorado pulsante tras la imagen de la Virgen (centrada en la foto) */
+.virgen-page__hero-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 42% 58% at 50% 30%, rgba(232,201,122,0.32), transparent 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: virgen-hero-glow 5.5s ease-in-out infinite alternate;
+}
+
+/* Scrim ligero: solo oscurece la franja del texto (abajo) y una pizca
+   arriba para el navbar — el resto de la foto queda limpia */
 .virgen-page__hero-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(20,8,22,0.92) 0%, rgba(20,8,22,0.35) 55%, rgba(20,8,22,0.15) 100%);
+  background:
+    linear-gradient(0deg, rgba(20,8,22,0.88) 0%, rgba(20,8,22,0.3) 28%, rgba(20,8,22,0) 52%),
+    linear-gradient(180deg, rgba(20,8,22,0.55) 0%, rgba(20,8,22,0) 20%);
+  pointer-events: none;
+}
+
+/* Marco fino dorado interior, tipo retablo */
+.virgen-page__hero-frame {
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(232,201,122,0.42);
+  pointer-events: none;
+  animation: virgen-hero-fade 1.6s ease 0.9s both;
 }
 
 .virgen-page__hero-content {
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 6rem 1.5rem 2.5rem;
+  padding: 6rem 2.25rem 3rem;
   max-width: 1200px;
   margin: 0 auto;
   color: var(--white-pure);
+}
+
+/* Flecha que invita a seguir bajando */
+.virgen-page__hero-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  z-index: 1;
+  color: var(--gold-light);
+  animation:
+    virgen-hero-fade 1s ease 1.6s both,
+    virgen-hero-cue 2.2s ease-in-out 2.6s infinite;
+}
+
+@keyframes virgen-hero-zoom {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1); }
+}
+
+@keyframes virgen-hero-rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes virgen-hero-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes virgen-hero-glow {
+  from { opacity: 0.35; }
+  to   { opacity: 0.75; }
+}
+
+@keyframes virgen-hero-cue {
+  0%, 100% { transform: translate(-50%, 0); opacity: 0.7; }
+  50%      { transform: translate(-50%, 8px); opacity: 1; }
+}
+
+@keyframes virgen-twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.82); }
 }
 
 .virgen-page__back {
@@ -45,6 +122,7 @@
   font-weight: 600;
   color: rgba(250,248,245,0.8);
   margin-bottom: 1.5rem;
+  animation: virgen-hero-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
 }
 
 .virgen-page__back:hover {
@@ -61,17 +139,43 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  animation: virgen-hero-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+}
+
+/* Estrellas de la corona titilando en contratiempo */
+.virgen-page__crown svg {
+  animation: virgen-twinkle 3.2s ease-in-out infinite;
+}
+
+.virgen-page__crown svg:last-of-type {
+  animation-delay: 1.6s;
 }
 
 .virgen-page__title {
+  display: flex;
+  flex-direction: column;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  margin-bottom: 0.5rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  animation: virgen-hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+
+.virgen-page__title-line {
+  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+  text-shadow: 0 4px 32px rgba(0,0,0,0.5);
+}
+
+.virgen-page__title-accent {
+  font-size: clamp(1.6rem, 3.6vw, 2.9rem);
+  font-style: italic;
+  color: var(--gold-light);
+  margin-top: 0.25rem;
 }
 
 .virgen-page__subtitle {
   font-style: italic;
   color: rgba(232,201,122,0.92);
+  animation: virgen-hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
 }
 
 /* ─── Cuerpo ────────────────────────────────────────────────────────── */
@@ -159,6 +263,36 @@
   color: var(--stone);
 }
 
+/* Rezo de los Siete Dolores — placeholder mientras se desarrolla */
+.virgen-page__rezo-pendiente {
+  border: 1.5px dashed rgba(160,122,40,0.45);
+  border-radius: var(--radius);
+  background: rgba(201,168,76,0.08);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+}
+
+.virgen-page__rezo-badge {
+  display: inline-block;
+  background: var(--purple-sorrow);
+  color: var(--white-pure);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  padding: 0.35rem 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.virgen-page__rezo-texto {
+  font-size: 0.95rem;
+  color: var(--stone);
+  font-style: italic;
+  max-width: 34em;
+  margin: 0 auto;
+}
+
 /* Tabla de cultos */
 .virgen-page__table {
   width: 100%;
@@ -227,8 +361,44 @@
   font-style: italic;
 }
 
+/* En móvil el <picture> sirve el retrato vertical (3072×3840): el hero
+   adopta su proporción para mostrarlo también completo. */
+@media (max-width: 860px) {
+  .virgen-page__hero {
+    aspect-ratio: 3072 / 3840;
+    max-height: 88vh;
+  }
+  .virgen-page__hero-img {
+    object-position: center 25%;
+  }
+  /* En el retrato el rostro queda más arriba */
+  .virgen-page__hero-glow {
+    background: radial-gradient(ellipse 70% 42% at 50% 22%, rgba(232,201,122,0.3), transparent 70%);
+  }
+  .virgen-page__hero-frame {
+    inset: 10px;
+  }
+  .virgen-page__hero-content {
+    padding: 5rem 1.5rem 3rem;
+  }
+}
+
 @media (max-width: 700px) {
   .virgen-page__galeria {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .virgen-page__hero-img,
+  .virgen-page__hero-glow,
+  .virgen-page__hero-frame,
+  .virgen-page__hero-cue,
+  .virgen-page__back,
+  .virgen-page__crown,
+  .virgen-page__crown svg,
+  .virgen-page__title,
+  .virgen-page__subtitle {
+    animation: none;
   }
 }

@@ -16,12 +16,13 @@ interface NavLink {
   children?: NavChild[];
 }
 
-// 5 elementos visibles en desktop (vs 8 anteriores):
-// Inicio · Horarios · Parroquia▾ · Sacramentos▾ · Eventos
+// 6 elementos visibles en desktop:
+// Inicio · Horarios · Rosario · Parroquia▾ · Sacramentos▾ · Eventos
 // El botón Contacto vive solo en navbar__actions (no duplicado en la lista).
 const NAV_LINKS: NavLink[] = [
   { label: 'Inicio',      anchor: '#hero' },
   { label: 'Horarios',    route: '/horarios' },
+  { label: 'Rosario',     route: '/rosario' },
   {
     label: 'Parroquia',
     children: [

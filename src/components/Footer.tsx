@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Church, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import './Footer.css';
 
 function IconFacebook() {
@@ -41,8 +41,7 @@ export default function Footer() {
         <div className="footer__inner">
           {/* Brand */}
           <div className="footer__brand">
-            <Church size={32} strokeWidth={1.2} className="footer__brand-icon" />
-            <h3 className="footer__brand-name">San Juan Bautista</h3>
+            <img src="/logo.png" alt="Parroquia San Juan Bautista" className="footer__brand-logo" />
             <p className="footer__brand-quote">
               «Ecce Agnus Dei»
             </p>
@@ -66,11 +65,12 @@ export default function Footer() {
           <div className="footer__copatronato">
             <h4 className="footer__nav-title">Copatrona</h4>
             <div className="footer__copatronato-badge">
-              <Heart size={20} className="footer__heart" fill="currentColor" />
-              <p>
+              <Heart size={18} className="footer__heart" fill="currentColor" />
+              <p className="footer__copatronato-name">
                 Nuestra Señora<br />
                 de los Dolores
               </p>
+              <span className="footer__copatronato-rule" aria-hidden="true" />
             </div>
             <p className="footer__copatronato-feast">
               Fiesta: 15 de Septiembre
@@ -94,7 +94,7 @@ export default function Footer() {
                   href="https://www.facebook.com/ParroquiaSanJuanBautistaMaravatioMich"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="footer__social-link footer__social-link--fb"
+                  className="footer__social-link"
                   aria-label="Facebook de la parroquia"
                 >
                   <IconFacebook />
@@ -104,7 +104,7 @@ export default function Footer() {
                   href="https://www.instagram.com/psjbautistamaravatio/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="footer__social-link footer__social-link--ig"
+                  className="footer__social-link"
                   aria-label="Instagram de la parroquia"
                 >
                   <IconInstagram />

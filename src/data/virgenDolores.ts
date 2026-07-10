@@ -53,7 +53,7 @@ export interface FotoVirgen {
 }
 
 export const GALERIA_VIRGEN: FotoVirgen[] = [
-  { name: 'virgen', width: 780, alt: 'Imagen de Nuestra Señora de los Dolores en el altar lateral', caption: 'En su altar, presidiendo la nave lateral' },
+  { name: 'virgen-dolores-cal', width: 960, alt: 'Imagen de Nuestra Señora de los Dolores en su altar, entre columnas doradas y cirios', caption: 'En su altar, presidiendo la nave lateral' },
+  { name: 'virgen', width: 960, alt: 'Detalle de la imagen de Nuestra Señora de los Dolores con su manto bordado en oro', caption: 'Detalle de su manto bordado y corona' },
   { name: 'interior', width: 1280, alt: 'Interior de la parroquia durante una celebración', caption: 'Celebración solemne en su honor' },
-  { name: 'gallery', width: 1599, alt: 'Comunidad reunida en celebración', caption: 'La comunidad reunida en oración' },
 ];

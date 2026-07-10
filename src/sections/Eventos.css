@@ -170,27 +170,6 @@
   gap: 0.5rem;
 }
 
-.eventos__cta {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  background: linear-gradient(135deg, var(--terracotta-dark), var(--brown-deep));
-  border-radius: var(--radius-lg);
-  padding: 1.5rem 2rem;
-  color: var(--white-pure);
-  font-size: 0.95rem;
-}
-
-.eventos__cta svg {
-  color: var(--gold-light);
-  flex-shrink: 0;
-}
-
-.eventos__cta span {
-  flex: 1;
-}
-
 @media (max-width: 600px) {
   .eventos__grid {
     grid-template-columns: 1fr;

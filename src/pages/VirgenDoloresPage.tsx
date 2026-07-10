@@ -19,16 +19,31 @@ export default function VirgenDoloresPage() {
     <>
       <Navbar />
       <main className="virgen-page">
-        {/* Cabecera — mismo recurso visual que el hero de home, en versión página */}
+        {/* Cabecera cinematográfica: el contenedor adopta la proporción
+            exacta de cada foto (panorámica en escritorio, retrato en móvil
+            vía <picture>) para que la imagen se vea COMPLETA, sin recortes.
+            La entrada anima un zoom-out suave + textos escalonados, con un
+            halo dorado pulsante tras la imagen y un marco fino interior. */}
         <header className="virgen-page__hero">
-          <img
-            src="/optimized/virgen-780.webp"
-            srcSet="/optimized/virgen-480.webp 480w, /optimized/virgen-780.webp 780w"
-            sizes="100vw"
-            alt="Nuestra Señora de los Dolores"
-            className="virgen-page__hero-img"
-          />
+          <picture>
+            <source
+              media="(max-width: 860px)"
+              srcSet="/optimized/virgen-480.webp 480w, /optimized/virgen-960.webp 960w, /optimized/virgen-1600.webp 1600w"
+              sizes="100vw"
+            />
+            <img
+              src="/optimized/virgen-dolores-ext-1600.webp"
+              srcSet="/optimized/virgen-dolores-ext-480.webp 480w, /optimized/virgen-dolores-ext-960.webp 960w, /optimized/virgen-dolores-ext-1600.webp 1600w, /optimized/virgen-dolores-ext-2200.webp 2200w"
+              sizes="100vw"
+              alt="Nuestra Señora de los Dolores en su altar, entre columnas doradas"
+              className="virgen-page__hero-img"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
+          <div className="virgen-page__hero-glow" aria-hidden="true" />
           <div className="virgen-page__hero-scrim" />
+          <div className="virgen-page__hero-frame" aria-hidden="true" />
           <div className="virgen-page__hero-content">
             <Link className="virgen-page__back" to="/">
               <ArrowLeft size={16} /> Volver al inicio
@@ -38,8 +53,14 @@ export default function VirgenDoloresPage() {
               <span>Copatronato Parroquial</span>
               <Star size={16} fill="currentColor" />
             </div>
-            <h1 className="virgen-page__title">Nuestra Señora de los Dolores</h1>
+            <h1 className="virgen-page__title">
+              <span className="virgen-page__title-line">Nuestra Señora</span>
+              <span className="virgen-page__title-accent">de los Dolores</span>
+            </h1>
             <p className="virgen-page__subtitle">Copatrona de la Parroquia de San Juan Bautista · 15 de septiembre</p>
+          </div>
+          <div className="virgen-page__hero-cue" aria-hidden="true">
+            <ChevronDown size={22} />
           </div>
         </header>
 
@@ -80,6 +101,22 @@ export default function VirgenDoloresPage() {
                   )}
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* Rezo de los Siete Dolores — PENDIENTE de desarrollar.
+              TODO: experiencia guiada paso a paso (meditación + oración de
+              cada dolor), al estilo del Rosario en /rosario. Por ahora solo
+              se anuncia como "en preparación". */}
+          <section className="virgen-page__section reveal">
+            <h2 className="virgen-page__section-title">Rezo de los Siete Dolores</h2>
+            <div className="gold-divider" />
+            <div className="virgen-page__rezo-pendiente">
+              <span className="virgen-page__rezo-badge">En preparación</span>
+              <p className="virgen-page__rezo-texto">
+                Muy pronto podrás rezar aquí los Siete Dolores de la Virgen paso a paso,
+                con la meditación y la oración de cada dolor.
+              </p>
             </div>
           </section>
 

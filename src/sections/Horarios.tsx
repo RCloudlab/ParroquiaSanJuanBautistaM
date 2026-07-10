@@ -13,8 +13,7 @@ const MISAS: MisaRow[] = [
   { dia: 'Sábado',          horas: ['7:00 am', '8:00 pm'] },
   {
     dia: 'Domingo',
-    horas: ['6:00', '7:00', '8:00', '9:00', '11:00 am'],
-    nota: '12 md "Misa Pro Pópulo" · 1:00 pm · 6:00 pm',
+    horas: ['6:00', '7:00', '8:00', '9:00', '11:00 am', '12:00 pm', '01:00 pm', '06:00 pm'],
   },
 ];
 

@@ -1,0 +1,319 @@
+/* ─── Modos de rezo (guiado y contador) ──────────────────────────────────
+   Layout mobile-first: barra → misterios → progreso → contenido → controles.
+   Animaciones solo con transform/opacity. */
+
+/* Selector de grupo de misterios */
+.rezo__grupos {
+  display: flex;
+  gap: 0.45rem;
+  padding: 0.7rem 1rem 0.35rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  justify-content: safe center;
+}
+
+.rezo__grupos::-webkit-scrollbar {
+  display: none;
+}
+
+.rezo__grupo {
+  flex-shrink: 0;
+  padding: 0.4rem 0.9rem;
+  min-height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--r-borde);
+  background: transparent;
+  color: var(--r-suave);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.15s ease;
+}
+
+.rezo__grupo:active {
+  transform: scale(0.95);
+}
+
+.rezo__grupo--activo {
+  background: var(--r-acento);
+  border-color: var(--r-acento);
+  color: var(--r-acento-txt);
+}
+
+/* Barra de progreso global */
+.rezo__progreso {
+  height: 4px;
+  margin: 0.4rem 1rem 0;
+  border-radius: 999px;
+  background: var(--r-borde);
+  overflow: hidden;
+}
+
+.rezo__progreso-relleno {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--r-oro), var(--r-acento));
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── Guiado ────────────────────────────────────────────────────────────── */
+
+.rezo__cuerpo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem 0;
+  width: min(100%, 640px);
+  margin: 0 auto;
+  min-height: 0;
+}
+
+.rezo__cuentas-mini {
+  flex-shrink: 0;
+}
+
+.rezo__tarjeta {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  width: 100%;
+  background: var(--r-superficie);
+  border: 1px solid var(--r-borde);
+  border-radius: 18px;
+  box-shadow: var(--r-sombra);
+  padding: 1.4rem 1.3rem 1.6rem;
+  text-align: center;
+  animation: paso-entra 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: background 0.45s ease;
+}
+
+@keyframes paso-entra {
+  from { transform: translateY(14px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.rezo__contexto {
+  font-size: 0.78em;
+  font-style: italic;
+  color: var(--r-suave);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.rezo__titulo {
+  font-family: var(--font-display);
+  font-size: 1.25em;
+  color: var(--r-acento);
+  margin-bottom: 0.8rem;
+}
+
+.rezo__texto {
+  font-size: 1em;
+  line-height: 1.75;
+  margin-bottom: 0.8em;
+}
+
+.rezo__texto:last-child {
+  margin-bottom: 0;
+}
+
+/* Controles inferiores (zona del pulgar) */
+.rezo__controles {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  gap: 0.6rem;
+  width: min(100%, 640px);
+  margin: 0 auto;
+  padding: 0.8rem 1rem;
+  padding-bottom: calc(0.8rem + env(safe-area-inset-bottom));
+}
+
+.rezo__retroceder {
+  flex-shrink: 0;
+  width: 58px;
+  min-height: 58px;
+  border-radius: 16px;
+  border: 1px solid var(--r-borde);
+  background: var(--r-superficie);
+  color: var(--r-suave);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, opacity 0.3s ease;
+}
+
+.rezo__retroceder:active {
+  transform: scale(0.92);
+}
+
+.rezo__retroceder:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.rezo__avanzar {
+  flex: 1;
+  min-height: 58px;
+  border: none;
+  border-radius: 16px;
+  background: var(--r-acento);
+  color: var(--r-acento-txt);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: var(--r-sombra);
+  transition: transform 0.15s ease, filter 0.2s ease;
+}
+
+.rezo__avanzar:active {
+  transform: scale(0.97);
+  filter: brightness(1.08);
+}
+
+/* ─── Contador ──────────────────────────────────────────────────────────── */
+
+.contador__cuerpo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.contador__paso {
+  font-family: var(--font-display);
+  font-size: 1.3em;
+  color: var(--r-acento);
+  margin-bottom: 0.6rem;
+}
+
+/* Zona de toque gigante: media pantalla inferior, se reza sin mirar */
+.contador__zona {
+  position: relative;
+  overflow: hidden;
+  width: min(100% - 2rem, 640px);
+  margin: 0 auto;
+  min-height: clamp(140px, 24dvh, 220px);
+  border: 2px dashed var(--r-borde);
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--r-superficie) 55%, transparent);
+  color: var(--r-suave);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: transform 0.12s ease, background 0.3s ease;
+}
+
+.contador__zona:active {
+  transform: scale(0.985);
+}
+
+.contador__zona-texto {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Onda que confirma cada toque (se re-monta con key={indice}) */
+.contador__zona-onda {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--r-oro) 45%, transparent) 0%, transparent 70%);
+  pointer-events: none;
+  animation: onda 0.55s ease-out both;
+}
+
+@keyframes onda {
+  from { transform: scale(0.4); opacity: 1; }
+  to   { transform: scale(4);   opacity: 0; }
+}
+
+.rezo__controles--contador {
+  justify-content: center;
+}
+
+/* ─── Pantalla de fin ───────────────────────────────────────────────────── */
+
+.rezo__fin {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1.5rem;
+  text-align: center;
+  animation: paso-entra 0.5s ease both;
+}
+
+.rezo__fin-titulo {
+  font-family: var(--font-display);
+  font-size: 1.5em;
+  color: var(--r-acento);
+}
+
+.rezo__fin-texto {
+  color: var(--r-suave);
+  max-width: 34ch;
+}
+
+.rezo__fin-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: min(100%, 320px);
+  margin-top: 0.8rem;
+}
+
+.rezo__fin-volver {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--r-borde);
+  border-radius: 14px;
+  color: var(--r-suave);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* ─── Escritorio: más aire, tarjeta centrada ────────────────────────────── */
+
+@media (min-width: 900px) {
+  .rezo__cuerpo {
+    padding-top: 1.6rem;
+  }
+  .rezo__tarjeta {
+    padding: 2.2rem 2.6rem 2.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rezo__tarjeta,
+  .rezo__fin,
+  .contador__zona-onda {
+    animation: none;
+  }
+}

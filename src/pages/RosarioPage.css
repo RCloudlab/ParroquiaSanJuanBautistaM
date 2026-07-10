@@ -1,0 +1,206 @@
+/* ─── Landing "Reza el Rosario" ─────────────────────────────────────────── */
+
+.rosario-inicio {
+  padding-bottom: 4rem;
+}
+
+/* Cabecera con la foto panorámica del altar de la Virgen */
+.rosario-inicio__hero {
+  position: relative;
+  height: clamp(260px, 46vw, 420px);
+  overflow: hidden;
+}
+
+.rosario-inicio__hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.rosario-inicio__hero-velo {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(30, 15, 8, 0.35) 0%,
+      rgba(30, 15, 8, 0.15) 40%,
+      rgba(30, 15, 8, 0.78) 100%);
+}
+
+.rosario-inicio__hero-texto {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.6rem;
+  text-align: center;
+  padding: 0 1.5rem;
+  animation: hero-sube 0.8s cubic-bezier(0.22, 1, 0.36, 1) both 0.15s;
+}
+
+@keyframes hero-sube {
+  from { transform: translateY(18px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.rosario-inicio__titulo {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 5.5vw, 3rem);
+  color: var(--white-pure);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+  margin-bottom: 0.3rem;
+}
+
+.rosario-inicio__lema {
+  font-style: italic;
+  font-size: clamp(0.88rem, 2vw, 1.05rem);
+  color: var(--gold-light);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Chip del misterio del día */
+.rosario-inicio__hoy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: fit-content;
+  margin: -1.4rem auto 2.2rem;
+  position: relative;
+  z-index: 2;
+  padding: 0.65rem 1.3rem;
+  border-radius: 999px;
+  background: var(--white-pure);
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  box-shadow: var(--shadow-gold);
+  color: var(--brown-deep);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.rosario-inicio__hoy svg {
+  color: var(--gold-deep);
+  flex-shrink: 0;
+}
+
+.rosario-inicio__hoy strong {
+  color: var(--red-deep);
+}
+
+.rosario-inicio__hoy-dias {
+  color: var(--stone);
+  font-style: italic;
+}
+
+/* Tarjetas de modo */
+.rosario-inicio__modos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+@media (min-width: 860px) {
+  .rosario-inicio__modos {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1040px;
+    align-items: stretch;
+  }
+}
+
+.rosario-inicio__modo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.6rem 1.4rem 1.3rem;
+  background: var(--white-pure);
+  border: 1px solid rgba(107, 66, 38, 0.14);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+
+.rosario-inicio__modo:hover,
+.rosario-inicio__modo:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 32px rgba(139, 26, 26, 0.16);
+}
+
+.rosario-inicio__modo--destacado {
+  border: 1.5px solid var(--gold-mid);
+  background:
+    linear-gradient(160deg, #fffdf6 0%, #faf3df 100%);
+}
+
+.rosario-inicio__etiqueta {
+  position: absolute;
+  top: -0.7rem;
+  right: 1.1rem;
+  padding: 0.18rem 0.75rem;
+  border-radius: 999px;
+  background: var(--gold-mid);
+  color: var(--brown-deep);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rosario-inicio__modo-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--red-light), var(--red-deep));
+  color: var(--gold-light);
+  box-shadow: inset 0 -3px 8px rgba(0, 0, 0, 0.25), 0 3px 10px rgba(139, 26, 26, 0.3);
+}
+
+.rosario-inicio__modo-titulo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--red-deep);
+  letter-spacing: 0.04em;
+}
+
+.rosario-inicio__modo-desc {
+  font-size: 0.92rem;
+  color: var(--stone);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.rosario-inicio__modo-cta {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold-deep);
+  letter-spacing: 0.04em;
+}
+
+.rosario-inicio__nota {
+  max-width: 560px;
+  margin: 2.2rem auto 0;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--stone);
+  line-height: 1.7;
+}
+
+.rosario-inicio__nota strong {
+  color: var(--brown-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rosario-inicio__hero-texto {
+    animation: none;
+  }
+  .rosario-inicio__modo,
+  .rosario-inicio__modo:hover {
+    transition: none;
+    transform: none;
+  }
+}

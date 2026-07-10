@@ -25,11 +25,13 @@ const QUALITY = 76;
 
 const IMAGES = [
   { src: 'hero-backgorund.png', name: 'hero' },
-  { src: 'virgen.png', name: 'virgen' },
+  { src: 'virgen.jpeg', name: 'virgen' },
   { src: 'interior.png', name: 'interior' },
   { src: 'gallery.png', name: 'gallery' },
   { src: 'gallery2.png', name: 'gallery2' },
   { src: 'sanJuan.png', name: 'san-juan' },
+  { src: 'virgen-dolores-extendida.jpeg', name: 'virgen-dolores-ext' },
+  { src: 'virgen-dolores-calidad.jpeg', name: 'virgen-dolores-cal' },
 ];
 
 async function main() {

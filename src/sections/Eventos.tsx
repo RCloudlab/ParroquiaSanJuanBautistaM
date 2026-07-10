@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Clock, ArrowRight } from 'lucide-react';
+import { MapPin, Clock, ArrowRight } from 'lucide-react';
 import './Eventos.css';
 
 interface Evento {
@@ -145,14 +145,6 @@ export default function Eventos() {
         <div className="eventos__more">
           <Link to="/eventos" className="btn-gold">
             Ver calendario completo <ArrowRight size={16} />
-          </Link>
-        </div>
-
-        <div className="eventos__cta">
-          <Calendar size={20} />
-          <span>¿Tienes un evento parroquial? Contacta con la secretaría para incluirlo en el calendario.</span>
-          <Link className="btn-primary" to="/contacto">
-            Proponer evento
           </Link>
         </div>
       </div>

@@ -24,12 +24,7 @@ export default function Hero() {
       <div className="hero__overlay" />
 
       {/* Cruz ornamental SVG — reemplaza el emoji ✝ */}
-      <div className="hero__cross-ornament" aria-hidden="true">
-        <svg viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="hero__cross-svg">
-          <rect x="17" y="0"  width="6" height="60" rx="2" fill="currentColor"/>
-          <rect x="0"  y="16" width="40" height="6"  rx="2" fill="currentColor"/>
-        </svg>
-      </div>
+      
 
       <div className="hero__content">
         <p className="hero__eyebrow">Parroquia de</p>

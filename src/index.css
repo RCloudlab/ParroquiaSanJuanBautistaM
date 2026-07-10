@@ -67,6 +67,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Guardián: ningún elemento decorativo (parallax, 100vw, etc.) debe
+   provocar scroll horizontal ni dejar ver el fondo a los lados.
+   clip no crea scroll-container, así que no rompe position: sticky. */
+html, body {
+  overflow-x: clip;
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   letter-spacing: 0.04em;
@@ -219,18 +226,22 @@ section {
    (ej. /horarios, /eventos, /contacto) — solo aporta el espacio para que
    el navbar fijo no tape el contenido. */
 .page-standalone {
-  padding-top: 72px;
+  padding-top: 76px;
+}
+
+.page-standalone > section:first-child {
+  padding-top: 2.5rem;
 }
 
 @media (max-width: 900px) {
   .page-standalone {
-    padding-top: 66px;
+    padding-top: 74px;
   }
 }
 
 @media (max-width: 480px) {
   .page-standalone {
-    padding-top: 62px;
+    padding-top: 68px;
   }
 }
 

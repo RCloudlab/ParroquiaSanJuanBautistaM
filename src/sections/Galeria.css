@@ -15,8 +15,8 @@
 .galeria__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 340px 240px;
-  gap: 0.5rem;
+  grid-template-rows: 380px 260px;
+  gap: 0.9rem;
 }
 
 /* La primera foto ocupa columna completa en la primera fila */
@@ -28,9 +28,18 @@
   display: block;
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   margin: 0;
   cursor: pointer;
+  border: 1px solid rgba(232,201,122,0.18);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.3s, box-shadow 0.3s;
+}
+
+.galeria__item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(232,201,122,0.5);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.38);
 }
 
 .galeria__cta {
@@ -87,25 +96,24 @@
   transform: scale(1);
 }
 
-/* Caption sobre la imagen */
+/* Caption sobre la imagen — siempre visible con degradado, se realza en hover */
 .galeria__caption {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 1rem 1.25rem;
-  background: linear-gradient(to top, rgba(74,43,24,0.88) 0%, transparent 100%);
+  padding: 2.5rem 1.25rem 1rem;
+  background: linear-gradient(to top, rgba(30,18,12,0.92) 0%, transparent 100%);
   font-family: var(--font-body);
   font-size: 0.86rem;
   font-style: italic;
   color: rgba(232,201,122,0.95);
-  transform: translateY(100%);
-  transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+  transition: padding-bottom 0.32s cubic-bezier(0.4,0,0.2,1);
   z-index: 2;
 }
 
 .galeria__item:hover .galeria__caption {
-  transform: translateY(0);
+  padding-bottom: 1.35rem;
 }
 
 /* En items no destacados: foto 3 vertical, foto 4 horizontal */
@@ -127,8 +135,5 @@
   }
   .galeria__item {
     height: 220px;
-  }
-  .galeria__caption {
-    transform: translateY(0);
   }
 }

@@ -33,9 +33,11 @@
   gap: 0.4rem;
 }
 
-.footer__brand-icon {
-  color: var(--gold-light);
-  margin-bottom: 0.25rem;
+.footer__brand-logo {
+  height: 200px;
+  filter: brightness(0) invert(1);
+  margin-bottom: 0.5rem;
+  margin-left: -0.5rem;
 }
 
 .footer__brand-name {
@@ -90,27 +92,42 @@
   color: var(--gold-light);
 }
 
-/* Copatronato */
+/* Copatronato — estampita con marco doble y remate ornamental */
 .footer__copatronato-badge {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  background: rgba(107,44,107,0.3);
-  border: 1px solid rgba(155,74,155,0.3);
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
+  text-align: center;
+  gap: 0.5rem;
+  background: rgba(232,201,122,0.06);
+  border: 1px solid rgba(232,201,122,0.35);
+  outline: 1px solid rgba(232,201,122,0.15);
+  outline-offset: 4px;
+  border-radius: 4px;
+  padding: 1.25rem 1rem 1.1rem;
   margin-bottom: 0.75rem;
 }
 
 .footer__heart {
-  color: #D4608A;
+  color: var(--gold-light);
   flex-shrink: 0;
 }
 
-.footer__copatronato-badge p {
-  font-size: 0.88rem;
-  line-height: 1.4;
-  color: rgba(232,201,122,0.9);
+.footer__copatronato-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  color: rgba(232,201,122,0.92);
+}
+
+.footer__copatronato-rule {
+  display: block;
+  width: 46px;
+  height: 1px;
+  margin-top: 0.15rem;
+  background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
 }
 
 .footer__copatronato-feast {
@@ -156,10 +173,13 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.88rem;
+  color: var(--gold-light);
   padding: 0.4rem 0.75rem;
   border-radius: 6px;
+  background: rgba(232,201,122,0.08);
+  border: 1px solid rgba(232,201,122,0.25);
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
   width: fit-content;
 }
 
@@ -167,26 +187,10 @@
   font-weight: 500;
 }
 
-.footer__social-link--fb {
-  color: #90b8f8;
-  background: rgba(66, 103, 178, 0.15);
-  border: 1px solid rgba(66, 103, 178, 0.3);
-}
-
-.footer__social-link--fb:hover {
-  background: rgba(66, 103, 178, 0.3);
-  color: #fff;
-}
-
-.footer__social-link--ig {
-  color: #f4a8c8;
-  background: rgba(193, 53, 132, 0.15);
-  border: 1px solid rgba(193, 53, 132, 0.3);
-}
-
-.footer__social-link--ig:hover {
-  background: rgba(193, 53, 132, 0.3);
-  color: #fff;
+.footer__social-link:hover {
+  background: rgba(232,201,122,0.18);
+  border-color: var(--gold-light);
+  color: var(--white-pure);
 }
 
 /* Bottom bar */

@@ -1,0 +1,201 @@
+/* ─── Marco inmersivo del rosario: temas y tipografía ────────────────────
+   El tema se aplica con data-tema (claro | oscuro) y el tamaño de letra
+   con data-fuente (m | g | xg). Todo lo interior usa las variables --r-*. */
+
+.rosario-marco {
+  /* Tema claro: crema y cantera, como el resto del sitio */
+  --r-bg:        #f3ecdd;
+  --r-bg-fin:    #e9dfc9;
+  --r-superficie:#fbf8f1;
+  --r-texto:     #3d3530;
+  --r-suave:     #7a6f63;
+  --r-borde:     rgba(107, 66, 38, 0.16);
+  --r-acento:    #8b1a1a;
+  --r-acento-txt:#faf8f5;
+  --r-oro:       #a07a28;
+  --r-halo:      #a07a28;
+  --r-cordon:    rgba(107, 66, 38, 0.35);
+  --r-sombra:    0 4px 24px rgba(74, 44, 24, 0.12);
+
+  --r-fs: 1.05rem;
+
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse at top, var(--r-bg) 0%, var(--r-bg-fin) 100%);
+  color: var(--r-texto);
+  font-size: var(--r-fs);
+  transition: background 0.45s ease, color 0.45s ease;
+}
+
+/* Modo capilla: café profundo con dorado cálido, pensado para rezar de noche */
+.rosario-marco[data-tema='oscuro'] {
+  --r-bg:        #201409;
+  --r-bg-fin:    #120b05;
+  --r-superficie:#2b1d10;
+  --r-texto:     #f0e6d2;
+  --r-suave:     #bfae90;
+  --r-borde:     rgba(201, 168, 76, 0.22);
+  --r-acento:    #e8c97a;
+  --r-acento-txt:#241505;
+  --r-oro:       #e8c97a;
+  --r-halo:      #e8c97a;
+  --r-cordon:    rgba(201, 168, 76, 0.4);
+  --r-sombra:    0 4px 28px rgba(0, 0, 0, 0.5);
+}
+
+.rosario-marco[data-fuente='g']  { --r-fs: 1.2rem; }
+.rosario-marco[data-fuente='xg'] { --r-fs: 1.4rem; }
+
+/* ─── Barra superior ────────────────────────────────────────────────────── */
+
+.rosario-marco__barra {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  padding-top: calc(0.65rem + env(safe-area-inset-top));
+  background: color-mix(in srgb, var(--r-bg) 82%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--r-borde);
+}
+
+.rosario-marco__volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--r-texto);
+  min-height: 44px;
+}
+
+.rosario-marco__titulo {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.rosario-marco__ajustes {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.rosario-marco__boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--r-borde);
+  border-radius: 10px;
+  background: var(--r-superficie);
+  color: var(--r-texto);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.3s ease;
+}
+
+.rosario-marco__boton:active {
+  transform: scale(0.92);
+}
+
+.rosario-marco__boton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.rosario-marco__a {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.rosario-marco__a--grande {
+  font-size: 1.05rem;
+}
+
+/* ─── Aviso de reanudar ─────────────────────────────────────────────────── */
+
+.rosario-reanudar {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
+  background: rgba(18, 11, 5, 0.45);
+  animation: reanudar-fondo 0.3s ease both;
+}
+
+@keyframes reanudar-fondo {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.rosario-reanudar__tarjeta {
+  width: min(100%, 420px);
+  background: var(--r-superficie);
+  border: 1px solid var(--r-borde);
+  border-radius: 18px;
+  padding: 1.25rem 1.25rem 1rem;
+  box-shadow: var(--r-sombra);
+  animation: reanudar-sube 0.35s cubic-bezier(0.34, 1.3, 0.64, 1) both;
+}
+
+@keyframes reanudar-sube {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.rosario-reanudar__texto {
+  font-size: 0.95em;
+  margin-bottom: 0.9rem;
+}
+
+.rosario-reanudar__acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rosario-reanudar__continuar,
+.rosario-reanudar__nuevo {
+  min-height: 48px;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.rosario-reanudar__continuar:active,
+.rosario-reanudar__nuevo:active {
+  transform: scale(0.97);
+}
+
+.rosario-reanudar__continuar {
+  border: none;
+  background: var(--r-acento);
+  color: var(--r-acento-txt);
+}
+
+.rosario-reanudar__nuevo {
+  border: 1px solid var(--r-borde);
+  background: transparent;
+  color: var(--r-suave);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rosario-reanudar,
+  .rosario-reanudar__tarjeta {
+    animation: none;
+  }
+}
