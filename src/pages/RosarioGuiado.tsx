@@ -6,6 +6,7 @@ import CuentasRosario from '../components/CuentasRosario';
 import { useRosario, useWakeLock } from '../hooks/useRosario';
 import { GRUPOS_MISTERIOS } from '../data/rosario';
 import './RosarioRezo.css';
+import Seo from '../components/Seo';
 
 /** Modo guiado: texto de la oración actual + cuentas, paso a paso. */
 export default function RosarioGuiado() {
@@ -35,6 +36,10 @@ export default function RosarioGuiado() {
 
   return (
     <RosarioMarco titulo="Rosario guiado">
+      <Seo
+        titulo="Rosario Guiado"
+        descripcion="Reza el Rosario acompañado paso a paso: oraciones completas, misterios del día y cuentas para no perderte."
+      />
       {progresoPendiente && (
         <ReanudarAviso
           descripcion={

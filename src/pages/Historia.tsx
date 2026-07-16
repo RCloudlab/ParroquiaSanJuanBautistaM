@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import { HISTORIA } from '../data/historia';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
 import './Historia.css';
+import Seo from '../components/Seo';
 
 // Página /historia: línea de tiempo vertical con los hitos de HISTORIA
 // (src/data/historia.ts). Reusa los tokens y utilidades globales
@@ -15,6 +16,10 @@ export default function Historia() {
 
   return (
     <>
+      <Seo
+        titulo="Nuestra Historia"
+        descripcion="Conoce la historia de la Parroquia San Juan Bautista: sus orígenes, su templo y su comunidad a través de los años."
+      />
       <Navbar />
       <main className="historia-page page-standalone">
         <div className="section-container">

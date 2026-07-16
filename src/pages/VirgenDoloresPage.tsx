@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import { HISTORIA_DEVOCION, NOVENA, CULTOS, GALERIA_VIRGEN } from '../data/virgenDolores';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
 import './VirgenDoloresPage.css';
+import Seo from '../components/Seo';
 
 // Página /virgen-de-los-dolores: amplía la sección resumen de home
 // (src/sections/VirgenDolores.tsx) con historia de la devoción, novena
@@ -17,6 +18,10 @@ export default function VirgenDoloresPage() {
 
   return (
     <>
+      <Seo
+        titulo="Virgen de los Dolores"
+        descripcion="Historia y devoción a la Virgen de los Dolores, venerada en la Parroquia San Juan Bautista."
+      />
       <Navbar />
       <main className="virgen-page">
         {/* Cabecera cinematográfica: el contenedor adopta la proporción

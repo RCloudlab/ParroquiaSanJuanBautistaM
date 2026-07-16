@@ -3,6 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import RosarioMarco from '../components/RosarioMarco';
 import { GRUPOS_MISTERIOS, LETANIAS, ORACIONES } from '../data/rosario';
 import './RosarioLibro.css';
+import Seo from '../components/Seo';
 
 /** Libro de oraciones: todos los textos del rosario para leer o consultar. */
 
@@ -32,6 +33,10 @@ interface AcordeonProps {
 function Acordeon({ id, titulo, subtitulo, abierto, onToggle, children }: AcordeonProps) {
   return (
     <div className={`libro__item ${abierto ? 'libro__item--abierto' : ''}`}>
+      <Seo
+        titulo="Libro de Oraciones del Rosario"
+        descripcion="Todas las oraciones del Rosario, los misterios y las letanías para leer con calma o acompañar el rezo en grupo."
+      />
       <button
         className="libro__cabecera"
         onClick={() => onToggle(id)}

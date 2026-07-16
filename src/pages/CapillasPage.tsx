@@ -4,12 +4,17 @@ import Footer from '../components/Footer';
 import { CAPILLAS } from '../data/capillas';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
 import './CapillasPage.css';
+import Seo from '../components/Seo';
 
 export default function CapillasPage() {
   useRevealOnScroll();
 
   return (
     <>
+      <Seo
+        titulo="Capillas"
+        descripcion="Conoce las capillas que forman parte del territorio de la Parroquia San Juan Bautista y sus horarios de celebración."
+      />
       <Navbar />
       <main className="page-standalone">
         <section className="capillas">

@@ -6,6 +6,7 @@ import CuentasRosario from '../components/CuentasRosario';
 import { useRosario, useWakeLock } from '../hooks/useRosario';
 import { GRUPOS_MISTERIOS } from '../data/rosario';
 import './RosarioRezo.css';
+import Seo from '../components/Seo';
 
 /**
  * Modo contador: solo las cuentas, para quien reza de memoria.
@@ -39,6 +40,10 @@ export default function RosarioContador() {
 
   return (
     <RosarioMarco titulo="Contador">
+      <Seo
+        titulo="Contador de Rosario"
+        descripcion="Contador de cuentas para rezar el Rosario de memoria: un toque por Ave María y vibración al cerrar cada decena."
+      />
       {progresoPendiente && (
         <ReanudarAviso
           descripcion={
