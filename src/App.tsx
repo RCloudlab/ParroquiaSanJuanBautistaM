@@ -22,6 +22,7 @@ import ContactoPage from './pages/ContactoPage';
 import CapillasPage from './pages/CapillasPage';
 import { REQUISITOS } from './data/requisitos';
 import { useRevealOnScroll } from './hooks/useRevealOnScroll';
+import Seo from './components/Seo';
 
 // La sección del rosario se carga bajo demanda (code splitting): sus textos
 // y componentes no pesan en el bundle inicial de quien solo visita el home.
@@ -35,6 +36,10 @@ function Home() {
 
   return (
     <>
+      <Seo
+        titulo="Parroquia Católica en Morelia"
+        descripcion="Horarios de misas y confesiones, sacramentos, eventos y contacto de la Parroquia San Juan Bautista. Te esperamos con las puertas abiertas."
+      />
       <Navbar />
       <main>
         <Hero />
@@ -58,7 +63,7 @@ function Home() {
 
 export default function App() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={null}>      
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/historia" element={<Historia />} />

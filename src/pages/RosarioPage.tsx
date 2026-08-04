@@ -1,34 +1,35 @@
-import { Link } from 'react-router-dom';
-import { BookOpen, Sparkles, Circle, CalendarDays } from 'lucide-react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import { grupoDelDia } from '../data/rosario';
-import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
-import './RosarioPage.css';
+import { Link } from "react-router-dom";
+import { BookOpen, Sparkles, Circle, CalendarDays } from "lucide-react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { grupoDelDia } from "../data/rosario";
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
+import "./RosarioPage.css";
+import Seo from "../components/Seo";
 
 const MODOS = [
   {
-    ruta: '/rosario/guiado',
+    ruta: "/rosario/guiado",
     icono: Sparkles,
-    titulo: 'Rosario guiado',
+    titulo: "Rosario guiado",
     descripcion:
-      'Te acompaña paso a paso: cada oración completa, los misterios del día y las cuentas para no perderte.',
+      "Te acompaña paso a paso: cada oración completa, los misterios del día y las cuentas para no perderte.",
     destacado: true,
   },
   {
-    ruta: '/rosario/contador',
+    ruta: "/rosario/contador",
     icono: Circle,
-    titulo: 'Contador de cuentas',
+    titulo: "Contador de cuentas",
     descripcion:
-      'Solo las cuentas, para quien reza de memoria. Un toque por Ave María, con vibración al cerrar cada decena.',
+      "Solo las cuentas, para quien reza de memoria. Un toque por Ave María, con vibración al cerrar cada decena.",
     destacado: false,
   },
   {
-    ruta: '/rosario/libro',
+    ruta: "/rosario/libro",
     icono: BookOpen,
-    titulo: 'Libro de oraciones',
+    titulo: "Libro de oraciones",
     descripcion:
-      'Todas las oraciones, los misterios y las letanías para leer con calma o acompañar el rezo en grupo.',
+      "Todas las oraciones, los misterios y las letanías para leer con calma o acompañar el rezo en grupo.",
     destacado: false,
   },
 ];
@@ -39,6 +40,12 @@ export default function RosarioPage() {
 
   return (
     <>
+      <Seo
+        titulo="Reza el Rosario en línea"
+        descripcion="Rosario guiado paso a paso, contador de cuentas y libro de oraciones con los misterios de cada día. Tu avance se guarda en tu dispositivo."
+        imagen="/optimized/virgen-dolores-ext-960.webp"
+      />
+
       <Navbar />
       <main className="page-standalone">
         <section className="rosario-inicio">
@@ -68,7 +75,10 @@ export default function RosarioPage() {
               <CalendarDays size={17} />
               <span>
                 Hoy corresponden los <strong>{grupoHoy.nombre}</strong>
-                <span className="rosario-inicio__hoy-dias"> · {grupoHoy.dias}</span>
+                <span className="rosario-inicio__hoy-dias">
+                  {" "}
+                  · {grupoHoy.dias}
+                </span>
               </span>
             </div>
 
@@ -78,17 +88,23 @@ export default function RosarioPage() {
                 <Link
                   key={modo.ruta}
                   to={modo.ruta}
-                  className={`rosario-inicio__modo reveal ${modo.destacado ? 'rosario-inicio__modo--destacado' : ''}`}
+                  className={`rosario-inicio__modo reveal ${modo.destacado ? "rosario-inicio__modo--destacado" : ""}`}
                   style={{ transitionDelay: `${i * 90}ms` }}
                 >
                   {modo.destacado && (
-                    <span className="rosario-inicio__etiqueta">Recomendado</span>
+                    <span className="rosario-inicio__etiqueta">
+                      Recomendado
+                    </span>
                   )}
                   <span className="rosario-inicio__modo-icono">
                     <modo.icono size={26} />
                   </span>
-                  <span className="rosario-inicio__modo-titulo">{modo.titulo}</span>
-                  <span className="rosario-inicio__modo-desc">{modo.descripcion}</span>
+                  <span className="rosario-inicio__modo-titulo">
+                    {modo.titulo}
+                  </span>
+                  <span className="rosario-inicio__modo-desc">
+                    {modo.descripcion}
+                  </span>
                   <span className="rosario-inicio__modo-cta">Comenzar →</span>
                 </Link>
               ))}

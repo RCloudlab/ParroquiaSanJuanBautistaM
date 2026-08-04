@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import { FOTOS } from '../data/galeria';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
 import './GaleriaPage.css';
+import Seo from '../components/Seo';
 
 // Página /galeria: grilla completa (todas las fotos de src/data/galeria.ts,
 // no solo las 4 destacadas de home) + lightbox propio a pantalla completa.
@@ -32,6 +33,10 @@ export default function GaleriaPage() {
 
   return (
     <>
+      <Seo
+        titulo="Galería"
+        descripcion="Recorre en imágenes el templo, las celebraciones y la vida comunitaria de la Parroquia San Juan Bautista."
+      />
       <Navbar />
       <main className="galeria-page">
         <div className="section-container">
