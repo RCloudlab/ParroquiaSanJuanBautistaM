@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown, Mail } from 'lucide-react';
 import { REQUISITOS } from '../data/requisitos';
 import './Navbar.css';
@@ -16,12 +16,13 @@ interface NavLink {
   children?: NavChild[];
 }
 
-// 6 elementos visibles en desktop:
-// Inicio · Horarios · Rosario · Parroquia▾ · Sacramentos▾ · Eventos
+// 7 elementos visibles en desktop:
+// Inicio · Horarios · Evangelio · Rosario · Parroquia▾ · Sacramentos▾ · Eventos
 // El botón Contacto vive solo en navbar__actions (no duplicado en la lista).
 const NAV_LINKS: NavLink[] = [
   { label: 'Inicio',      anchor: '#hero' },
   { label: 'Horarios',    route: '/horarios' },
+  { label: 'Evangelio',   route: '/evangelio' },
   { label: 'Rosario',     route: '/rosario' },
   {
     label: 'Parroquia',
@@ -47,6 +48,7 @@ export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState<string | null>(null); // id del grupo abierto
   const lastScrollY = useRef(0);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   // Cierra el drawer móvil al cambiar de ruta
   useEffect(() => {
@@ -74,8 +76,11 @@ export default function Navbar() {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     } else {
-      // Navega a home y después hace scroll — usando history para no romper React Router
-      window.location.href = `/${hash}`;
+      // Fuera del home: navegación SPA con el router (sin recarga completa
+      // ni rutas absolutas que se rompan bajo subdirectorios o file://).
+      // El hero es la primera sección, así que basta con ir arriba.
+      navigate('/');
+      window.scrollTo({ top: 0 });
     }
   };
 

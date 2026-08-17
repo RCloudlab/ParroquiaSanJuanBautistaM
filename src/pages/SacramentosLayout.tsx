@@ -37,7 +37,7 @@ export default function SacramentosLayout() {
       <Navbar />
       <div className="sacramentos-layout page-standalone">
         <div className="sacramentos-layout__inner">
-          <Link className="sacramentos-layout__back" to="/#sacramentos">
+          <Link className="sacramentos-layout__back" to="/">
             <ArrowLeft size={16} /> Volver al inicio
           </Link>
 

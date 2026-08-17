@@ -1,21 +1,66 @@
 import { Link } from 'react-router-dom';
-import { Clock, BookOpen, FileText, ArrowRight, Tv2 } from 'lucide-react';
+import { Clock, BookOpen, FileText, ArrowRight, Tv2, Radio } from 'lucide-react';
 import './Horarios.css';
+
+interface HoraMisa {
+  hora: string;
+  meridiano: 'am' | 'pm';
+  envivo?: boolean;
+}
+
+interface TurnoMisa {
+  etiqueta: 'Mañana' | 'Tarde';
+  horas: HoraMisa[];
+}
 
 interface MisaRow {
   dia: string;
-  horas: string[];
-  nota?: string;
+  turnos: TurnoMisa[];
+  destacado?: boolean;
 }
 
 const MISAS: MisaRow[] = [
-  { dia: 'Lunes a Viernes', horas: ['7:00 am', '7:00 pm'] },
-  { dia: 'Sábado',          horas: ['7:00 am', '8:00 pm'] },
+  {
+    dia: 'Lunes a Viernes',
+    turnos: [
+      { etiqueta: 'Mañana', horas: [{ hora: '7:00', meridiano: 'am' }] },
+      { etiqueta: 'Tarde',  horas: [{ hora: '7:00', meridiano: 'pm' }] },
+    ],
+  },
+  {
+    dia: 'Sábado',
+    turnos: [
+      { etiqueta: 'Mañana', horas: [{ hora: '7:00', meridiano: 'am' }] },
+      { etiqueta: 'Tarde',  horas: [{ hora: '8:00', meridiano: 'pm' }] },
+    ],
+  },
   {
     dia: 'Domingo',
-    horas: ['6:00', '7:00', '8:00', '9:00', '11:00 am', '12:00 pm', '01:00 pm', '06:00 pm'],
+    destacado: true,
+    turnos: [
+      {
+        etiqueta: 'Mañana',
+        horas: [
+          { hora: '6:00',  meridiano: 'am' },
+          { hora: '7:00',  meridiano: 'am' },
+          { hora: '8:00',  meridiano: 'am', envivo: true },
+          { hora: '9:00',  meridiano: 'am' },
+          { hora: '11:00', meridiano: 'am' },
+        ],
+      },
+      {
+        etiqueta: 'Tarde',
+        horas: [
+          { hora: '12:00', meridiano: 'pm' },
+          { hora: '1:00',  meridiano: 'pm' },
+          { hora: '6:00',  meridiano: 'pm' },
+        ],
+      },
+    ],
   },
 ];
+
+const FACEBOOK_URL = 'https://www.facebook.com/ParroquiaSanJuanBautistaMaravatioMich';
 
 const CONFESIONES = [
   { dia: 'Lunes a Viernes', horario: 'Durante las misas de 7:00 am y 7:00 pm' },
@@ -36,7 +81,8 @@ const LIBRERIA = [
 ];
 
 const TRANSMISIONES = [
-  { dia: 'Domingo', horario: '9:00 am y 12:00 del medio día' },
+  { medio: 'Facebook',        detalle: 'Domingo · 8:00 am',  tipo: 'facebook' as const },
+  { medio: 'Radio Sensitiva', detalle: 'Domingo · 10:00 am', tipo: 'radio' as const },
 ];
 
 export default function Horarios() {
@@ -56,27 +102,53 @@ export default function Horarios() {
               <Clock size={22} className="horarios__icon" />
               <h3>Santa Misa</h3>
             </div>
-            <table className="horarios__table">
-              <thead>
-                <tr>
-                  <th>Día</th>
-                  <th>Horas</th>
-                </tr>
-              </thead>
-              <tbody>
-                {MISAS.map(row => (
-                  <tr key={row.dia} className={row.dia === 'Domingo' ? 'horarios__row--highlight' : ''}>
-                    <td className="horarios__dia">{row.dia}</td>
-                    <td className="horarios__horas">
-                      {row.horas.map(h => (
-                        <span key={h} className="horarios__hora-badge">{h}</span>
-                      ))}
-                      {row.nota && <span className="horarios__hora-nota">{row.nota}</span>}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="horarios__dias">
+              {MISAS.map(row => (
+                <div
+                  key={row.dia}
+                  className={`horarios__dia-bloque${row.destacado ? ' horarios__dia-bloque--destacado' : ''}`}
+                >
+                  <div className="horarios__dia-nombre">
+                    <span>{row.dia}</span>
+                    {row.destacado && <span className="horarios__dia-tag">Día del Señor</span>}
+                  </div>
+                  <div className="horarios__turnos">
+                    {row.turnos.map(turno => (
+                      <div key={turno.etiqueta} className="horarios__turno">
+                        <span className="horarios__turno-etiqueta">{turno.etiqueta}</span>
+                        <div className="horarios__turno-horas">
+                          {turno.horas.map(h =>
+                            h.envivo ? (
+                              <a
+                                key={`${h.hora}-${h.meridiano}`}
+                                href={FACEBOOK_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="horarios__hora-chip horarios__hora-chip--envivo"
+                                aria-label={`Misa de ${h.hora} ${h.meridiano} transmitida en vivo por Facebook`}
+                                title="Ver transmisión en Facebook"
+                              >
+                                <span className="horarios__hora-num">{h.hora}</span>
+                                <span className="horarios__hora-mer">{h.meridiano}</span>
+                                <span className="horarios__envivo-tag">
+                                  <span className="horarios__envivo-dot" />
+                                  En vivo
+                                </span>
+                              </a>
+                            ) : (
+                              <span key={`${h.hora}-${h.meridiano}`} className="horarios__hora-chip">
+                                <span className="horarios__hora-num">{h.hora}</span>
+                                <span className="horarios__hora-mer">{h.meridiano}</span>
+                              </span>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
 
             {/* Confesiones */}
             <div className="horarios__confesiones">
@@ -102,22 +174,34 @@ export default function Horarios() {
               </div>
               <ul className="horarios__schedule-list">
                 {TRANSMISIONES.map(t => (
-                  <li key={t.dia} className="horarios__schedule-item">
-                    <span className="horarios__schedule-day">{t.dia}</span>
-                    <span className="horarios__schedule-time">{t.horario}</span>
+                  <li key={t.medio} className="horarios__schedule-item">
+                    <span className="horarios__schedule-day horarios__medio">
+                      {t.tipo === 'facebook' ? (
+                        <Tv2 size={15} className="horarios__medio-icon" />
+                      ) : (
+                        <Radio size={15} className="horarios__medio-icon" />
+                      )}
+                      {t.medio}
+                    </span>
+                    <span className="horarios__schedule-time">{t.detalle}</span>
                   </li>
                 ))}
               </ul>
               <p className="horarios__note">
-                En vivo por{' '}
+                La misa de 8:00 am se transmite en vivo por{' '}
                 <a
-                  href="https://www.facebook.com/ParroquiaSanJuanBautistaMaravatioMich"
+                  href={FACEBOOK_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="horarios__fb-link"
                 >
                   Facebook
                 </a>
+                {' '}y a las 10:00 am por{' '}
+                <span className="horarios__radio">
+                  <Radio size={14} className="horarios__radio-icon" />
+                  Radio Sensitiva
+                </span>
               </p>
             </div>
 

@@ -1,11 +1,12 @@
-import { lazy, Suspense } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SectionDivider from './components/SectionDivider';
 import Hero from './sections/Hero';
 import Horarios from './sections/Horarios';
-import Sacramentos from './sections/Sacramentos';
+import EvangelioDia from './sections/EvangelioDia';
+import RezaRosario from './sections/RezaRosario';
 import Eventos from './sections/Eventos';
 import Galeria from './sections/Galeria';
 import VaticanNews from './sections/VaticanNews';
@@ -17,6 +18,7 @@ import Historia from './pages/Historia';
 import GaleriaPage from './pages/GaleriaPage';
 import VirgenDoloresPage from './pages/VirgenDoloresPage';
 import HorariosPage from './pages/HorariosPage';
+import EvangelioPage from './pages/EvangelioPage';
 import EventosPage from './pages/EventosPage';
 import ContactoPage from './pages/ContactoPage';
 import CapillasPage from './pages/CapillasPage';
@@ -30,6 +32,17 @@ const RosarioPage = lazy(() => import('./pages/RosarioPage'));
 const RosarioGuiado = lazy(() => import('./pages/RosarioGuiado'));
 const RosarioContador = lazy(() => import('./pages/RosarioContador'));
 const RosarioLibro = lazy(() => import('./pages/RosarioLibro'));
+
+// React Router conserva la posición de scroll al cambiar de ruta; esto hace
+// que cada página nueva abra siempre desde arriba. 'instant' evita que el
+// scroll-behavior: smooth global anime el salto entre páginas.
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname]);
+  return null;
+}
 
 function Home() {
   useRevealOnScroll();
@@ -47,7 +60,8 @@ function Home() {
         <Horarios />
         <VirgenDolores />
         <SectionDivider tone="cream" />
-        <Sacramentos />
+        <EvangelioDia />
+        <RezaRosario />
         <SectionDivider tone="dark" />
         <Eventos />
         <SectionDivider tone="dark" />
@@ -63,11 +77,13 @@ function Home() {
 
 export default function App() {
   return (
-    <Suspense fallback={null}>      
+    <Suspense fallback={null}>
+    <ScrollToTop />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/historia" element={<Historia />} />
       <Route path="/horarios" element={<HorariosPage />} />
+      <Route path="/evangelio" element={<EvangelioPage />} />
       <Route path="/virgen-de-los-dolores" element={<VirgenDoloresPage />} />
       <Route path="/eventos" element={<EventosPage />} />
       <Route path="/galeria" element={<GaleriaPage />} />

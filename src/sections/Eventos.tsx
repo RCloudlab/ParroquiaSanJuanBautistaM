@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Clock, ArrowRight } from 'lucide-react';
+import { MapPin, Clock, ArrowRight, CalendarClock } from 'lucide-react';
 import './Eventos.css';
 
 interface Evento {
@@ -13,68 +13,10 @@ interface Evento {
   tipo: 'liturgico' | 'pastoral' | 'social' | 'especial';
 }
 
-const EVENTOS: Evento[] = [
-  {
-    id: 1,
-    fecha: '24',
-    mes: 'Jun',
-    titulo: 'Solemnidad de San Juan Bautista',
-    descripcion: 'Gran celebración patronal con Misa solemne, procesión y actos culturales en honor a nuestro patrono. Noche de hogueras y tradición.',
-    lugar: 'Iglesia y Plaza Mayor',
-    hora: '11:00 – Misa Solemne / 20:00 – Procesión',
-    tipo: 'especial',
-  },
-  {
-    id: 2,
-    fecha: '15',
-    mes: 'Sep',
-    titulo: 'Fiesta de la Virgen de los Dolores',
-    descripcion: 'Celebración de nuestra copatrona con novena, misa solemne y procesión vespertina. Uno de los momentos más emotivos del año litúrgico.',
-    lugar: 'Iglesia Parroquial',
-    hora: '19:30 – Misa / 20:30 – Procesión',
-    tipo: 'especial',
-  },
-  {
-    id: 3,
-    fecha: '01',
-    mes: 'Jul',
-    titulo: 'Adoración Nocturna',
-    descripcion: 'Vigilia de oración y adoración eucarística para toda la comunidad parroquial. Noche de encuentro con el Señor.',
-    lugar: 'Iglesia Parroquial',
-    hora: '22:00 – 06:00',
-    tipo: 'liturgico',
-  },
-  {
-    id: 4,
-    fecha: '10',
-    mes: 'Jul',
-    titulo: 'Cáritas: Reparto de Alimentos',
-    descripcion: 'Colabora con Cáritas parroquial en la distribución de alimentos a familias necesitadas del barrio. ¡Tu ayuda es fundamental!',
-    lugar: 'Salón parroquial',
-    hora: '10:00 – 13:00',
-    tipo: 'social',
-  },
-  {
-    id: 5,
-    fecha: '20',
-    mes: 'Jul',
-    titulo: 'Grupo Juvenil: Campamento de Verano',
-    descripcion: 'Campamento de fe y aventura para jóvenes de 14 a 20 años. Inscripciones abiertas hasta el 15 de julio.',
-    lugar: 'Sierra de Gredos',
-    hora: 'Del 20 al 27 de Julio',
-    tipo: 'pastoral',
-  },
-  {
-    id: 6,
-    fecha: '02',
-    mes: 'Ago',
-    titulo: 'Concierto de Órgano',
-    descripcion: 'Velada musical sacra con obras de Bach, Buxtehude y compositores contemporáneos. Entrada libre hasta completar aforo.',
-    lugar: 'Iglesia Parroquial',
-    hora: '20:00',
-    tipo: 'cultural' as any,
-  },
-];
+// Aún no hay eventos confirmados: la sección muestra solo el aviso
+// "Próximamente". Cuando haya eventos reales, agrégalos aquí y la grilla
+// y el botón de calendario reaparecen solos.
+const EVENTOS: Evento[] = [];
 
 const TIPO_COLORS: Record<string, string> = {
   especial: 'var(--gold-mid)',
@@ -106,6 +48,15 @@ export default function Eventos() {
 
       <div className="section-container" style={{ paddingTop: '3rem' }}>
 
+        <div className="eventos__aviso reveal">
+          <CalendarClock size={20} className="eventos__aviso-icon" />
+          <p>
+            <strong>Próximamente.</strong> Aquí se publicarán los eventos y actividades
+            de la parroquia.
+          </p>
+        </div>
+
+        {EVENTOS.length > 0 && (
         <div className="eventos__grid">
           {EVENTOS.map((ev, i) => (
             <article
@@ -141,12 +92,15 @@ export default function Eventos() {
             </article>
           ))}
         </div>
+        )}
 
+        {EVENTOS.length > 0 && (
         <div className="eventos__more">
           <Link to="/eventos" className="btn-gold">
             Ver calendario completo <ArrowRight size={16} />
           </Link>
         </div>
+        )}
       </div>
     </section>
   );

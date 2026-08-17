@@ -32,6 +32,8 @@ const IMAGES = [
   { src: 'sanJuan.png', name: 'san-juan' },
   { src: 'virgen-dolores-extendida.jpeg', name: 'virgen-dolores-ext' },
   { src: 'virgen-dolores-calidad.jpeg', name: 'virgen-dolores-cal' },
+  { src: 'manos-rosario.webp', name: 'manos-rosario' },
+  { src: 'manos-rosario-jardin.webp', name: 'manos-rosario-jardin' },
 ];
 
 async function main() {

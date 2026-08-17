@@ -1,0 +1,199 @@
+.evangelio-page {
+  background: var(--cream);
+  padding-bottom: 4rem;
+}
+
+/* El padding-top genérico de .page-standalone se anula para esta página
+   (y las demás que abren con imagen a sangre) desde index.css */
+
+/* Cabecera con imagen */
+.evangelio-page__hero {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+}
+
+.evangelio-page__hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.evangelio-page__hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(139,26,26,0.5) 0%,
+    rgba(74,43,24,0.85) 100%
+  );
+}
+
+.evangelio-page__hero-text {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+.evangelio-page__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 0.75rem;
+}
+
+.evangelio-page__titulo {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  color: var(--white-pure);
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.evangelio-page__fecha {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+  font-style: italic;
+}
+
+/* Cuerpo */
+.evangelio-page__container {
+  max-width: 820px;
+  padding-top: 3rem;
+}
+
+.evangelio-page__lectura {
+  background: var(--white-pure);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-top: 4px solid var(--gold-mid);
+  box-shadow: var(--shadow-card);
+  padding: 2.25rem 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.evangelio-page__lectura-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px dashed rgba(107,101,96,0.25);
+}
+
+.evangelio-page__lectura-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--red-deep);
+  margin-bottom: 0.5rem;
+}
+
+.evangelio-page__referencia {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--teal-zocalo);
+  border: 1.5px solid var(--teal-zocalo);
+  border-radius: 20px;
+  padding: 0.2rem 0.8rem;
+}
+
+.evangelio-page__audio {
+  margin-bottom: 1.5rem;
+}
+
+.evangelio-page__audio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--red-deep);
+  margin-bottom: 0.5rem;
+}
+
+.evangelio-page__audio audio {
+  width: 100%;
+}
+
+.evangelio-page__parrafo {
+  font-size: 1.05rem;
+  color: var(--stone-dark);
+  line-height: 1.85;
+  margin-bottom: 1.1rem;
+}
+
+.evangelio-page__parrafo:first-letter {
+  color: var(--red-deep);
+}
+
+.evangelio-page__aclamacion {
+  margin-top: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--terracotta-dark);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Reflexión */
+.evangelio-page__reflexion {
+  background: linear-gradient(135deg, rgba(139,26,26,0.05), rgba(201,168,76,0.08));
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(139,26,26,0.15);
+  padding: 2rem 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.evangelio-page__reflexion-titulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--red-deep);
+  margin-bottom: 1.1rem;
+}
+
+.evangelio-page__reflexion-titulo svg {
+  color: var(--gold-mid);
+}
+
+.evangelio-page__acciones {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.evangelio-page__acciones a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .evangelio-page__hero {
+    height: 260px;
+  }
+
+  .evangelio-page__lectura,
+  .evangelio-page__reflexion {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .evangelio-page__parrafo {
+    font-size: 1rem;
+  }
+}

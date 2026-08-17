@@ -30,7 +30,7 @@
 
 .horarios__card-header h3 {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   color: var(--red-deep);
 }
 
@@ -39,72 +39,170 @@
   flex-shrink: 0;
 }
 
-/* Tabla de misas */
-.horarios__table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.95rem;
+/* Bloques de misas por día */
+.horarios__dias {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.horarios__table thead tr {
-  border-bottom: 2px solid var(--gold-mid);
+.horarios__dia-bloque {
+  border: 1px solid rgba(107,101,96,0.15);
+  border-left: 4px solid var(--teal-zocalo);
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+  transition: background 0.18s, box-shadow 0.18s;
 }
 
-.horarios__table thead th {
+.horarios__dia-bloque:hover {
+  background: rgba(139,26,26,0.03);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.horarios__dia-bloque--destacado {
+  background: rgba(201,168,76,0.08);
+  border-left-color: var(--gold-mid);
+}
+
+.horarios__dia-nombre {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--red-deep);
-  letter-spacing: 0.08em;
-  text-align: left;
-  padding: 0.5rem 0.75rem 0.75rem;
-}
-
-.horarios__table tbody tr {
-  border-bottom: 1px solid rgba(107,101,96,0.12);
-  transition: background 0.18s;
-}
-
-.horarios__table tbody tr:hover {
-  background: rgba(139,26,26,0.04);
-}
-
-.horarios__row--highlight {
-  background: rgba(201,168,76,0.06);
-}
-
-.horarios__row--highlight .horarios__dia {
+  font-size: 1.2rem;
   font-weight: 700;
+  color: var(--stone-dark);
+  margin-bottom: 0.75rem;
+}
+
+.horarios__dia-bloque--destacado .horarios__dia-nombre {
   color: var(--red-deep);
 }
 
-.horarios__dia {
-  padding: 0.7rem 0.75rem;
-  font-weight: 600;
-  color: var(--stone-dark);
-  white-space: nowrap;
+.horarios__dia-tag {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-mid);
+  border: 1px solid var(--gold-mid);
+  border-radius: 20px;
+  padding: 0.15rem 0.6rem;
 }
 
-.horarios__horas {
-  padding: 0.7rem 0.75rem;
+.horarios__turnos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.horarios__turno {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.horarios__turno-etiqueta {
+  flex-shrink: 0;
+  width: 4.5rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.horarios__turno-horas {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
-.horarios__hora-badge {
+.horarios__hora-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
   background: linear-gradient(135deg, var(--teal-zocalo), var(--teal-deep));
   color: var(--white-pure);
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 0.2rem 0.55rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(31,107,92,0.22);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.horarios__hora-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(31,107,92,0.3);
+}
+
+.horarios__hora-num {
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+
+.horarios__hora-mer {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  opacity: 0.85;
+}
+
+/* Misa transmitida en vivo (domingo 9:00 am): enlaza a la transmisión */
+.horarios__hora-chip--envivo {
+  background: linear-gradient(135deg, var(--red-deep), var(--red-mid));
+  border: 1.5px solid var(--gold-mid);
+  box-shadow: 0 3px 12px rgba(139,26,26,0.35);
+  padding: 0.5rem 1.05rem;
+  color: var(--white-pure);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.horarios__hora-chip--envivo:hover {
+  box-shadow: 0 5px 16px rgba(139,26,26,0.45);
+}
+
+.horarios__hora-chip--envivo .horarios__hora-num {
+  font-size: 1.6rem;
+}
+
+.horarios__envivo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  align-self: center;
+  margin-left: 0.35rem;
+  background: rgba(255,255,255,0.16);
   border-radius: 20px;
-  letter-spacing: 0.04em;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.horarios__envivo-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-mid);
+  animation: envivoPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes envivoPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.45; transform: scale(0.75); }
 }
 
 .horarios__note {
   margin-top: 1.25rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--stone);
   font-style: italic;
   border-top: 1px dashed rgba(107,101,96,0.2);
@@ -119,7 +217,7 @@
 }
 
 .horarios__side-desc {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--stone);
   margin-bottom: 1rem;
   line-height: 1.6;
@@ -136,9 +234,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0;
+  padding: 0.6rem 0;
   border-bottom: 1px dotted rgba(107,101,96,0.15);
-  font-size: 0.88rem;
+  font-size: 1rem;
   gap: 0.5rem;
 }
 
@@ -153,15 +251,6 @@
   text-align: right;
 }
 
-.horarios__hora-nota {
-  display: block;
-  width: 100%;
-  font-size: 0.8rem;
-  color: var(--stone);
-  margin-top: 0.3rem;
-  font-style: italic;
-}
-
 .horarios__confesiones {
   margin-top: 1.5rem;
   padding-top: 1.25rem;
@@ -174,7 +263,7 @@
 
 .horarios__card-header--sub h4 {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.15rem;
   color: var(--red-deep);
 }
 
@@ -194,8 +283,78 @@
   color: var(--blue-deep);
 }
 
+.horarios__medio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.horarios__medio-icon {
+  color: var(--gold-mid);
+  flex-shrink: 0;
+}
+
+.horarios__radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--red-deep);
+  font-weight: 600;
+  font-style: normal;
+}
+
+.horarios__radio-icon {
+  color: var(--gold-mid);
+  flex-shrink: 0;
+}
+
+/* En la página dedicada /horarios la sección respira más y la letra crece */
+.page-standalone .horarios__dia-nombre {
+  font-size: 1.35rem;
+}
+
+.page-standalone .horarios__hora-num {
+  font-size: 1.6rem;
+}
+
+.page-standalone .horarios__hora-chip--envivo .horarios__hora-num {
+  font-size: 1.8rem;
+}
+
+.page-standalone .horarios__schedule-item {
+  font-size: 1.05rem;
+}
+
 @media (max-width: 860px) {
   .horarios__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .horarios__turno {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .horarios__turno-etiqueta {
+    width: auto;
+  }
+
+  .horarios__hora-chip {
+    padding: 0.4rem 0.8rem;
+  }
+
+  .horarios__hora-num {
+    font-size: 1.2rem;
+  }
+
+  .horarios__hora-chip--envivo .horarios__hora-num,
+  .page-standalone .horarios__hora-num {
+    font-size: 1.35rem;
+  }
+
+  .page-standalone .horarios__hora-chip--envivo .horarios__hora-num {
+    font-size: 1.45rem;
   }
 }

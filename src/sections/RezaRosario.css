@@ -1,0 +1,90 @@
+.reza-rosario {
+  background: var(--cream);
+  padding: 3rem 0;
+}
+
+.reza-rosario__card {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Foto de manos con rosario en la iglesia + velo rojo para que el texto
+     dorado/blanco siga leyéndose bien */
+  background:
+    linear-gradient(to bottom, rgba(60,10,10,0.82), rgba(107,20,20,0.78)),
+    url('/optimized/manos-rosario-960.webp') center 35% / cover no-repeat;
+  border: 1px solid rgba(201,168,76,0.45);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  box-shadow: 0 10px 36px rgba(139,26,26,0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Filete dorado superior, mismo detalle que las cards del sitio */
+.reza-rosario__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
+}
+
+.reza-rosario__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 0.5rem;
+}
+
+.reza-rosario__titulo {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  color: var(--white-pure);
+  margin-bottom: 0.75rem;
+}
+
+.reza-rosario__hoy {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.reza-rosario__hoy strong {
+  color: var(--gold-light);
+}
+
+.reza-rosario__tiempo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 1.4rem;
+}
+
+.reza-rosario__tiempo strong {
+  color: var(--gold-light);
+}
+
+.reza-rosario__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .reza-rosario__card {
+    padding: 1.75rem 1.25rem;
+  }
+}

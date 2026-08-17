@@ -44,6 +44,12 @@
   gap: 0.9rem;
 }
 
+/* min-width: 0 permite que el texto (correo largo) se parta en vez de
+   desbordar la tarjeta en pantallas angostas */
+.contacto__item > div {
+  min-width: 0;
+}
+
 .contacto__icon-wrap {
   width: 40px;
   height: 40px;
@@ -59,7 +65,7 @@
 .contacto__item strong {
   display: block;
   font-family: var(--font-display);
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--red-deep);
@@ -67,9 +73,10 @@
 }
 
 .contacto__item p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--stone-dark);
   line-height: 1.55;
+  overflow-wrap: anywhere;
 }
 
 .contacto__item a {
@@ -104,9 +111,17 @@
   border-radius: 6px;
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
+  max-width: 100%;
 }
 
+.contacto__social-link svg {
+  flex-shrink: 0;
+}
+
+/* min-width: 0 permite que el nombre largo de la página de Facebook
+   se trunque con puntos suspensivos en vez de desbordar */
 .contacto__social-link span {
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -139,8 +154,13 @@
   box-shadow: var(--shadow-card);
 }
 
+.contacto__map-wrapper iframe {
+  display: block;
+  width: 100%;
+}
+
 .contacto__map-note {
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   color: var(--stone);
   text-align: center;
   margin-top: 0.5rem;
@@ -273,8 +293,49 @@
   padding: 0.75rem;
 }
 
-@media (max-width: 820px) {
+/* ─── Responsive ─────────────────────────────────────────────────────── */
+
+/* Tablet: apilar columnas antes de que se aprieten (900px alinea con el
+   breakpoint del navbar y page-standalone) */
+@media (max-width: 900px) {
   .contacto__grid {
     grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  /* A ancho completo el mapa merece más altura */
+  .contacto__map-wrapper iframe {
+    height: 300px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .contacto .card {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .contacto__grid {
+    gap: 1.25rem;
+  }
+
+  .contacto__icon-wrap {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* 16px mínimo en los campos: evita el auto-zoom de iOS al enfocar */
+  .contacto__field input,
+  .contacto__field select,
+  .contacto__field textarea {
+    font-size: 1rem;
+  }
+
+  .contacto__social-link {
+    font-size: 0.8rem;
+  }
+
+  .contacto__map-wrapper iframe {
+    height: 240px;
   }
 }

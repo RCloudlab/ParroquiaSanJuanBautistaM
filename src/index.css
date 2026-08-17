@@ -56,7 +56,16 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  /* Base 17px (18px en pantallas grandes) en vez de los 16px por defecto:
+     letra más grande en todo el sitio pensando en visitantes mayores.
+     Todo lo dimensionado en rem escala automáticamente. */
+  font-size: 17px;
+}
+
+@media (min-width: 900px) {
+  html {
+    font-size: 18px;
+  }
 }
 
 body {
@@ -114,7 +123,7 @@ img {
 
 .section-subtitle {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--stone);
   text-align: center;
   margin-bottom: 3rem;
@@ -231,6 +240,15 @@ section {
 
 .page-standalone > section:first-child {
   padding-top: 2.5rem;
+}
+
+/* Excepción: páginas que arrancan con imagen o banner a sangre completa.
+   El colchón de 2.5rem está pensado para las que empiezan con título sobre
+   fondo crema; aquí se vería como una franja vacía entre navbar e imagen. */
+.page-standalone > .eventos:first-child,
+.page-standalone > .rosario-inicio:first-child,
+.page-standalone > .evangelio-page:first-child {
+  padding-top: 0;
 }
 
 @media (max-width: 900px) {
