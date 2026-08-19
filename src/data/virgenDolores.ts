@@ -9,7 +9,7 @@
 // Juan Bautista antes de publicar.
 
 export const HISTORIA_DEVOCION: string[] = [
-  'La devoción a Nuestra Señora de los Dolores llega a la parroquia en el siglo XIX, cuando la comunidad decide entronizar una imagen de la Virgen contemplando la Pasión de su Hijo en el altar lateral derecho del templo.',
+  'La devoción a Nuestra Señora de los Dolores llega a la parroquia en el siglo XIX, cuando la comunidad decide entronizar una imagen de la Virgen contemplando la Pasión de su Hijo en el altar mayor del templo.',
   'Con el paso de los años, la imagen se convirtió en una de las devociones más queridas de Maravatío, y la parroquia la proclamó copatrona, junto a San Juan Bautista, por el consuelo que su intercesión ha traído a generaciones de familias en momentos de dolor y prueba.',
   'Cada 15 de septiembre, fecha en que la Iglesia universal celebra a la Virgen de los Dolores, la comunidad entera se vuelca en su honor con novena, triduo solemne y procesión, renovando un vínculo de fe que ya tiene más de un siglo.',
 ];
@@ -53,7 +53,7 @@ export interface FotoVirgen {
 }
 
 export const GALERIA_VIRGEN: FotoVirgen[] = [
-  { name: 'virgen-dolores-cal', width: 960, alt: 'Imagen de Nuestra Señora de los Dolores en su altar, entre columnas doradas y cirios', caption: 'En su altar, presidiendo la nave lateral' },
+  { name: 'virgen-dolores-cal', width: 960, alt: 'Imagen de Nuestra Señora de los Dolores en su altar, entre columnas doradas y cirios', caption: 'En el altar mayor de la parroquia' },
   { name: 'virgen', width: 960, alt: 'Detalle de la imagen de Nuestra Señora de los Dolores con su manto bordado en oro', caption: 'Detalle de su manto bordado y corona' },
   { name: 'interior', width: 1280, alt: 'Interior de la parroquia durante una celebración', caption: 'Celebración solemne en su honor' },
 ];

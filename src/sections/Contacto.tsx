@@ -20,8 +20,20 @@ function IconInstagram() {
   );
 }
 
+function IconTikTok() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+    </svg>
+  );
+}
+
 // Crea tu formulario en https://formspree.io → New Form → copia el ID aquí
 const FORMSPREE_ID = 'TU_FORMSPREE_ID';
+
+// El formulario "Envíanos un mensaje" está terminado pero aún no se usa:
+// cambiar a true cuando se quiera volver a mostrar.
+const MOSTRAR_FORMULARIO: boolean = false;
 
 interface FormData {
   nombre: string;
@@ -71,7 +83,7 @@ export default function Contacto() {
           Estamos aquí para servirte. No dudes en contactarnos
         </p>
 
-        <div className="contacto__grid">
+        <div className={`contacto__grid${MOSTRAR_FORMULARIO ? '' : ' contacto__grid--solo-info'}`}>
           {/* Info de contacto */}
           <div className="contacto__info">
             <div className="card contacto__info-card reveal">
@@ -142,6 +154,16 @@ export default function Contacto() {
                   <IconInstagram />
                   <span>@psjbautistamaravatio</span>
                 </a>
+                <a
+                  href="https://www.tiktok.com/@parroquiasjbm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contacto__social-link contacto__social-link--tt"
+                  aria-label="TikTok de la parroquia"
+                >
+                  <IconTikTok />
+                  <span>@parroquiasjbm</span>
+                </a>
               </div>
             </div>
 
@@ -163,7 +185,10 @@ export default function Contacto() {
             </div>
           </div>
 
-          {/* Formulario */}
+          {/* Formulario — oculto por ahora (MOSTRAR_FORMULARIO = false).
+              Todo el código queda listo: al activarse el servicio de envío
+              basta con cambiar la bandera a true. */}
+          {MOSTRAR_FORMULARIO && (
           <div className="card contacto__form-card reveal" style={{ transitionDelay: '100ms' }}>
             <h3 className="contacto__form-title">
               <Send size={20} /> Envíanos un mensaje
@@ -269,6 +294,7 @@ export default function Contacto() {
               </button>
             )}
           </div>
+          )}
         </div>
       </div>
     </section>

@@ -69,7 +69,7 @@ export default function VirgenDolores() {
       <div className="section-container virgen-dolores__below">
         <p className="virgen-dolores__lead reveal">
           <em>Mater Dolorosa</em>: María contemplando el sufrimiento, muerte y sepultura de su Hijo.
-          Su imagen preside el altar lateral derecho desde la fundación de la parroquia, y cada
+          Su imagen preside el altar mayor desde la fundación de la parroquia, y cada
           septiembre la comunidad la celebra con novena, triduo solemne, Misa pontifical y procesión.
         </p>
 
