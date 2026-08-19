@@ -101,9 +101,20 @@ export default function RosarioGuiado() {
             <article className="rezo__tarjeta" key={indice} aria-live="polite">
               <p className="rezo__contexto">{paso.contexto}</p>
               <h2 className="rezo__titulo">{paso.titulo}</h2>
-              {paso.texto.split('\n\n').map((parrafo, i) => (
-                <p key={i} className="rezo__texto">{parrafo}</p>
-              ))}
+              {paso.letania ? (
+                <dl className="rezo__letania">
+                  {paso.letania.map((fila, i) => (
+                    <div key={i} className="rezo__letania-fila">
+                      <dt className="rezo__letania-invocacion">{fila.invocacion}</dt>
+                      <dd className="rezo__letania-respuesta">{fila.respuesta}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : (
+                paso.texto.split('\n\n').map((parrafo, i) => (
+                  <p key={i} className="rezo__texto">{parrafo}</p>
+                ))
+              )}
             </article>
           </main>
 

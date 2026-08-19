@@ -440,6 +440,13 @@ export interface Paso {
   decena: number;
   /** Para avemarías: número de cuenta dentro de la decena (1..10; 1..3 en el inicio) */
   cuenta?: number;
+  /** Si existe, el paso se muestra como letanía: filas invocación → respuesta */
+  letania?: FilaLetania[];
+}
+
+export interface FilaLetania {
+  invocacion: string;
+  respuesta: string;
 }
 
 /**
@@ -516,6 +523,51 @@ export function generarSecuencia(grupo: GrupoMisterios): Paso[] {
   const cierre = 'Oraciones finales';
   pasos.push(
     { tipo: 'final', titulo: O.salve.titulo, contexto: cierre, texto: O.salve.texto, decena: 6 },
+  );
+
+  // Letanías Lauretanas (esquema de San Juan Pablo II) tras la Salve, en
+  // formato de tabla invocación → respuesta. Las invocaciones marianas salen
+  // de LETANIAS (la misma fuente que usa el Libro de oraciones); las súplicas
+  // a Dios y el Cordero van literales porque su respuesta cambia línea a línea.
+  const letanias = 'Letanías Lauretanas';
+  const pasoLetania = (titulo: string, filas: FilaLetania[]): Paso => ({
+    tipo: 'final',
+    titulo,
+    contexto: letanias,
+    texto: filas.map(f => `${f.invocacion}: ${f.respuesta}.`).join('\n'),
+    letania: filas,
+    decena: 6,
+  });
+
+  pasos.push(
+    pasoLetania('Súplicas a Dios', [
+      { invocacion: 'Señor, ten piedad', respuesta: 'Señor, ten piedad' },
+      { invocacion: 'Cristo, ten piedad', respuesta: 'Cristo, ten piedad' },
+      { invocacion: 'Señor, ten piedad', respuesta: 'Señor, ten piedad' },
+      { invocacion: 'Cristo, óyenos', respuesta: 'Cristo, óyenos' },
+      { invocacion: 'Cristo, escúchanos', respuesta: 'Cristo, escúchanos' },
+      { invocacion: 'Dios, Padre celestial', respuesta: 'Ten piedad de nosotros' },
+      { invocacion: 'Dios, Hijo, Redentor del mundo', respuesta: 'Ten piedad de nosotros' },
+      { invocacion: 'Dios, Espíritu Santo', respuesta: 'Ten piedad de nosotros' },
+      { invocacion: 'Santísima Trinidad, un solo Dios', respuesta: 'Ten piedad de nosotros' },
+    ]),
+    pasoLetania(
+      'Invocaciones a la Santísima Virgen',
+      LETANIAS[1].invocaciones.map(inv => ({
+        invocacion: inv,
+        respuesta: 'Ruega por nosotros',
+      })),
+    ),
+    pasoLetania('Cordero de Dios', [
+      { invocacion: 'Cordero de Dios, que quitas el pecado del mundo', respuesta: 'Perdónanos, Señor' },
+      { invocacion: 'Cordero de Dios, que quitas el pecado del mundo', respuesta: 'Escúchanos, Señor' },
+      { invocacion: 'Cordero de Dios, que quitas el pecado del mundo', respuesta: 'Ten misericordia de nosotros' },
+      {
+        invocacion: 'Ruega por nosotros, Santa Madre de Dios',
+        respuesta: 'Para que seamos dignos de alcanzar las promesas de nuestro Señor Jesucristo',
+      },
+    ]),
+    { tipo: 'final', titulo: O.bajoTuAmparo.titulo, contexto: cierre, texto: O.bajoTuAmparo.texto, decena: 6 },
     { tipo: 'final', titulo: O.oracionFinal.titulo, contexto: cierre, texto: O.oracionFinal.texto, decena: 6 },
     { tipo: 'final', titulo: O.senal.titulo, contexto: cierre, texto: O.senal.texto, decena: 6 },
   );

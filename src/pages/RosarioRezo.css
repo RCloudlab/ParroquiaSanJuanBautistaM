@@ -122,6 +122,39 @@
   margin-bottom: 0;
 }
 
+/* Letanías: tabla invocación → respuesta, una fila por invocación */
+.rezo__letania {
+  margin: 0.9em 0 0;
+  text-align: left;
+}
+
+.rezo__letania-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.42em 0;
+  border-bottom: 1px dashed var(--r-borde);
+}
+
+.rezo__letania-fila:last-child {
+  border-bottom: none;
+}
+
+.rezo__letania-invocacion {
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.rezo__letania-respuesta {
+  margin: 0;
+  color: var(--r-suave);
+  font-style: italic;
+  font-size: 0.86em;
+  line-height: 1.45;
+  text-align: right;
+}
+
 /* Controles inferiores (zona del pulgar) */
 .rezo__controles {
   position: sticky;
