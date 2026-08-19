@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Cross, Scroll } from 'lucide-react';
 import { IconBautismo, IconEucaristia, IconMatrimonio } from '../components/icons/ParishIcons';
 import { getRequisito } from '../data/requisitos';
+import Seo from '../components/Seo';
 import './Sacramento.css';
 
 // Mismo set de íconos que la grilla de la home (Sacramentos.tsx) y el
@@ -35,6 +36,10 @@ export default function Sacramento() {
 
   return (
     <div className="sacramento-card">
+      <Seo
+        titulo={`${data.titulo} — Requisitos`}
+        descripcion={`Requisitos, pasos y horarios para ${data.titulo.toLowerCase()} en la Parroquia San Juan Bautista de Maravatío, Michoacán.`}
+      />
       <header className="sacramento-header">
         <div className="sacramento-icon">{ICONS[data.id]}</div>
         <p className="sacramento-parroquia">Parroquia de San Juan Bautista — Maravatío, Mich.</p>

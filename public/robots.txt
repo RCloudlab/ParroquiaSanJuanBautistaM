@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://https://parroquiasanjuanbautista.com/sitemap.xml
+Sitemap: https://parroquiasanjuanbautista.com/sitemap.xml

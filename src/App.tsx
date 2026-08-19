@@ -50,8 +50,8 @@ function Home() {
   return (
     <>
       <Seo
-        titulo="Parroquia Católica en Morelia"
-        descripcion="Horarios de misas y confesiones, sacramentos, eventos y contacto de la Parroquia San Juan Bautista. Te esperamos con las puertas abiertas."
+        titulo="Parroquia Católica en Maravatío, Michoacán"
+        descripcion="Horarios de misas y confesiones, sacramentos, eventos y contacto de la Parroquia San Juan Bautista en Maravatío. Te esperamos con las puertas abiertas."
       />
       <Navbar />
       <main>
