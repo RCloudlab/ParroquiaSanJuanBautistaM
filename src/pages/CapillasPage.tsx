@@ -1,13 +1,33 @@
-import { MapPin, Clock } from 'lucide-react';
+import { MapPin, Clock, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { CAPILLAS } from '../data/capillas';
+import { CAPILLAS, type Capilla } from '../data/capillas';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
 import './CapillasPage.css';
 import Seo from '../components/Seo';
+import { CapillaModal } from '../components/CapillasModal';
+
 
 export default function CapillasPage() {
   useRevealOnScroll();
+
+  const [capillaActiva, setCapillaActiva] = useState<Capilla | null>();
+  const openModal = (capilla: Capilla) => setCapillaActiva(capilla);
+  const closeModal = () => setCapillaActiva(null);
+
+
+  useEffect(() => {
+  if (!capillaActiva) return;
+  const onKey = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') closeModal();
+  };
+  window.addEventListener('keydown', onKey);
+  return () => window.removeEventListener('keydown', onKey);
+}, [capillaActiva]);
+
+
 
   return (
     <>
@@ -27,10 +47,12 @@ export default function CapillasPage() {
 
             <div className="capillas__grid">
               {CAPILLAS.map((cap, i) => (
-                <article
+                <button
                   key={cap.id}
                   className="capillas__card reveal"
                   style={{ transitionDelay: `${i * 80}ms` }}
+                  onClick={() => openModal(cap)}
+                  aria-label={`Ver información de ${cap.nombre}`}
                 >
                   {/* Imagen */}
                   <div className="capillas__img-wrap">
@@ -53,33 +75,9 @@ export default function CapillasPage() {
                         <MapPin size={14} />
                         {cap.lugar}
                       </span>
-                    </div>
-
-                    {/* Horario de misas */}
-                    <div className="capillas__misas">
-                      <h3 className="capillas__misas-title">
-                        <Clock size={15} />
-                        Horario de Misas
-                      </h3>
-                      <ul className="capillas__misas-list">
-                        {cap.misas.map((m, j) => (
-                          <li key={j} className="capillas__misa-item">
-                            <span className="capillas__misa-dia">{m.dia}</span>
-                            <span className="capillas__misa-hora">{m.hora}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Historia */}
-                    <div className="capillas__historia">
-                      <h3 className="capillas__historia-title">Historia</h3>
-                      {cap.historia.map((p, j) => (
-                        <p key={j} className="capillas__historia-p">{p}</p>
-                      ))}
-                    </div>
+                    </div>                   
                   </div>
-                </article>
+                </button>
               ))}
             </div>
 
@@ -90,6 +88,9 @@ export default function CapillasPage() {
           </div>
         </section>
       </main>
+      {capillaActiva && (
+        <CapillaModal capilla={capillaActiva} onCerrar={closeModal} />
+      )}
       <Footer />
     </>
   );
