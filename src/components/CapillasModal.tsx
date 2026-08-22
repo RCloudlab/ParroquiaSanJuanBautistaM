@@ -35,6 +35,15 @@ export function CapillaModal({ capilla, onCerrar }: ModalProps) {
         {/* Contenido completo */}
         <div className="capilla-modal__body">
           <h2 id="capilla-modal-titulo" className="capillas__nombre">{capilla.nombre}</h2>
+          <h4 className="capillas__santo"> <span className="capillas__label">Patrono:</span> {capilla.santo} </h4>
+                    
+          {capilla.aniversario && (
+            <p className="capillas__aniversario"> <span className="capillas__label">Aniversario de la llegada del Santísimo: {capilla.aniversario}</span> </p>
+          )}
+          
+          {capilla.fiesta && (
+            <p className="capillas__fiesta"> <span className="capillas__label">Fiesta: {capilla.fiesta}</span></p>
+          )} 
 
           <div className="capillas__meta">
             <span className="capillas__lugar">

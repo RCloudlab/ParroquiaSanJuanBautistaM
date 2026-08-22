@@ -6,6 +6,9 @@ export interface MisaCapilla {
 export interface Capilla {
   id: string;
   nombre: string;
+  santo: string;
+  aniversario?: string;
+  fiesta?: string;
   lugar: string;          // colonia / comunidad
   imagen: string;         // ruta en /public o /optimized
   misas: MisaCapilla[];
@@ -16,6 +19,7 @@ export const CAPILLAS: Capilla[] = [
   {
     id: 'capilla-purisima',
     nombre: 'Capilla de la Purísima Concepción',
+    santo: 'Capilla Expiatoria',
     lugar: 'Centro Histórico, Maravatío, Mich.',
     imagen: '/optimized/interior-960.webp',
     misas: [
@@ -29,478 +33,452 @@ export const CAPILLAS: Capilla[] = [
     ],
   },
 
-  {
+    {
     id: 'capilla-san-nicolas',
     nombre: 'Capilla de San Nicolás',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'San Nicolás Tolentino',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-balbuena',
     nombre: 'Capilla de Balbuena',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Sagrado Corazón de María',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
-  {
-    id: 'capilla-balbuena',
-    nombre: 'Capilla de Balbuena',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
-    imagen: '/optimized/parroquia_post_060706.png',
-    misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
-    ],
-    historia: [
-      'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
-      'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
-    ],
-  },
-
   {
     id: 'capilla-cristo-rey',
     nombre: 'Capilla de Cristo Rey',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Cristo Rey',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-  
   {
     id: 'capilla-senor-de-la-columna',
     nombre: 'Capilla del Señor de la Columna',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Señor de la Columna',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-francisco-i-madero',
     nombre: 'Capilla de Francisco I. Madero',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Por definir',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-san-isidro',
     nombre: 'Capilla de San Isidro',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'San Isidro Labrador',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-5-de-mayo',
     nombre: 'Capilla 5 de Mayo',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Santo Niño',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-del-aguaje',
     nombre: 'Capilla del Aguaje',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Inmaculada Concepción',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-apeo',
     nombre: 'Capilla de Apeo',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Virgen de Guadalupe',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-del-aserradero',
     nombre: 'Capilla del Aserradero',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'La Presentación del Señor',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-campo-hermoso',
     nombre: 'Capilla de Campo Hermoso',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Virgen de Guadalupe',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-cebadillas-i',
     nombre: 'Capilla de Cebadillas I',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'San José',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-cebadillas-ii',
     nombre: 'Capilla de Cebadillas II',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Virgen de Guadalupe',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-del-colorado',
     nombre: 'Capilla del Colorado',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'La Presentación del Señor',
+    aniversario: '23 de octubre',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-la-coyota',
     nombre: 'Capilla de la Coyota',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Sagrado Corazón de Jesús',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-guapamacataro-arriba',
     nombre: 'Capilla de Guapamacataro (arriba)',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Señor de la Misericordia',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-guapamacataro-abajo',
     nombre: 'Capilla de Guapamacataro (abajo)',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Cristo de Guapamacataro',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-lagunillas',
     nombre: 'Capilla de Lagunillas',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Santa Teresita del Niño Jesús',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-llano-grande',
     nombre: 'Capilla de Llano Grande',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Virgen de Ocotlán',
+    fiesta: '17 de mayo',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-la-huerta',
     nombre: 'Capilla de la Huerta',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'San Isidro Labrador',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-del-jaguey',
     nombre: 'Capilla del Jaguey',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Virgen de Guadalupe',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-la-nopalera',
     nombre: 'Capilla de la Nopalera',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Virgen de Guadalupe',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-pomoca',
     nombre: 'Capilla de Pomoca',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Virgen del Carmen',
+    aniversario: '15 de julio',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-santa-ana',
     nombre: 'Capilla de Santa Ana',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Santa Ana',
+    aniversario: '17 de julio',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-santa-elena',
     nombre: 'Capilla de Santa Elena',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Nuestra Señora del Rosario',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-san-miguel-el-alto',
     nombre: 'Capilla de San Miguel el Alto',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'San Miguel Arcángel',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-santo-nino',
     nombre: 'Capilla de Santo Niño',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Santo Niño',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-san-ramon',
     nombre: 'Capilla de San Ramón',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'San Ramón Nonato',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-del-tejero',
     nombre: 'Capilla del Tejero',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Virgen de Guadalupe',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-tenerias',
     nombre: 'Capilla de Tenerías',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Virgen de Guadalupe',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-toluquilla',
     nombre: 'Capilla de Toluquilla',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Virgen de Guadalupe',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
-
   {
     id: 'capilla-de-torre-blanca',
     nombre: 'Capilla de Torre Blanca',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
+    santo: 'Virgen de Guadalupe',
+    lugar: '[Colonia / Comunidad] · Por Definir',
     imagen: '/optimized/parroquia_post_060706.png',
     misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
-    ],
-    historia: [
-      'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
-      'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
-    ],
-  },
-
-
-
-
-  {
-    id: 'capilla-ejemplo',
-    nombre: 'Capilla de [Nombre pendiente]',
-    lugar: '[Colonia / Comunidad] · Maravatío, Mich.',
-    imagen: '/optimized/gallery2-960.webp',
-    misas: [
-      { dia: 'Domingo', hora: '10:00 am' },
+      { dia: 'Por definir', hora: '00:00 aa' },
     ],
     historia: [
       'Información histórica de esta capilla pendiente de proporcionar por la parroquia.',
