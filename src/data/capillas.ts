@@ -61,6 +61,7 @@ export const CAPILLAS: Capilla[] = [
       'Cuando tengas los datos reales, envíalos y los actualizamos en el sistema.',
     ],
   },
+  
   {
     id: 'capilla-cristo-rey',
     nombre: 'Capilla de Cristo Rey',
