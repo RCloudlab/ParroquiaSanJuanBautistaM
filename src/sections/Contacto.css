@@ -9,6 +9,13 @@
   align-items: start;
 }
 
+/* Mientras el formulario está oculto, la info se centra a una columna */
+.contacto__grid--solo-info {
+  grid-template-columns: 1fr;
+  max-width: 680px;
+  margin-inline: auto;
+}
+
 /* Info */
 .contacto__info {
   display: flex;
@@ -145,6 +152,16 @@
 
 .contacto__social-link--ig:hover {
   background: rgba(193, 53, 132, 0.18);
+}
+
+.contacto__social-link--tt {
+  color: #010101;
+  background: rgba(1, 1, 1, 0.06);
+  border: 1px solid rgba(1, 1, 1, 0.18);
+}
+
+.contacto__social-link--tt:hover {
+  background: rgba(1, 1, 1, 0.14);
 }
 
 /* Mapa */

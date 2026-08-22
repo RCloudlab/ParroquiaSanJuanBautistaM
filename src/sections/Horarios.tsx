@@ -6,6 +6,7 @@ interface HoraMisa {
   hora: string;
   meridiano: 'am' | 'pm';
   envivo?: boolean;
+  etiqueta?: string; // texto destacado junto a la hora (p. ej. "Pro pópulo")
 }
 
 interface TurnoMisa {
@@ -51,7 +52,7 @@ const MISAS: MisaRow[] = [
       {
         etiqueta: 'Tarde',
         horas: [
-          { hora: '12:00', meridiano: 'pm' },
+          { hora: '12:00', meridiano: 'pm', etiqueta: 'Pro pópulo' },
           { hora: '1:00',  meridiano: 'pm' },
           { hora: '6:00',  meridiano: 'pm' },
         ],
@@ -61,6 +62,7 @@ const MISAS: MisaRow[] = [
 ];
 
 const FACEBOOK_URL = 'https://www.facebook.com/ParroquiaSanJuanBautistaMaravatioMich';
+const RADIO_URL = 'https://www.facebook.com/RadioSensitiva88.3Fm';
 
 const CONFESIONES = [
   { dia: 'Lunes a Viernes', horario: 'Durante las misas de 7:00 am y 7:00 pm' },
@@ -81,11 +83,13 @@ const LIBRERIA = [
 ];
 
 const TRANSMISIONES = [
-  { medio: 'Facebook',        detalle: 'Domingo · 8:00 am',  tipo: 'facebook' as const },
-  { medio: 'Radio Sensitiva', detalle: 'Domingo · 10:00 am', tipo: 'radio' as const },
+  { medio: 'Facebook',        detalle: 'Domingo · 8:00 am',  tipo: 'facebook' as const, url: FACEBOOK_URL },
+  { medio: 'Radio Sensitiva', detalle: 'Domingo · 10:00 am', tipo: 'radio' as const,    url: RADIO_URL },
 ];
 
-export default function Horarios() {
+// mostrarCta: el botón "Ver horario completo" solo tiene sentido fuera de
+// /horarios (en la home); la página standalone lo apaga.
+export default function Horarios({ mostrarCta = true }: { mostrarCta?: boolean }) {
   return (
     <section id="horarios" className="horarios">
       <div className="section-container">
@@ -135,6 +139,16 @@ export default function Horarios() {
                                   En vivo
                                 </span>
                               </a>
+                            ) : h.etiqueta ? (
+                              <span
+                                key={`${h.hora}-${h.meridiano}`}
+                                className="horarios__hora-chip horarios__hora-chip--envivo horarios__hora-chip--etiqueta"
+                                aria-label={`Misa de ${h.hora} ${h.meridiano}, ${h.etiqueta}`}
+                              >
+                                <span className="horarios__hora-num">{h.hora}</span>
+                                <span className="horarios__hora-mer">{h.meridiano}</span>
+                                <span className="horarios__envivo-tag">{h.etiqueta}</span>
+                              </span>
                             ) : (
                               <span key={`${h.hora}-${h.meridiano}`} className="horarios__hora-chip">
                                 <span className="horarios__hora-num">{h.hora}</span>
@@ -175,14 +189,20 @@ export default function Horarios() {
               <ul className="horarios__schedule-list">
                 {TRANSMISIONES.map(t => (
                   <li key={t.medio} className="horarios__schedule-item">
-                    <span className="horarios__schedule-day horarios__medio">
+                    <a
+                      href={t.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="horarios__schedule-day horarios__medio horarios__medio--link"
+                      title={`Abrir la página de ${t.medio} en Facebook`}
+                    >
                       {t.tipo === 'facebook' ? (
                         <Tv2 size={15} className="horarios__medio-icon" />
                       ) : (
                         <Radio size={15} className="horarios__medio-icon" />
                       )}
                       {t.medio}
-                    </span>
+                    </a>
                     <span className="horarios__schedule-time">{t.detalle}</span>
                   </li>
                 ))}
@@ -198,10 +218,15 @@ export default function Horarios() {
                   Facebook
                 </a>
                 {' '}y a las 10:00 am por{' '}
-                <span className="horarios__radio">
+                <a
+                  href={RADIO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="horarios__radio horarios__radio--link"
+                >
                   <Radio size={14} className="horarios__radio-icon" />
                   Radio Sensitiva
-                </span>
+                </a>
               </p>
             </div>
 
@@ -250,11 +275,13 @@ export default function Horarios() {
           </div>
         </div>
 
-        <div className="horarios__cta">
-          <Link to="/horarios" className="btn-gold">
-            Ver horario completo <ArrowRight size={16} />
-          </Link>
-        </div>
+        {mostrarCta && (
+          <div className="horarios__cta">
+            <Link to="/horarios" className="btn-gold">
+              Ver horario completo <ArrowRight size={16} />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -200,6 +200,12 @@
   50%      { opacity: 0.45; transform: scale(0.75); }
 }
 
+/* Misa con etiqueta especial (12:00 pm "Pro pópulo"): mismo estilo que la
+   de en vivo, pero no es un enlace, así que el cursor queda normal */
+.horarios__hora-chip--etiqueta {
+  cursor: default;
+}
+
 .horarios__note {
   margin-top: 1.25rem;
   font-size: 0.9rem;
@@ -306,6 +312,28 @@
 .horarios__radio-icon {
   color: var(--gold-mid);
   flex-shrink: 0;
+}
+
+/* Variantes enlazadas: mismos estilos, pero se subrayan y clickean */
+.horarios__medio--link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.horarios__medio--link:hover {
+  color: var(--red-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.horarios__radio--link {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.horarios__radio--link:hover {
+  color: var(--red-mid);
 }
 
 /* En la página dedicada /horarios la sección respira más y la letra crece */

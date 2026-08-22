@@ -29,7 +29,7 @@ export const HISTORIA: HitoHistorico[] = [
     anio: 'Siglo XIX',
     titulo: 'Llegada de la Virgen de los Dolores',
     descripcion:
-      'La imagen de Nuestra Señora de los Dolores es entronizada en el altar lateral derecho y, con el tiempo, es proclamada copatrona de la parroquia.',
+      'La imagen de Nuestra Señora de los Dolores es entronizada en el altar mayor y, con el tiempo, es proclamada copatrona de la parroquia.',
   },
   {
     anio: '1930',

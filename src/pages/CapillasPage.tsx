@@ -1,4 +1,4 @@
-import { MapPin, Clock, X } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import Navbar from '../components/Navbar';
