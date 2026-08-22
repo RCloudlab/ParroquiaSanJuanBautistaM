@@ -65,7 +65,7 @@
   padding: 1.75rem 2rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.5rem;
   flex: 1;
   border-top: 3px solid var(--gold-mid);
 }
@@ -76,6 +76,37 @@
   font-size: clamp(1.1rem, 2.2vw, 1.35rem);
   color: var(--red-deep);
   line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Patrono / Aniversario / Fiesta ─────────────────────── */
+.capillas__santo,
+.capillas__aniversario,
+.capillas__fiesta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+/* ─── Patrono  ───────────────────────────────────────────────────────── */
+.capillas__santo {
+  color: var(--gold-deep);
+  font-weight: 600;
+}
+
+/* ─── Aniversario y Fiesta  ───────────────────────────────────────────────────────── */
+.capillas__aniversario,
+.capillas__fiesta {
+  color: var(--stone-dark);
+  font-size: 0.84rem;
+}
+
+/* ─── La palabra-etiqueta ("Patrono:", "Fiesta:") ───────────────────────────────────────────────────────── */
+.capillas__label {
+  font-weight: 700;
+  color: var(--teal-zocalo);
   letter-spacing: 0.02em;
 }
 
