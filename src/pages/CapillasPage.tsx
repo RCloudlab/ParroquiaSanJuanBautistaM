@@ -69,6 +69,15 @@ export default function CapillasPage() {
                   {/* Contenido */}
                   <div className="capillas__body">
                     <h2 className="capillas__nombre">{cap.nombre}</h2>
+                    <h4 className="capillas__santo"> <span className="capillas__label">Patrono:</span> {cap.santo} </h4>
+                    
+                    {cap.aniversario && (
+                      <p className="capillas__aniversario"> <span className="capillas__label">Aniversario de la llegada del Santísimo: {cap.aniversario}</span> </p>
+                    )}
+                    
+                    {cap.fiesta && (
+                      <p className="capillas__fiesta"> <span className="capillas__label">Fiesta: {cap.fiesta}</span></p>
+                    )}                                      
 
                     <div className="capillas__meta">
                       <span className="capillas__lugar">
