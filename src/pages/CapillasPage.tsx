@@ -8,6 +8,7 @@ import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
 import './CapillasPage.css';
 import Seo from '../components/Seo';
 import { CapillaModal } from '../components/CapillasModal';
+import CapillaImagen from '../components/CapillaImagen';
 
 
 export default function CapillasPage() {
@@ -54,17 +55,8 @@ export default function CapillasPage() {
                   onClick={() => openModal(cap)}
                   aria-label={`Ver información de ${cap.nombre}`}
                 >
-                  {/* Imagen */}
-                  <div className="capillas__img-wrap">
-                    <img
-                      src={cap.imagen}
-                      alt={cap.nombre}
-                      className="capillas__img"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div className="capillas__img-overlay" />
-                  </div>
+                  {/* Imagen (o marcador si aún no tenemos fotografía) */}
+                  <CapillaImagen capilla={cap} />
 
                   {/* Contenido */}
                   <div className="capillas__body">

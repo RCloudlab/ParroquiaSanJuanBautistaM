@@ -60,6 +60,62 @@
   pointer-events: none;
 }
 
+/* ─── Capilla sin fotografía ───────────────────────────────────────────────
+   Mientras la comunidad no aporte una foto, en lugar de repetir el logotipo
+   se muestra una invitación a mandarla. */
+.capillas__img-wrap--sinfoto {
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(201, 168, 76, 0.07) 0 12px,
+      transparent 12px 24px
+    ),
+    var(--cream);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.28);
+}
+
+.capillas__sinfoto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  text-align: center;
+  color: var(--stone);
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+a.capillas__sinfoto:hover {
+  background: rgba(201, 168, 76, 0.12);
+}
+
+.capillas__sinfoto-icono {
+  color: var(--gold-mid);
+  margin-bottom: 0.15rem;
+}
+
+.capillas__sinfoto-titulo {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  color: var(--stone-dark);
+  line-height: 1.25;
+}
+
+.capillas__sinfoto-cta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--red-deep);
+}
+
+a.capillas__sinfoto:hover .capillas__sinfoto-cta {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* ─── Body ───────────────────────────────────────────────────────────────── */
 .capillas__body {
   padding: 1.75rem 2rem 2rem;

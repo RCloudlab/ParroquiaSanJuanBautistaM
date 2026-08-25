@@ -1,5 +1,6 @@
 import { Clock, MapPin, X } from "lucide-react";
 import type { Capilla } from "../data/capillas";
+import CapillaImagen from "./CapillaImagen";
 
 type ModalProps = {
   capilla: Capilla;
@@ -25,16 +26,8 @@ export function CapillaModal({ capilla, onCerrar }: ModalProps) {
           <X size={22} />
         </button>
 
-        {/* Imagen */}
-        <div className="capillas__img-wrap">
-          <img
-            src={capilla.imagen}
-            alt={capilla.nombre}
-            className="capillas__img"
-            decoding="async"
-          />
-          <div className="capillas__img-overlay" />
-        </div>
+        {/* Imagen (o invitación a aportarla si aún no la tenemos) */}
+        <CapillaImagen capilla={capilla} enlazable />
 
         {/* Contenido completo */}
         <div className="capilla-modal__body">
