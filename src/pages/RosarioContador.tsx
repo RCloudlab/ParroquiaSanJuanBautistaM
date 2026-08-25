@@ -39,7 +39,7 @@ export default function RosarioContador() {
   };
 
   return (
-    <RosarioMarco titulo="Contador">
+    <RosarioMarco titulo="Contador" misterio={grupo.id}>
       <Seo
         titulo="Contador de Rosario"
         descripcion="Contador de cuentas para rezar el Rosario de memoria: un toque por Ave María y vibración al cerrar cada decena."

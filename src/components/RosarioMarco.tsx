@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Moon, Sun, Minus, Plus } from 'lucide-react';
 import { useAjustesRosario } from '../hooks/useRosario';
+import type { GrupoId } from '../data/rosario';
 import './RosarioMarco.css';
 
 /**
@@ -9,18 +10,28 @@ import './RosarioMarco.css';
  * superior con regreso a /rosario, tamaño de letra (A− / A+) y tema
  * claro/oscuro ("modo capilla"). Aplica las variables de tema a todo
  * su contenido vía data-attributes.
+ *
+ * `misterio` tiñe el rezo con el color litúrgico del grupo del día
+ * (gozosos, luminosos, dolorosos, gloriosos) — ver RosarioMarco.css.
  */
 
 interface Props {
   titulo: string;
+  /** Grupo de misterios en curso; define la paleta litúrgica */
+  misterio?: GrupoId;
   children: ReactNode;
 }
 
-export default function RosarioMarco({ titulo, children }: Props) {
+export default function RosarioMarco({ titulo, misterio, children }: Props) {
   const { tema, fuente, alternarTema, aumentarFuente, reducirFuente } = useAjustesRosario();
 
   return (
-    <div className="rosario-marco" data-tema={tema} data-fuente={fuente}>
+    <div
+      className="rosario-marco"
+      data-tema={tema}
+      data-fuente={fuente}
+      data-misterio={misterio}
+    >
       <header className="rosario-marco__barra">
         <Link to="/rosario" className="rosario-marco__volver" aria-label="Volver al inicio del rosario">
           <ArrowLeft size={20} />

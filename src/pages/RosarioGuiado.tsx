@@ -35,7 +35,7 @@ export default function RosarioGuiado() {
   };
 
   return (
-    <RosarioMarco titulo="Rosario guiado">
+    <RosarioMarco titulo="Rosario guiado" misterio={grupo.id}>
       <Seo
         titulo="Rosario Guiado"
         descripcion="Reza el Rosario acompañado paso a paso: oraciones completas, misterios del día y cuentas para no perderte."

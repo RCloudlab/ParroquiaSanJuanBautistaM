@@ -9,6 +9,14 @@
   align-items: start;
 }
 
+/* En la home no se muestran Notaría ni Librería: la tarjeta de misas queda
+   sola y se centra en lugar de estirarse a todo el ancho */
+.horarios__grid--solo-misas {
+  grid-template-columns: 1fr;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
 .horarios__cta {
   display: flex;
   justify-content: center;
@@ -261,6 +269,30 @@
   margin-top: 1.5rem;
   padding-top: 1.25rem;
   border-top: 1px dashed rgba(107,101,96,0.2);
+}
+
+/* Confesiones: bloque propio con fondo y filete dorado, para que no se lea
+   como una nota al pie de las misas sino como un servicio en sí mismo */
+.horarios__confesiones--destacada {
+  margin-top: 1.75rem;
+  padding: 1.1rem 1.25rem 1.25rem;
+  border-top: none;
+  border-left: 3px solid var(--gold-mid);
+  border-radius: 0 12px 12px 0;
+  background: linear-gradient(
+    100deg,
+    rgba(201,168,76,0.13),
+    rgba(201,168,76,0.04) 65%,
+    transparent
+  );
+}
+
+.horarios__confesiones--destacada .horarios__card-header--sub h4 {
+  color: var(--red-deep);
+}
+
+.horarios__confesiones--destacada .horarios__schedule-item {
+  border-bottom-color: rgba(201,168,76,0.28);
 }
 
 .horarios__card-header--sub {

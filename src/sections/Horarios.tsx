@@ -87,9 +87,17 @@ const TRANSMISIONES = [
   { medio: 'Radio Sensitiva', detalle: 'Domingo · 10:00 am', tipo: 'radio' as const,    url: RADIO_URL },
 ];
 
-// mostrarCta: el botón "Ver horario completo" solo tiene sentido fuera de
+// mostrarCta: el botón "Ver más horarios" solo tiene sentido fuera de
 // /horarios (en la home); la página standalone lo apaga.
-export default function Horarios({ mostrarCta = true }: { mostrarCta?: boolean }) {
+// completo: la home muestra el resumen (misas + confesiones); la página
+// /horarios activa además Notaría y Librería.
+export default function Horarios({
+  mostrarCta = true,
+  completo = false,
+}: {
+  mostrarCta?: boolean;
+  completo?: boolean;
+}) {
   return (
     <section id="horarios" className="horarios">
       <div className="section-container">
@@ -99,7 +107,7 @@ export default function Horarios({ mostrarCta = true }: { mostrarCta?: boolean }
           «Venid a mí todos los que estáis cansados y agobiados» — Mt 11,28
         </p>
 
-        <div className="horarios__grid">
+        <div className={`horarios__grid${completo ? '' : ' horarios__grid--solo-misas'}`}>
           {/* Tabla de misas */}
           <div className="card horarios__card-misas reveal">
             <div className="horarios__card-header">
@@ -164,8 +172,8 @@ export default function Horarios({ mostrarCta = true }: { mostrarCta?: boolean }
               ))}
             </div>
 
-            {/* Confesiones */}
-            <div className="horarios__confesiones">
+            {/* Confesiones — bloque destacado, separado visualmente del resto */}
+            <div className="horarios__confesiones horarios__confesiones--destacada">
               <div className="horarios__card-header horarios__card-header--sub">
                 <FileText size={18} className="horarios__icon" />
                 <h4>Confesiones</h4>
@@ -235,7 +243,8 @@ export default function Horarios({ mostrarCta = true }: { mostrarCta?: boolean }
             </p>
           </div>
 
-          {/* Notaría y Librería */}
+          {/* Notaría y Librería — solo en la página /horarios */}
+          {completo && (
           <div className="horarios__side">
             <div className="card horarios__card-notaria reveal">
               <div className="horarios__card-header">
@@ -273,12 +282,13 @@ export default function Horarios({ mostrarCta = true }: { mostrarCta?: boolean }
               </ul>
             </div>
           </div>
+          )}
         </div>
 
         {mostrarCta && (
           <div className="horarios__cta">
             <Link to="/horarios" className="btn-gold">
-              Ver horario completo <ArrowRight size={16} />
+              Ver más horarios <ArrowRight size={16} />
             </Link>
           </div>
         )}

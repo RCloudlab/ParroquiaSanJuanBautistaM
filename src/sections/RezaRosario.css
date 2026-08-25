@@ -4,16 +4,17 @@
 }
 
 .reza-rosario__card {
-  max-width: 640px;
+  max-width: 980px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  /* Móvil: una columna, el rosario arriba como gancho visual */
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   align-items: center;
-  text-align: center;
-  /* Foto de manos con rosario en la iglesia + velo rojo para que el texto
+  /* Foto de manos con rosario en la iglesia + velo granate para que el texto
      dorado/blanco siga leyéndose bien */
   background:
-    linear-gradient(to bottom, rgba(60,10,10,0.82), rgba(107,20,20,0.78)),
+    linear-gradient(to bottom, rgba(60,10,10,0.86), rgba(107,20,20,0.82)),
     url('/optimized/manos-rosario-960.webp') center 35% / cover no-repeat;
   border: 1px solid rgba(201,168,76,0.45);
   border-radius: var(--radius-lg);
@@ -32,6 +33,18 @@
   right: 0;
   height: 3px;
   background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
+  z-index: 1;
+}
+
+.reza-rosario__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reza-rosario__texto {
+  text-align: center;
+  min-width: 0;
 }
 
 .reza-rosario__eyebrow {
@@ -55,7 +68,7 @@
 
 .reza-rosario__hoy {
   font-size: 1.15rem;
-  color: rgba(255,255,255,0.92);
+  color: rgba(255,255,255,0.94);
   line-height: 1.6;
   margin-bottom: 0.5rem;
 }
@@ -64,17 +77,78 @@
   color: var(--gold-light);
 }
 
+.reza-rosario__desc {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.65;
+  max-width: 46ch;
+  margin: 0 auto 1.1rem;
+}
+
+/* ─── Los cuatro grupos con su día ──────────────────────────────────────── */
+
+.reza-rosario__grupos {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin: 0 0 1.2rem;
+  padding: 0;
+}
+
+.reza-rosario__grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid rgba(232,201,122,0.22);
+  border-radius: var(--radius);
+  background: rgba(0,0,0,0.18);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+/* El grupo de hoy se destaca, para que se vea de un vistazo */
+.reza-rosario__grupo--hoy {
+  border-color: var(--gold-mid);
+  background: rgba(201,168,76,0.16);
+}
+
+.reza-rosario__grupo-nombre {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  color: var(--white-pure);
+}
+
+.reza-rosario__grupo--hoy .reza-rosario__grupo-nombre {
+  color: var(--gold-light);
+}
+
+.reza-rosario__grupo-dias {
+  font-size: 0.74rem;
+  color: rgba(255,255,255,0.72);
+}
+
 .reza-rosario__tiempo {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
   font-size: 0.95rem;
   color: rgba(255,255,255,0.85);
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.2rem;
 }
 
 .reza-rosario__tiempo strong {
   color: var(--gold-light);
+}
+
+/* ─── Acciones ──────────────────────────────────────────────────────────── */
+
+.reza-rosario__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1.1rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .reza-rosario__cta {
@@ -83,8 +157,52 @@
   gap: 0.5rem;
 }
 
+.reza-rosario__secundario {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  text-decoration: none;
+  padding: 0.45rem 0.2rem;
+  /* Área táctil cómoda en móvil sin agrandar el texto */
+  min-height: 44px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.reza-rosario__secundario:hover,
+.reza-rosario__secundario:focus-visible {
+  color: var(--white-pure);
+  border-bottom-color: var(--gold-mid);
+}
+
+/* ─── Escritorio: dos columnas, rosario a la izquierda ──────────────────── */
+
+@media (min-width: 760px) {
+  .reza-rosario__card {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 2.5rem;
+    padding: 3rem 2.8rem;
+  }
+  .reza-rosario__texto {
+    text-align: left;
+  }
+  .reza-rosario__desc {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .reza-rosario__acciones {
+    justify-content: flex-start;
+  }
+}
+
 @media (max-width: 480px) {
   .reza-rosario__card {
     padding: 1.75rem 1.25rem;
+  }
+  .reza-rosario__grupos {
+    grid-template-columns: 1fr;
   }
 }

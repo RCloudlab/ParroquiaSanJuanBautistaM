@@ -18,7 +18,7 @@ export default function HorariosPage() {
       />
       <Navbar />
       <main className="page-standalone">
-        <Horarios mostrarCta={false} />
+        <Horarios mostrarCta={false} completo />
       </main>
       <Footer />
     </>

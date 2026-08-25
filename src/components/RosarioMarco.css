@@ -1,21 +1,33 @@
 /* ─── Marco inmersivo del rosario: temas y tipografía ────────────────────
-   El tema se aplica con data-tema (claro | oscuro) y el tamaño de letra
-   con data-fuente (m | g | xg). Todo lo interior usa las variables --r-*. */
+   El tema se aplica con data-tema (claro | oscuro), el tamaño de letra
+   con data-fuente (m | g | xg) y el color litúrgico con data-misterio
+   (gozosos | luminosos | dolorosos | gloriosos).
+   Todo lo interior usa las variables --r-*. */
 
 .rosario-marco {
-  /* Tema claro: crema y cantera, como el resto del sitio */
-  --r-bg:        #f3ecdd;
-  --r-bg-fin:    #e9dfc9;
-  --r-superficie:#fbf8f1;
-  --r-texto:     #3d3530;
-  --r-suave:     #7a6f63;
-  --r-borde:     rgba(107, 66, 38, 0.16);
-  --r-acento:    #8b1a1a;
-  --r-acento-txt:#faf8f5;
-  --r-oro:       #a07a28;
-  --r-halo:      #a07a28;
-  --r-cordon:    rgba(107, 66, 38, 0.35);
-  --r-sombra:    0 4px 24px rgba(74, 44, 24, 0.12);
+  /* Tema claro mariano: azul celeste y nácar, con acento rosa de las rosas */
+  --r-bg:        #eef3fc;
+  --r-bg-fin:    #dbe4f6;
+  --r-superficie:#fbfcff;
+  --r-texto:     #26304a;
+  --r-suave:     #63708f;
+  --r-borde:     rgba(58, 78, 140, 0.18);
+  --r-acento:    #3a4e8c;
+  --r-acento-txt:#f7f9ff;
+  --r-oro:       #b0699a;
+  --r-halo:      #6d86c9;
+  --r-cordon:    rgba(58, 78, 140, 0.4);
+  --r-sombra:    0 4px 24px rgba(38, 48, 74, 0.12);
+
+  /* Rosas: tres paradas de gradiente por pétalo (clara → media → oscura).
+     Por defecto, rojo de rosa de jardín. Los data-misterio las redefinen. */
+  --rosa-1: #ffb3b3;
+  --rosa-2: #d92b2b;
+  --rosa-3: #8a0f18;
+  /* Corola interior, un punto más clara para dar profundidad */
+  --rosa-int-1: #ffe0e0;
+  --rosa-int-2: #ee5f60;
+  --rosa-int-3: #a81d28;
 
   --r-fs: 1.05rem;
 
@@ -29,20 +41,167 @@
   transition: background 0.45s ease, color 0.45s ease;
 }
 
-/* Modo capilla: café profundo con dorado cálido, pensado para rezar de noche */
+/* Modo capilla: noche de lapislázuli con luz de plata, para rezar de noche */
 .rosario-marco[data-tema='oscuro'] {
-  --r-bg:        #201409;
-  --r-bg-fin:    #120b05;
-  --r-superficie:#2b1d10;
-  --r-texto:     #f0e6d2;
-  --r-suave:     #bfae90;
-  --r-borde:     rgba(201, 168, 76, 0.22);
-  --r-acento:    #e8c97a;
-  --r-acento-txt:#241505;
-  --r-oro:       #e8c97a;
-  --r-halo:      #e8c97a;
-  --r-cordon:    rgba(201, 168, 76, 0.4);
-  --r-sombra:    0 4px 28px rgba(0, 0, 0, 0.5);
+  --r-bg:        #101733;
+  --r-bg-fin:    #070b1c;
+  --r-superficie:#1a2347;
+  --r-texto:     #e7ecfb;
+  --r-suave:     #a8b5da;
+  --r-borde:     rgba(160, 180, 235, 0.24);
+  --r-acento:    #a8bdf0;
+  --r-acento-txt:#0d1330;
+  --r-oro:       #f0a6c8;
+  --r-halo:      #b7c8f5;
+  --r-cordon:    rgba(180, 198, 245, 0.42);
+  --r-sombra:    0 4px 28px rgba(0, 0, 0, 0.55);
+}
+
+/* ─── Color litúrgico por grupo de misterios ─────────────────────────────
+   Cada grupo tiñe el ambiente completo: fondo, superficie, texto, bordes,
+   acentos y rosas.
+
+   Criterio de UX — el rezo dura media hora y se lee de corrido, así que:
+   · Los fondos llevan solo un tinte (4–8% de saturación), nunca color
+     saturado: el ambiente cambia, pero la pantalla no cansa la vista.
+   · El texto conserva siempre contraste alto sobre su fondo (AA o mejor),
+     en vez de teñirse hasta volverse gris de bajo contraste.
+   · La superficie de las tarjetas se mantiene más clara que el fondo en
+     tema claro (y más clara en oscuro), para que la jerarquía no cambie
+     de un misterio a otro y el usuario no tenga que reorientarse.
+   · El acento nunca se usa como color de texto largo, solo en títulos,
+     botones y detalles. */
+
+/* Gozosos (lunes y sábado) · Encarnación y nacimiento — celeste y nácar */
+.rosario-marco[data-misterio='gozosos'] {
+  --r-bg:        #eaf1fd;
+  --r-bg-fin:    #d6e3f8;
+  --r-superficie:#fbfcff;
+  --r-texto:     #1e2b47;
+  --r-suave:     #5b6b8c;
+  --r-borde:     rgba(47, 98, 168, 0.18);
+  --r-acento:    #2f62a8;
+  --r-acento-txt:#f7faff;
+  --r-oro:       #c2708f;
+  --r-halo:      #7fa8e0;
+  --r-cordon:    rgba(47, 98, 168, 0.4);
+  --r-sombra:    0 4px 24px rgba(30, 43, 71, 0.12);
+  --rosa-1: #ffd0dc;  --rosa-2: #ef6b90;  --rosa-3: #a52a52;
+  --rosa-int-1: #fff0f4; --rosa-int-2: #f79ab4; --rosa-int-3: #c04872;
+}
+
+/* Luminosos (jueves) · Vida pública de Cristo — luz de agua y oro */
+.rosario-marco[data-misterio='luminosos'] {
+  --r-bg:        #e7f4f6;
+  --r-bg-fin:    #d1e8ed;
+  --r-superficie:#fafdfd;
+  --r-texto:     #133038;
+  --r-suave:     #4d7079;
+  --r-borde:     rgba(29, 122, 148, 0.18);
+  --r-acento:    #16687f;
+  --r-acento-txt:#f5fdff;
+  --r-oro:       #b07d18;
+  --r-halo:      #67c3d8;
+  --r-cordon:    rgba(29, 122, 148, 0.4);
+  --r-sombra:    0 4px 24px rgba(19, 48, 56, 0.12);
+  --rosa-1: #fff0c2;  --rosa-2: #f0a93c;  --rosa-3: #a85f10;
+  --rosa-int-1: #fffaea; --rosa-int-2: #f7c76a; --rosa-int-3: #c07d1c;
+}
+
+/* Dolorosos (martes y viernes) · Pasión — vino y ceniza cálida */
+.rosario-marco[data-misterio='dolorosos'] {
+  --r-bg:        #f6ecef;
+  --r-bg-fin:    #ead6dd;
+  --r-superficie:#fffbfc;
+  --r-texto:     #33141f;
+  --r-suave:     #75505c;
+  --r-borde:     rgba(122, 32, 80, 0.18);
+  --r-acento:    #7a2050;
+  --r-acento-txt:#fff7fa;
+  --r-oro:       #a8452c;
+  --r-halo:      #b95c85;
+  --r-cordon:    rgba(122, 32, 80, 0.42);
+  --r-sombra:    0 4px 24px rgba(51, 20, 31, 0.14);
+  --rosa-1: #ff9d9d;  --rosa-2: #c41220;  --rosa-3: #6d0812;
+  --rosa-int-1: #ffd4d4; --rosa-int-2: #dc4148; --rosa-int-3: #8d101c;
+}
+
+/* Gloriosos (miércoles y domingo) · Resurrección — oro y blanco de gloria */
+.rosario-marco[data-misterio='gloriosos'] {
+  --r-bg:        #fbf3e2;
+  --r-bg-fin:    #f2e4c8;
+  --r-superficie:#fffdf7;
+  --r-texto:     #33280f;
+  --r-suave:     #786440;
+  --r-borde:     rgba(138, 106, 21, 0.2);
+  --r-acento:    #7d5f10;
+  --r-acento-txt:#fffdf3;
+  --r-oro:       #a87a14;
+  --r-halo:      #dcb75a;
+  --r-cordon:    rgba(138, 106, 21, 0.42);
+  --r-sombra:    0 4px 24px rgba(51, 40, 15, 0.13);
+  --rosa-1: #fff3d0;  --rosa-2: #e0a52c;  --rosa-3: #8f5e0c;
+  --rosa-int-1: #fffbef; --rosa-int-2: #f2c661; --rosa-int-3: #ab7714;
+}
+
+/* ─── Modo capilla teñido por misterio ───────────────────────────────────
+   Mismo criterio, invertido: fondos muy oscuros con un punto del matiz
+   litúrgico y acentos claros, para rezar de noche sin deslumbrar. */
+
+.rosario-marco[data-tema='oscuro'][data-misterio='gozosos'] {
+  --r-bg:        #0e1730;
+  --r-bg-fin:    #060b1b;
+  --r-superficie:#182343;
+  --r-texto:     #e6ecfb;
+  --r-suave:     #a5b4d8;
+  --r-borde:     rgba(157, 192, 242, 0.24);
+  --r-acento:    #9dc0f2;
+  --r-acento-txt:#0b1228;
+  --r-oro:       #f0a6c8;
+  --r-halo:      #a8c6f5;
+  --r-cordon:    rgba(157, 192, 242, 0.42);
+}
+
+.rosario-marco[data-tema='oscuro'][data-misterio='luminosos'] {
+  --r-bg:        #08222a;
+  --r-bg-fin:    #041418;
+  --r-superficie:#0f313b;
+  --r-texto:     #e2f4f8;
+  --r-suave:     #9dc2cc;
+  --r-borde:     rgba(127, 216, 236, 0.24);
+  --r-acento:    #7fd8ec;
+  --r-acento-txt:#04191f;
+  --r-oro:       #f2cd7a;
+  --r-halo:      #8fe0f2;
+  --r-cordon:    rgba(127, 216, 236, 0.42);
+}
+
+.rosario-marco[data-tema='oscuro'][data-misterio='dolorosos'] {
+  --r-bg:        #2a0e1a;
+  --r-bg-fin:    #17060d;
+  --r-superficie:#3a1626;
+  --r-texto:     #fbe8ee;
+  --r-suave:     #d0a3b3;
+  --r-borde:     rgba(231, 154, 184, 0.24);
+  --r-acento:    #e79ab8;
+  --r-acento-txt:#250a13;
+  --r-oro:       #f0a68c;
+  --r-halo:      #ef9fb5;
+  --r-cordon:    rgba(231, 154, 184, 0.42);
+}
+
+.rosario-marco[data-tema='oscuro'][data-misterio='gloriosos'] {
+  --r-bg:        #241c07;
+  --r-bg-fin:    #130e03;
+  --r-superficie:#332812;
+  --r-texto:     #faf1dc;
+  --r-suave:     #cdb98d;
+  --r-borde:     rgba(240, 205, 114, 0.24);
+  --r-acento:    #f0cd72;
+  --r-acento-txt:#1f1705;
+  --r-oro:       #f5d885;
+  --r-halo:      #f5d885;
+  --r-cordon:    rgba(240, 205, 114, 0.42);
 }
 
 .rosario-marco[data-fuente='g']  { --r-fs: 1.2rem; }

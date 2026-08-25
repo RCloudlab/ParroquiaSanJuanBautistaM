@@ -1,0 +1,131 @@
+/* ─── Rosario decorativo del home ────────────────────────────────────────
+   Coste: 0 KB de red (SVG inline), 0 KB de JS.
+   Todas las animaciones usan solo transform/opacity, que el compositor
+   resuelve en GPU sin provocar layout ni paint. */
+
+.rh {
+  /* Rojo de rosa por defecto; los data-misterio lo cambian */
+  --rh-1: #ffc2c2;
+  --rh-2: #d92b2b;
+  --rh-3: #7d0d15;
+  --rh-aura: #e8c97a;
+
+  /* En móvil se mantiene contenido para no comerse la pantalla ni empujar
+     el texto y el botón fuera del primer vistazo. */
+  width: min(46vw, 190px);
+  flex-shrink: 0;
+  filter: drop-shadow(0 10px 22px rgba(30, 6, 6, 0.45));
+}
+
+/* En escritorio, donde hay columna propia, sí puede lucirse */
+@media (min-width: 760px) {
+  .rh {
+    width: min(30vw, 300px);
+  }
+}
+
+.rh__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* El aura y las sombras se salen del viewBox a propósito */
+  overflow: visible;
+}
+
+/* Fuera del viewport: se congelan los bucles, sin desmontar nada (el estado
+   visual se conserva y al volver continúa sin saltos). */
+.rh--pausado * {
+  animation-play-state: paused !important;
+}
+
+/* Color litúrgico del grupo del día */
+.rh[data-misterio='gozosos']   { --rh-1: #ffd6e2; --rh-2: #ef6b90; --rh-3: #8e2149; --rh-aura: #9dc0f2; }
+.rh[data-misterio='luminosos'] { --rh-1: #fff0c2; --rh-2: #f0a93c; --rh-3: #8f5010; --rh-aura: #8fe0f2; }
+/* El rojo va un punto más claro que en el rezo: la tarjeta del home tiene
+   fondo granate y con el rojo profundo las rosas se empastaban con él. */
+.rh[data-misterio='dolorosos'] { --rh-1: #ffc4c0; --rh-2: #e03a3a; --rh-3: #7d1018; --rh-aura: #ef9fb5; }
+.rh[data-misterio='gloriosos'] { --rh-1: #fff3d0; --rh-2: #e0a52c; --rh-3: #7d5209; --rh-aura: #f5d885; }
+
+.rh__cordon {
+  stroke: rgba(232, 201, 122, 0.5);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+/* Balanceo lento: sugiere el rosario colgando, sin marear.
+   Un solo transform sobre el grupo entero = una sola capa compuesta. */
+.rh__balanceo {
+  transform-origin: 100px 20px;
+  animation: rh-balanceo 7s ease-in-out infinite;
+}
+
+@keyframes rh-balanceo {
+  0%, 100% { transform: rotate(-2.2deg); }
+  50%      { transform: rotate(2.2deg); }
+}
+
+/* Cada rosa entra una tras otra, como si se fuera rezando el rosario */
+.rh__cuenta {
+  animation: rh-florece 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes rh-florece {
+  from { opacity: 0; transform: scale(0.2); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Tras entrar, las rosas laten muy suavemente en ciclo continuo */
+.rh__rosa {
+  animation: rh-late 4.5s ease-in-out infinite;
+  animation-delay: inherit;
+}
+
+@keyframes rh-late {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.09); }
+}
+
+/* Aura: luz de vela detrás del aro */
+.rh__aura {
+  animation: rh-aura 5s ease-in-out infinite;
+  transform-origin: 100px 88px;
+}
+
+@keyframes rh-aura {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 0.9;  transform: scale(1.07); }
+}
+
+/* Las rosas llevan sombra propia: a este tamaño es lo que las despega del
+   fondo y les da el volumen que la sombra global de la pieza no alcanza. */
+.rh__rosa {
+  filter: drop-shadow(0 1.5px 1.5px rgba(40, 4, 10, 0.5));
+}
+
+.rh__cruz {
+  transform-origin: 100px 202px;
+  animation: rh-cruz 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  /* Entra al cerrar la secuencia: 13 rosas × 160 ms + la propia entrada */
+  animation-delay: 2.6s;
+}
+
+@keyframes rh-cruz {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Accesibilidad: sin movimiento, todo queda en su estado final visible */
+@media (prefers-reduced-motion: reduce) {
+  .rh__balanceo,
+  .rh__cuenta,
+  .rh__rosa,
+  .rh__aura,
+  .rh__cruz {
+    animation: none;
+  }
+  .rh__cuenta,
+  .rh__cruz {
+    opacity: 1;
+    transform: none;
+  }
+}

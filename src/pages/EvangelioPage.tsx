@@ -23,6 +23,8 @@ export default function EvangelioPage() {
           <div className="evangelio-page__hero">
             <img
               src={EVANGELIO_HOY.imagen.src}
+              srcSet={EVANGELIO_HOY.imagen.srcSet}
+              sizes="100vw"
               alt={EVANGELIO_HOY.imagen.alt}
             />
             <div className="evangelio-page__hero-overlay" />
@@ -38,23 +40,54 @@ export default function EvangelioPage() {
           </div>
 
           <div className="section-container evangelio-page__container">
+            {/* Audio protagonista: se escucha primero, se lee después */}
+            {EVANGELIO_HOY.audio ? (
+              <div className="evangelio-page__reproductor reveal">
+                <div className="evangelio-page__reproductor-head">
+                  <span className="evangelio-page__reproductor-icono">
+                    <Headphones size={24} />
+                  </span>
+                  <div>
+                    <h2 className="evangelio-page__reproductor-titulo">
+                      Escucha el evangelio de hoy
+                    </h2>
+                    <p className="evangelio-page__reproductor-sub">
+                      {[EVANGELIO_HOY.autorAudio, EVANGELIO_HOY.duracionAudio]
+                        .filter(Boolean)
+                        .join(' · ') || 'Reflexión de la parroquia'}
+                    </p>
+                  </div>
+                </div>
+                <audio
+                  className="evangelio-page__reproductor-audio"
+                  controls
+                  preload="metadata"
+                  src={EVANGELIO_HOY.audio}
+                >
+                  Tu navegador no soporta audio HTML5.
+                </audio>
+                <p className="evangelio-page__reproductor-nota">
+                  Puedes seguir la lectura completa más abajo mientras escuchas.
+                </p>
+              </div>
+            ) : (
+              <div className="evangelio-page__reproductor evangelio-page__reproductor--vacio reveal">
+                <span className="evangelio-page__reproductor-icono">
+                  <Headphones size={22} />
+                </span>
+                <p className="evangelio-page__reproductor-pendiente">
+                  El audio de hoy se publicará en breve. Mientras tanto, puedes leer el
+                  evangelio completo aquí abajo.
+                </p>
+              </div>
+            )}
+
             {/* Evangelio completo */}
             <article className="evangelio-page__lectura reveal">
               <div className="evangelio-page__lectura-header">
                 <h2>Lectura del santo Evangelio según san {EVANGELIO_HOY.referencia.split(' ')[0]}</h2>
                 <span className="evangelio-page__referencia">{EVANGELIO_HOY.referencia}</span>
               </div>
-
-              {EVANGELIO_HOY.audio && (
-                <div className="evangelio-page__audio">
-                  <span className="evangelio-page__audio-label">
-                    <Headphones size={16} /> Escucha el evangelio
-                  </span>
-                  <audio controls preload="none" src={EVANGELIO_HOY.audio}>
-                    Tu navegador no soporta audio HTML5.
-                  </audio>
-                </div>
-              )}
 
               {EVANGELIO_HOY.texto.map((parrafo, i) => (
                 <p key={i} className="evangelio-page__parrafo">{parrafo}</p>

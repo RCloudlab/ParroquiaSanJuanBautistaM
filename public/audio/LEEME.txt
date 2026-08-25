@@ -1,0 +1,27 @@
+AUDIOS DEL EVANGELIO DEL DÍA
+============================
+
+Cómo publicar el audio de un día:
+
+1. Graba la reflexión y guárdala como MP3 en esta carpeta.
+   Nombre recomendado:  evangelio-AAAA-MM-DD.mp3
+   Ejemplo:             evangelio-2026-08-24.mp3
+
+2. Abre el archivo  src/data/evangelio.ts  y descomenta / edita estas líneas
+   dentro de EVANGELIO_HOY:
+
+       audio: '/audio/evangelio-2026-08-24.mp3',
+       autorAudio: 'P. Nombre del párroco',
+       duracionAudio: '5 min',
+
+   (La ruta empieza en /audio/ — sin la palabra "public".)
+
+3. Actualiza también fecha, liturgia, titulo, referencia, texto y reflexion.
+
+Si no hay audio, deja la línea "audio" comentada: la página muestra
+automáticamente el aviso de "El audio de hoy se publicará en breve" y el
+texto del evangelio se lee con normalidad.
+
+Recomendaciones para el MP3:
+  - Calidad 96–128 kbps mono es suficiente para voz y pesa poco.
+  - Procura que no supere los 10 MB para que cargue rápido en celulares.

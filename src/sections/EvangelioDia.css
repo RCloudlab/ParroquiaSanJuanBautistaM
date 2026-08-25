@@ -86,23 +86,28 @@
 }
 
 /* Audio opcional */
-.evangelio__audio {
-  width: 100%;
-  margin-bottom: 1.5rem;
-}
-
-.evangelio__audio-label {
+/* Aviso de que hay audio: el reproductor vive en /evangelio, aquí solo se
+   anuncia para no cargar el mp3 en la home */
+.evangelio__audio-aviso {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
+  align-self: flex-start;
+  margin-bottom: 1.5rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 50px;
+  background: rgba(139,26,26,0.08);
+  border: 1px solid rgba(139,26,26,0.2);
+  color: var(--red-deep);
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--red-deep);
-  margin-bottom: 0.5rem;
+  text-decoration: none;
+  transition: background 0.16s, transform 0.16s;
 }
 
-.evangelio__audio audio {
-  width: 100%;
+.evangelio__audio-aviso:hover {
+  background: rgba(139,26,26,0.14);
+  transform: translateY(-1px);
 }
 
 .evangelio__cta {

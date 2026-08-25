@@ -4,16 +4,6 @@ import { Star, ArrowRight } from 'lucide-react';
 import { useParallax } from '../hooks/useParallax';
 import './VirgenDolores.css';
 
-const SIETE_DOLORES = [
-  'La profecía de Simeón',
-  'La huida a Egipto',
-  'La pérdida del Niño Jesús en el Templo',
-  'El encuentro con Jesús camino del Calvario',
-  'La Crucifixión y muerte de Jesús',
-  'El descendimiento de la Cruz',
-  'La sepultura de Jesús',
-];
-
 export default function VirgenDolores() {
   const { containerRef, targetRef } = useParallax<HTMLDivElement, HTMLImageElement>(70);
 
@@ -69,20 +59,15 @@ export default function VirgenDolores() {
       <div className="section-container virgen-dolores__below">
         <p className="virgen-dolores__lead reveal">
           <em>Mater Dolorosa</em>: María contemplando el sufrimiento, muerte y sepultura de su Hijo.
-          Su imagen preside el altar mayor desde la fundación de la parroquia, y cada
-          septiembre la comunidad la celebra con novena, triduo solemne, Misa pontifical y procesión.
+          Su imagen preside el altar mayor desde la fundación de la parroquia.
         </p>
 
         <div className="virgen-dolores__dolores reveal">
-          <h3 className="virgen-dolores__dolores-title">Los Siete Dolores de María</h3>
-          <ul className="virgen-dolores__chips">
-            {SIETE_DOLORES.map((dolor, i) => (
-              <li key={i} className="virgen-dolores__chip">
-                <span className="virgen-dolores__chip-num">{i + 1}</span>
-                {dolor}
-              </li>
-            ))}
-          </ul>
+          <Link className="virgen-dolores__dolores-link" to="/virgen-de-los-dolores">
+            <span className="virgen-dolores__dolores-num">7</span>
+            <span className="virgen-dolores__dolores-texto">Dolores de la Virgen</span>
+            <ArrowRight size={16} />
+          </Link>
         </div>
 
         <div className="virgen-dolores__oracion-banner reveal">

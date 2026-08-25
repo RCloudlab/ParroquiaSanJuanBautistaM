@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, ZoomIn } from 'lucide-react';
+import { ArrowRight, ZoomIn, Camera } from 'lucide-react';
 import { FOTOS } from '../data/galeria';
 import './Galeria.css';
+
+const FACEBOOK_URL = 'https://www.facebook.com/ParroquiaSanJuanBautistaMaravatioMich';
 
 // El resumen en home muestra solo las primeras 4 fotos de la fuente
 // compartida (src/data/galeria.ts); la página /galeria (GaleriaPage.tsx)
@@ -54,7 +56,30 @@ export default function Galeria() {
             Ver galería completa <ArrowRight size={16} />
           </Link>
         </div>
+
+        <GaleriaAporta />
       </div>
     </section>
+  );
+}
+
+/** Invitación a que la comunidad mande sus fotos por Facebook. */
+export function GaleriaAporta() {
+  return (
+    <div className="galeria__aporta reveal">
+      <Camera size={22} className="galeria__aporta-icon" />
+      <p className="galeria__aporta-texto">
+        <strong>¿Tienes fotografías de la parroquia?</strong>
+        <span>Mándanoslas y forma parte de nuestra galería.</span>
+      </p>
+      <a
+        href={FACEBOOK_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="btn-primary galeria__aporta-btn"
+      >
+        Enviar por Facebook
+      </a>
+    </div>
   );
 }

@@ -22,6 +22,8 @@ export default function EvangelioDia() {
           >
             <img
               src={EVANGELIO_HOY.imagen.src}
+              srcSet={EVANGELIO_HOY.imagen.srcSet}
+              sizes="(max-width: 860px) 100vw, 50vw"
               alt={EVANGELIO_HOY.imagen.alt}
               loading="lazy"
             />
@@ -40,18 +42,15 @@ export default function EvangelioDia() {
             <p className="evangelio__resumen">{EVANGELIO_HOY.resumen}</p>
 
             {EVANGELIO_HOY.audio && (
-              <div className="evangelio__audio">
-                <span className="evangelio__audio-label">
-                  <Headphones size={16} /> Escúchalo
-                </span>
-                <audio controls preload="none" src={EVANGELIO_HOY.audio}>
-                  Tu navegador no soporta audio HTML5.
-                </audio>
-              </div>
+              <Link to="/evangelio" className="evangelio__audio-aviso">
+                <Headphones size={16} />
+                Escucha la reflexión de hoy
+              </Link>
             )}
 
             <Link to="/evangelio" className="btn-gold evangelio__cta">
-              Leer el evangelio completo <ArrowRight size={16} />
+              {EVANGELIO_HOY.audio ? 'Escuchar y leer' : 'Leer el evangelio completo'}{' '}
+              <ArrowRight size={16} />
             </Link>
           </div>
         </article>

@@ -6,6 +6,10 @@ type ModalProps = {
   onCerrar: () => void;
 };
 
+// Los horarios de misa de las capillas aún no están confirmados: se ocultan
+// hasta tener la información definitiva. Cambiar a true para mostrarlos.
+const MOSTRAR_HORARIOS = false;
+
 
 export function CapillaModal({ capilla, onCerrar }: ModalProps) {
   return (
@@ -43,20 +47,22 @@ export function CapillaModal({ capilla, onCerrar }: ModalProps) {
             </span>
           </div>
 
-          <div className="capillas__misas">
-            <h3 className="capillas__misas-title">
-              <Clock size={15} />
-              Horario de Misas
-            </h3>
-            <ul className="capillas__misas-list">
-              {capilla.misas.map((m, j) => (
-                <li key={j} className="capillas__misa-item">
-                  <span className="capillas__misa-dia">{m.dia}</span>
-                  <span className="capillas__misa-hora">{m.hora}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {MOSTRAR_HORARIOS && (
+            <div className="capillas__misas">
+              <h3 className="capillas__misas-title">
+                <Clock size={15} />
+                Horario de Misas
+              </h3>
+              <ul className="capillas__misas-list">
+                {capilla.misas.map((m, j) => (
+                  <li key={j} className="capillas__misa-item">
+                    <span className="capillas__misa-dia">{m.dia}</span>
+                    <span className="capillas__misa-hora">{m.hora}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className="capillas__historia">
             <h3 className="capillas__historia-title">Historia</h3>

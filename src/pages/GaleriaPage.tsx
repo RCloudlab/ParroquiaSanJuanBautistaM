@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { GaleriaAporta } from '../sections/Galeria';
 import { FOTOS } from '../data/galeria';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
 import './GaleriaPage.css';
@@ -77,6 +78,8 @@ export default function GaleriaPage() {
               );
             })}
           </div>
+
+          <GaleriaAporta />
         </div>
       </main>
       <Footer />
