@@ -70,15 +70,16 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [open]);
 
-  const handleAnchor = (hash: string) => {
+  const handleAnchor = () => {
     setOpen(false);
-    const el = document.querySelector(hash);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (pathname === '/') {
+      // Ya estamos en el home: el hero es la primera sección, así que subir
+      // al tope es lo correcto (scrollIntoView dejaría el hero bajo la barra
+      // fija, y si el scroll ya está en 0 no pasaría nada visible).
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       // Fuera del home: navegación SPA con el router (sin recarga completa
       // ni rutas absolutas que se rompan bajo subdirectorios o file://).
-      // El hero es la primera sección, así que basta con ir arriba.
       navigate('/');
       window.scrollTo({ top: 0 });
     }
@@ -169,7 +170,7 @@ export default function Navbar() {
                   key={link.label}
                   className={`navbar__link ${active ? 'navbar__link--active' : ''}`}
                   href={link.anchor}
-                  onClick={e => { e.preventDefault(); handleAnchor(link.anchor!); }}
+                  onClick={e => { e.preventDefault(); handleAnchor(); }}
                 >
                   {link.label}
                 </a>
@@ -257,7 +258,7 @@ export default function Navbar() {
                 key={link.label}
                 className={`navbar__drawer-link ${active ? 'navbar__drawer-link--active' : ''}`}
                 href={link.anchor}
-                onClick={e => { e.preventDefault(); handleAnchor(link.anchor!); }}
+                onClick={e => { e.preventDefault(); handleAnchor(); }}
               >
                 {link.label}
               </a>

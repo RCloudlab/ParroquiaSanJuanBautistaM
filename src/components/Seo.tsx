@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-const SITE_URL = "https://parroquiasanjuanbautista.com";
+const SITE_URL = "https://sanjuanmaravatio.org";
 const SITE_NAME = "Parroquia San Juan Bautista";
 const IMAGEN_DEFAULT = "/optimized/hero-1600.webp";
 

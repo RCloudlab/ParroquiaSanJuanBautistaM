@@ -15,7 +15,7 @@ const DATOS_ESTRUCTURADOS = {
   description:
     'Guía para rezar el Santo Rosario paso a paso, con las oraciones completas ' +
     'y los misterios que corresponden a cada día de la semana.',
-  url: 'https://parroquiasanjuanbautista.com/rosario',
+  url: 'https://sanjuanmaravatio.org/rosario',
   totalTime: 'PT20M',
   step: GRUPOS.map((g, i) => ({
     '@type': 'HowToStep',

@@ -56,16 +56,8 @@
 
 html {
   scroll-behavior: smooth;
-  /* Base 17px (18px en pantallas grandes) en vez de los 16px por defecto:
-     letra más grande en todo el sitio pensando en visitantes mayores.
-     Todo lo dimensionado en rem escala automáticamente. */
-  font-size: 17px;
-}
-
-@media (min-width: 900px) {
-  html {
-    font-size: 18px;
-  }
+  /* 16px: el estándar de la web. Todo lo dimensionado en rem escala desde aquí. */
+  font-size: 16px;
 }
 
 body {
@@ -123,7 +115,7 @@ img {
 
 .section-subtitle {
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: 1.02rem;
   color: var(--stone);
   text-align: center;
   margin-bottom: 3rem;

@@ -38,7 +38,7 @@
 
 .horarios__card-header h3 {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.18rem;
   color: var(--red-deep);
 }
 
@@ -78,7 +78,7 @@
   flex-wrap: wrap;
   gap: 0.6rem;
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.08rem;
   font-weight: 700;
   color: var(--stone-dark);
   margin-bottom: 0.75rem;
@@ -146,7 +146,7 @@
 }
 
 .horarios__hora-num {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 800;
   line-height: 1;
   font-variant-numeric: tabular-nums;
@@ -177,7 +177,7 @@
 }
 
 .horarios__hora-chip--envivo .horarios__hora-num {
-  font-size: 1.6rem;
+  font-size: 1.32rem;
 }
 
 .horarios__envivo-tag {
@@ -231,7 +231,7 @@
 }
 
 .horarios__side-desc {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--stone);
   margin-bottom: 1rem;
   line-height: 1.6;
@@ -250,7 +250,7 @@
   align-items: center;
   padding: 0.6rem 0;
   border-bottom: 1px dotted rgba(107,101,96,0.15);
-  font-size: 1rem;
+  font-size: 0.95rem;
   gap: 0.5rem;
 }
 
@@ -301,7 +301,7 @@
 
 .horarios__card-header--sub h4 {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.04rem;
   color: var(--red-deep);
 }
 
@@ -370,19 +370,19 @@
 
 /* En la página dedicada /horarios la sección respira más y la letra crece */
 .page-standalone .horarios__dia-nombre {
-  font-size: 1.35rem;
+  font-size: 1.18rem;
 }
 
 .page-standalone .horarios__hora-num {
-  font-size: 1.6rem;
+  font-size: 1.32rem;
 }
 
 .page-standalone .horarios__hora-chip--envivo .horarios__hora-num {
-  font-size: 1.8rem;
+  font-size: 1.45rem;
 }
 
 .page-standalone .horarios__schedule-item {
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 @media (max-width: 860px) {

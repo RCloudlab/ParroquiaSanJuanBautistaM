@@ -22,8 +22,10 @@
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  /* La marca manda visualmente; las dos columnas de enlaces son más estrechas */
+  grid-template-columns: 1.2fr 1fr 1fr;
   gap: 2.5rem;
+  align-items: start;
 }
 
 /* Brand */
@@ -34,7 +36,8 @@
 }
 
 .footer__brand-logo {
-  height: 200px;
+  height: 150px;
+  width: auto;
   filter: brightness(0) invert(1);
   margin-bottom: 0.5rem;
   margin-left: -0.5rem;
@@ -65,7 +68,7 @@
 /* Nav */
 .footer__nav-title {
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -92,74 +95,30 @@
   color: var(--gold-light);
 }
 
-/* Copatronato — estampita con marco doble y remate ornamental */
-.footer__copatronato-badge {
+/* Columna lateral: redes + enlaces institucionales */
+.footer__side {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.5rem;
-  background: rgba(232,201,122,0.06);
-  border: 1px solid rgba(232,201,122,0.35);
-  outline: 1px solid rgba(232,201,122,0.15);
-  outline-offset: 4px;
-  border-radius: 4px;
-  padding: 1.25rem 1rem 1.1rem;
-  margin-bottom: 0.75rem;
-}
-
-.footer__heart {
-  color: var(--gold-light);
-  flex-shrink: 0;
-}
-
-.footer__copatronato-name {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: 0.02em;
-  color: rgba(232,201,122,0.92);
-}
-
-.footer__copatronato-rule {
-  display: block;
-  width: 46px;
-  height: 1px;
-  margin-top: 0.15rem;
-  background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
-}
-
-.footer__copatronato-feast {
-  font-size: 0.8rem;
-  color: rgba(250,248,245,0.6);
-  font-style: italic;
-  margin-bottom: 1rem;
+  gap: 1.75rem;
 }
 
 .footer__diocese {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  font-size: 0.82rem;
-  color: rgba(250,248,245,0.55);
+  align-items: flex-start;
+  gap: 0.45rem;
 }
 
-.footer__vatican-link {
+.footer__diocese-link {
   color: var(--gold-light);
+  font-size: 0.85rem;
   text-decoration: underline;
-  text-underline-offset: 2px;
-  font-size: 0.82rem;
+  text-underline-offset: 3px;
   transition: color 0.2s;
 }
 
-.footer__vatican-link:hover {
+.footer__diocese-link:hover {
   color: var(--white-pure);
-}
-
-/* Redes sociales */
-.footer__social {
-  margin-top: 1.25rem;
 }
 
 .footer__social-links {

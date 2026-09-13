@@ -37,6 +37,9 @@ export default function EvangelioPage() {
                 {fechaEvangelio()} · {EVANGELIO_HOY.liturgia}
               </p>
             </div>
+            {EVANGELIO_HOY.imagen.credito && (
+              <p className="evangelio-page__credito">{EVANGELIO_HOY.imagen.credito}</p>
+            )}
           </div>
 
           <div className="section-container evangelio-page__container">

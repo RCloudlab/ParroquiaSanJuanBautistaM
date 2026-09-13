@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://parroquiasanjuanbautista.com/sitemap.xml
+Sitemap: https://sanjuanmaravatio.org/sitemap.xml

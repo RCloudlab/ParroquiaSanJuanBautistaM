@@ -1,9 +1,21 @@
 import { Link } from 'react-router-dom';
-import { BookOpenText, ArrowRight, Headphones } from 'lucide-react';
+import { BookOpenText, ArrowRight, Headphones, ExternalLink } from 'lucide-react';
 import { EVANGELIO_HOY, fechaEvangelio } from '../data/evangelio';
 import './EvangelioDia.css';
 
 export default function EvangelioDia() {
+  const { enlace, enlaceTexto } = EVANGELIO_HOY.imagen;
+
+  const imagen = (
+    <img
+      src={EVANGELIO_HOY.imagen.src}
+      srcSet={EVANGELIO_HOY.imagen.srcSet}
+      sizes="(max-width: 860px) 100vw, 50vw"
+      alt={EVANGELIO_HOY.imagen.alt}
+      loading="lazy"
+    />
+  );
+
   return (
     <section id="evangelio" className="evangelio">
       <div className="section-container">
@@ -14,20 +26,31 @@ export default function EvangelioDia() {
         </p>
 
         <article className="evangelio__card reveal">
-          {/* Imagen limpia; al hacer clic lleva al evangelio completo */}
-          <Link
-            to="/evangelio"
-            className="evangelio__media"
-            aria-label="Leer el evangelio completo del día"
-          >
-            <img
-              src={EVANGELIO_HOY.imagen.src}
-              srcSet={EVANGELIO_HOY.imagen.srcSet}
-              sizes="(max-width: 860px) 100vw, 50vw"
-              alt={EVANGELIO_HOY.imagen.alt}
-              loading="lazy"
-            />
-          </Link>
+          {/* Si el evangelio del día trae un enlace externo, la imagen lleva
+              ahí; si no, al evangelio completo dentro del sitio. */}
+          {enlace ? (
+            <a
+              href={enlace}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="evangelio__media"
+              aria-label={enlaceTexto ?? 'Abrir el evangelio del día'}
+            >
+              {imagen}
+              <span className="evangelio__media-enlace">
+                <ExternalLink size={14} />
+                {enlaceTexto ?? 'Ver más'}
+              </span>
+            </a>
+          ) : (
+            <Link
+              to="/evangelio"
+              className="evangelio__media"
+              aria-label="Leer el evangelio completo del día"
+            >
+              {imagen}
+            </Link>
+          )}
 
           {/* Contenido */}
           <div className="evangelio__body">

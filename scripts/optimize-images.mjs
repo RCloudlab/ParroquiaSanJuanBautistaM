@@ -34,6 +34,9 @@ const IMAGES = [
   { src: 'virgen-dolores-calidad.jpeg', name: 'virgen-dolores-cal' },
   { src: 'manos-rosario.webp', name: 'manos-rosario' },
   { src: 'manos-rosario-jardin.webp', name: 'manos-rosario-jardin' },
+  // Carl Bloch, "El Sermón de la Montaña" (1877) — dominio público,
+  // vía Wikimedia Commons. Ilustra el Evangelio del día.
+  { src: 'evangelio-sermon-montana.jpg', name: 'evangelio-sermon-montana' },
 ];
 
 async function main() {

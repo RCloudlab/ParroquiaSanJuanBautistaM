@@ -61,13 +61,13 @@
 
 .reza-rosario__titulo {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
   color: var(--white-pure);
   margin-bottom: 0.75rem;
 }
 
 .reza-rosario__hoy {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: rgba(255,255,255,0.94);
   line-height: 1.6;
   margin-bottom: 0.5rem;

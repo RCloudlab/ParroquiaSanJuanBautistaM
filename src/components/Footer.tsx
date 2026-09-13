@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Heart } from 'lucide-react';
 import './Footer.css';
 
 function IconFacebook() {
@@ -69,32 +68,8 @@ export default function Footer() {
             </ul>
           </nav>
 
-          {/* Copatronato + Redes sociales */}
-          <div className="footer__copatronato">
-            <h4 className="footer__nav-title">Copatrona</h4>
-            <div className="footer__copatronato-badge">
-              <Heart size={18} className="footer__heart" fill="currentColor" />
-              <p className="footer__copatronato-name">
-                Nuestra Señora<br />
-                de los Dolores
-              </p>
-              <span className="footer__copatronato-rule" aria-hidden="true" />
-            </div>
-            <p className="footer__copatronato-feast">
-              Fiesta: 15 de Septiembre
-            </p>
-            <div className="footer__diocese">
-              <p>Diócesis de Morelia, Michoacán</p>
-              <a
-                href="https://www.vaticannews.va/es.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer__vatican-link"
-              >
-                Vatican News
-              </a>
-            </div>
-
+          {/* Redes sociales + enlaces institucionales */}
+          <div className="footer__side">
             <div className="footer__social">
               <h4 className="footer__nav-title">Síguenos</h4>
               <div className="footer__social-links">
@@ -129,6 +104,26 @@ export default function Footer() {
                   <span>TikTok</span>
                 </a>
               </div>
+            </div>
+
+            <div className="footer__diocese">
+              <h4 className="footer__nav-title">Iglesia</h4>
+              <a
+                href="https://arquimorelia.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__diocese-link"
+              >
+                Arquidiócesis de Morelia
+              </a>
+              <a
+                href="https://www.vaticannews.va/es.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__diocese-link"
+              >
+                Vatican News
+              </a>
             </div>
           </div>
         </div>

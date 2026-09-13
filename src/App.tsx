@@ -25,6 +25,7 @@ import CapillasPage from './pages/CapillasPage';
 import { REQUISITOS } from './data/requisitos';
 import { useRevealOnScroll } from './hooks/useRevealOnScroll';
 import Seo from './components/Seo';
+import { Analytics } from '@vercel/analytics/react';
 
 // La sección del rosario se carga bajo demanda (code splitting): sus textos
 // y componentes no pesan en el bundle inicial de quien solo visita el home.
@@ -75,10 +76,34 @@ function Home() {
   );
 }
 
+/**
+ * Analítica de visitas (Vercel Web Analytics).
+ *
+ * Es analítica sin cookies: no usa identificadores que sigan al visitante
+ * entre sitios, no guarda su IP y la sesión se descarta a las 24 horas. Por
+ * eso no hace falta el banner de consentimiento de cookies.
+ *
+ * `beforeSend` es una capa extra de nuestra parte: descarta los parámetros de
+ * la URL antes de enviar nada, de modo que si algún día se añade un formulario
+ * o un enlace con datos en la query (?nombre=, ?correo=), esa información no
+ * sale del navegador del visitante. Solo se reporta la ruta.
+ */
+function Analitica() {
+  return (
+    <Analytics
+      beforeSend={evento => ({
+        ...evento,
+        url: evento.url.split('?')[0].split('#')[0],
+      })}
+    />
+  );
+}
+
 export default function App() {
   return (
     <Suspense fallback={null}>
     <ScrollToTop />
+    <Analitica />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/historia" element={<Historia />} />
