@@ -253,6 +253,95 @@
   font-style: italic;
 }
 
+/* ─── Campo "Hora": hh + mm + am/pm, con nota opcional aparte ────────────── */
+.admin-hora {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-hora__reloj {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1.5px solid rgba(107,101,96,0.25);
+  border-radius: 8px;
+  padding: 0 0.7rem;
+  background: var(--cream);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-hora__reloj:focus-within {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(168,85,46,0.14);
+  background: var(--white-pure);
+}
+
+.admin-hora__icon {
+  color: var(--gold-mid);
+  flex-shrink: 0;
+}
+
+/* Quita las flechitas nativas del <input type=number> (Chrome/Firefox) para
+   que se vea como un campo de reloj, no como un contador. */
+.admin-hora__num {
+  width: 2.6rem;
+  border: none;
+  background: none;
+  outline: none;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--stone-dark);
+  padding: 0.65rem 0;
+  -moz-appearance: textfield;
+}
+
+.admin-hora__num::-webkit-outer-spin-button,
+.admin-hora__num::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.admin-hora__separador {
+  font-weight: 700;
+  color: var(--stone);
+}
+
+.admin-hora__periodo {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  border-left: 1px solid rgba(107,101,96,0.2);
+  background: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--stone-dark);
+  padding: 0.65rem 0 0.65rem 0.6rem;
+  cursor: pointer;
+}
+
+.admin-hora__nota {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--stone-dark);
+  border: 1.5px solid rgba(107,101,96,0.25);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-hora__nota:focus {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(168,85,46,0.14);
+  background: var(--white-pure);
+}
+
 /* ─── Shell (sidebar + contenido) ────────────────────────────────────────── */
 .admin-shell {
   display: flex;
@@ -632,12 +721,20 @@
   text-align: center;
 }
 
-/* ─── Formulario de evento ───────────────────────────────────────────────── */
+/* ─── Formulario de evento ─────────────────────────────────────────────────
+   Dos columnas en pantallas anchas: campos a la izquierda, vista previa
+   fija (sticky) a la derecha para que se vea sin bajar. En pantallas
+   angostas se apila (ver el media query al fondo del archivo). */
 .admin-evento-form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  align-items: start;
   gap: 1.5rem;
-  max-width: 640px;
+  max-width: 1040px;
+}
+
+.admin-evento-form__campos {
+  min-width: 0;
 }
 
 .admin-card {
@@ -706,6 +803,539 @@
   background: rgba(201,168,76,0.14);
 }
 
+/* ─── Campo de imagen: subir archivo o pegar link ────────────────────────── */
+.admin-imagen {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.admin-imagen__tabs {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.admin-imagen__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--stone);
+  background: var(--cream);
+  border: 1px solid rgba(107,101,96,0.2);
+  border-radius: 20px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.16s, color 0.16s, border-color 0.16s;
+}
+
+.admin-imagen__tab:hover {
+  background: rgba(107,101,96,0.1);
+}
+
+.admin-imagen__tab--activo {
+  background: var(--red-deep);
+  border-color: var(--red-deep);
+  color: var(--white-pure);
+}
+
+.admin-imagen__link-input {
+  width: 100%;
+  max-width: 420px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--stone-dark);
+  border: 1.5px solid rgba(107,101,96,0.25);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-imagen__link-input:focus {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(168,85,46,0.14);
+  background: var(--white-pure);
+}
+
+.admin-upload__preview--grande {
+  width: 100%;
+  max-width: 320px;
+  height: 180px;
+}
+
+.admin-upload__preview--grande img {
+  border-radius: var(--radius);
+}
+
+.admin-imagen__link-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  background: rgba(139,26,26,0.06);
+  border: 1.5px dashed var(--red-light);
+  color: var(--red-deep);
+  text-align: center;
+  padding: 0.75rem;
+}
+
+.admin-imagen__link-error span {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* ─── Campo de audio ──────────────────────────────────────────────────────── */
+.admin-audio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.admin-audio__preview {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.admin-audio__preview audio {
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+}
+
+.admin-audio__preview button {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--red-deep);
+  color: var(--white-pure);
+  border: none;
+  cursor: pointer;
+}
+
+/* ─── Lista de párrafos (texto y reflexión del evangelio) ────────────────── */
+.admin-parrafos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.admin-parrafos__item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.admin-parrafos__item textarea {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--stone-dark);
+  border: 1.5px solid rgba(107,101,96,0.25);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  background: var(--cream);
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-parrafos__item textarea:focus {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(168,85,46,0.14);
+  background: var(--white-pure);
+}
+
+.admin-parrafos__item button {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(139,26,26,0.1);
+  color: var(--red-deep);
+  border: none;
+  cursor: pointer;
+  margin-top: 0.3rem;
+}
+
+.admin-parrafos__item button:hover {
+  background: rgba(139,26,26,0.18);
+}
+
+.admin-parrafos__agregar {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--terracotta-dark);
+  background: rgba(201,168,76,0.08);
+  border: 1px dashed var(--gold-mid);
+  border-radius: 20px;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.16s;
+}
+
+.admin-parrafos__agregar:hover {
+  background: rgba(201,168,76,0.16);
+}
+
+/* ─── Evangelio: día litúrgico calculado, arriba del formulario ──────────── */
+.admin-evangelio__dia-liturgico {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--terracotta-dark);
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  text-transform: capitalize;
+}
+
+.admin-evangelio__ciclo {
+  text-transform: none;
+  color: var(--stone);
+  font-weight: 500;
+}
+
+.admin-evangelio__hoy-tag {
+  margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+.admin-evangelio__ayuda {
+  font-size: 0.9rem;
+  color: var(--stone);
+  margin-bottom: 1.5rem;
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+/* ─── Navegación de mes ───────────────────────────────────────────────────── */
+.admin-calendario__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.admin-calendario__nav > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(107,101,96,0.2);
+  background: var(--white-pure);
+  color: var(--stone-dark);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.admin-calendario__nav > button:hover {
+  background: var(--cream);
+  border-color: var(--gold-mid);
+}
+
+.admin-calendario__mes-actual {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--red-deep);
+  text-transform: capitalize;
+  min-width: 11rem;
+}
+
+.admin-calendario__hoy-btn {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--terracotta-dark);
+  background: rgba(201,168,76,0.1);
+  border: 1px solid var(--gold-mid);
+  border-radius: 20px;
+  padding: 0.3rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.admin-calendario__hoy-btn:hover {
+  background: rgba(201,168,76,0.2);
+}
+
+/* ─── Vista mensual del evangelio, tipo calendario de pared ───────────────
+   7 columnas fijas (una por día de la semana); cada fecha cae bajo su
+   columna real gracias a las celdas de relleno antes del día 1. Cada
+   tarjeta muestra la imagen cargada arriba, o un panel liso en blanco si
+   aún no hay ninguna. */
+.admin-calendario {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.6rem;
+  max-width: 1100px;
+}
+
+.admin-calendario__relleno {
+  visibility: hidden;
+}
+
+.admin-calendario__dia {
+  display: flex;
+  flex-direction: column;
+  background: var(--white-pure);
+  border: 1px solid rgba(107,101,96,0.12);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: opacity 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-calendario__dia:hover {
+  box-shadow: 0 6px 18px rgba(74,43,24,0.1);
+}
+
+.admin-calendario__dia--hoy {
+  border-color: var(--gold-mid);
+  box-shadow: 0 0 0 2px var(--gold-mid);
+}
+
+.admin-calendario__dia--busy {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* Días ya pasados: no se pueden abrir ni editar, se ven atenuados para que
+   se distingan de un vistazo del resto del mes (que sí admite carga). */
+.admin-calendario__dia--pasado {
+  opacity: 0.5;
+  background: var(--cream);
+}
+
+.admin-calendario__dia--pasado .admin-calendario__foto img,
+.admin-calendario__dia--pasado .admin-calendario__foto-vacia {
+  filter: grayscale(0.6);
+}
+
+.admin-calendario__click {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  width: 100%;
+}
+
+.admin-calendario__click:disabled {
+  cursor: not-allowed;
+}
+
+/* Franja de foto: imagen real si existe, o un panel liso y vacío ("en
+   blanco") si el día aún no tiene nada cargado. */
+.admin-calendario__foto {
+  position: relative;
+  height: 84px;
+  flex-shrink: 0;
+  background: var(--cream);
+}
+
+.admin-calendario__foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-calendario__foto-vacia {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white-pure);
+  color: rgba(107,101,96,0.25);
+}
+
+.admin-calendario__fecha {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.admin-calendario__dia-nombre {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--stone);
+  line-height: 1;
+}
+
+.admin-calendario__dia-num {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--red-deep);
+  line-height: 1.15;
+}
+
+.admin-calendario__mes {
+  font-size: 0.58rem;
+  color: var(--stone);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.admin-calendario__hoy-tag {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--red-deep);
+  background: var(--gold-mid);
+  border-radius: 20px;
+  padding: 0.15rem 0.5rem;
+}
+
+.admin-calendario__estado-punto {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 2px solid var(--white-pure);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+}
+
+.admin-calendario__estado-punto--publicado {
+  background: var(--teal-zocalo);
+}
+
+.admin-calendario__estado-punto--borrador {
+  background: var(--gold-mid);
+}
+
+.admin-calendario__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.65rem 0.75rem;
+}
+
+.admin-calendario__liturgico {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--terracotta-dark);
+  text-transform: capitalize;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-calendario__titulo {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--stone-dark);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.admin-calendario__pendiente {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--stone);
+  opacity: 0.7;
+}
+
+.admin-calendario__acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  padding: 0 0.5rem 0.5rem;
+}
+
+.admin-calendario__acciones button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: var(--cream);
+  color: var(--stone-dark);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.admin-calendario__acciones button:hover:not(:disabled) {
+  background: rgba(139,26,26,0.1);
+  color: var(--red-deep);
+}
+
+@media (max-width: 860px) {
+  /* En pantallas angostas ya no caben 7 columnas legibles: se abandona la
+     alineación de "calendario de pared" (las celdas de relleno se ocultan)
+     y se pasa a una cuadrícula simple que se acomoda por tamaño. */
+  .admin-calendario {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .admin-calendario__relleno {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .admin-calendario {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .admin-form-error {
   font-size: 0.85rem;
   color: var(--red-deep);
@@ -723,17 +1353,20 @@
   margin-top: 0.5rem;
 }
 
-.admin-preview-btn {
-  margin-right: auto;
-}
-
 .admin-form-actions button {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
 }
 
-/* ─── Vista previa ───────────────────────────────────────────────────────── */
+/* ─── Vista previa ─────────────────────────────────────────────────────────
+   sticky para que acompañe el scroll de un formulario largo sin perderse
+   de vista; top deja espacio para no pegarse al borde de la ventana. */
+.admin-preview {
+  position: sticky;
+  top: 1.5rem;
+}
+
 .admin-preview__label {
   font-size: 0.8rem;
   font-weight: 700;
@@ -746,14 +1379,40 @@
 .admin-preview__stage {
   background: var(--cream);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   justify-content: center;
 }
 
 .admin-preview__stage .eventos__card {
-  max-width: 340px;
   width: 100%;
+}
+
+/* Vista previa del Evangelio: EvangelioLectura trae su propio hero e
+   imagen a sangre completa (pensado para una página independiente), así
+   que aquí se recorta a una tarjeta contenida con scroll propio. */
+.admin-preview--evangelio {
+  max-width: 480px;
+}
+
+.admin-preview__stage--evangelio {
+  padding: 0;
+  display: block;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: var(--radius-lg);
+}
+
+.admin-preview__stage--evangelio .evangelio-page {
+  padding-bottom: 1.5rem;
+}
+
+.admin-preview__stage--evangelio .evangelio-page__hero {
+  height: 200px;
+}
+
+.admin-preview__stage--evangelio .evangelio-page__container {
+  padding-top: 1.5rem;
 }
 
 @media (max-width: 860px) {
@@ -795,6 +1454,22 @@
 
   .admin-content {
     padding: 1.5rem 1.25rem 3rem;
+  }
+
+  /* Formulario de evento: la vista previa deja de ir al lado y pasa a
+     una franja completa debajo de los campos, sin quedar pegada al
+     desplazarse (sticky no tiene sentido ya apilada). */
+  .admin-evento-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-preview {
+    position: static;
+  }
+
+  .admin-preview__stage .eventos__card {
+    max-width: 360px;
+    margin: 0 auto;
   }
 }
 

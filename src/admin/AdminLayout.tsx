@@ -1,14 +1,15 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { CalendarDays, LogOut, ExternalLink, Loader2 } from 'lucide-react';
+import { CalendarDays, BookOpenText, LogOut, ExternalLink, Loader2 } from 'lucide-react';
 import { useAuth } from './useAuth';
 import { supabase } from '../lib/supabase';
 import AdminLogin from './AdminLogin';
 import './admin.css';
 
-// Navegación del panel. Cada módulo nuevo (Evangelio, Galería…) se agrega
-// aquí como una entrada más — el layout y el guard de sesión no cambian.
+// Navegación del panel. Cada módulo nuevo (Galería…) se agrega aquí como
+// una entrada más — el layout y el guard de sesión no cambian.
 const NAV = [
   { to: '/admin/eventos', label: 'Eventos', icon: CalendarDays },
+  { to: '/admin/evangelio', label: 'Evangelio', icon: BookOpenText },
 ];
 
 export default function AdminLayout() {

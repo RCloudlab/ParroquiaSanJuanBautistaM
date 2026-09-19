@@ -1,9 +1,11 @@
 import { useState, type FormEvent } from 'react';
-import { Loader2, Image as ImageIcon, Eye, X } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import type { EventoInsert, EventoRow, EventoTipo, EventoEstado } from '../../lib/database.types';
 import { subirImagenEvento, borrarImagenEvento } from './eventosApi';
 import EventoCard from '../../components/EventoCard';
 import LugarSelect from './LugarSelect';
+import HoraSelect from './HoraSelect';
+import ImagenInput from '../components/ImagenInput';
 
 const TIPOS: { value: EventoTipo; label: string }[] = [
   { value: 'liturgico', label: 'Litúrgico' },
@@ -47,38 +49,11 @@ export default function EventoForm({ inicial, onGuardar, onCancelar }: Props) {
         }
       : VACIO
   );
-  const [subiendoImagen, setSubiendoImagen] = useState(false);
   const [guardando, setGuardando] = useState(false);
-  const [vistaPrevia, setVistaPrevia] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const campo = <K extends keyof EventoInsert>(k: K, v: EventoInsert[K]) =>
     setDatos(prev => ({ ...prev, [k]: v }));
-
-  const handleImagen = async (file: File | undefined) => {
-    if (!file) return;
-    setError(null);
-    setSubiendoImagen(true);
-    const imagenAnterior = datos.imagen_url;
-    try {
-      const url = await subirImagenEvento(file);
-      campo('imagen_url', url);
-      // La imagen vieja ya no la usa nadie: se borra para no acumular
-      // archivos huérfanos en el bucket. Si falla (ya no existía, red, etc.)
-      // no se interrumpe el flujo: la nueva imagen ya quedó guardada.
-      if (imagenAnterior) await borrarImagenEvento(imagenAnterior).catch(() => {});
-    } catch {
-      setError('No se pudo subir la imagen. Verifica que sea JPG, PNG o WebP y pese menos de 15 MB.');
-    } finally {
-      setSubiendoImagen(false);
-    }
-  };
-
-  const handleQuitarImagen = async () => {
-    const url = datos.imagen_url;
-    campo('imagen_url', null);
-    if (url) await borrarImagenEvento(url).catch(() => {});
-  };
 
   const handleSubmit = async (e: FormEvent, estado: EventoEstado) => {
     e.preventDefault();
@@ -95,7 +70,7 @@ export default function EventoForm({ inicial, onGuardar, onCancelar }: Props) {
 
   return (
     <div className="admin-evento-form">
-      <form className="admin-card">
+      <form className="admin-card admin-evento-form__campos">
         <div className="admin-field-row">
           <label className="admin-field">
             <span>Título</span>
@@ -131,11 +106,7 @@ export default function EventoForm({ inicial, onGuardar, onCancelar }: Props) {
           </label>
           <label className="admin-field">
             <span>Hora</span>
-            <input
-              value={datos.hora}
-              onChange={e => campo('hora', e.target.value)}
-              placeholder="11:00 – Misa Solemne"
-            />
+            <HoraSelect value={datos.hora} onChange={v => campo('hora', v)} />
           </label>
         </div>
 
@@ -156,27 +127,12 @@ export default function EventoForm({ inicial, onGuardar, onCancelar }: Props) {
 
         <label className="admin-field">
           <span>Imagen (opcional)</span>
-          <div className="admin-upload">
-            {datos.imagen_url && (
-              <div className="admin-upload__preview">
-                <img src={datos.imagen_url} alt="" />
-                <button type="button" onClick={handleQuitarImagen} aria-label="Quitar imagen">
-                  <X size={14} />
-                </button>
-              </div>
-            )}
-            <label className="admin-upload__btn">
-              {subiendoImagen ? <Loader2 size={16} className="admin-spin" /> : <ImageIcon size={16} />}
-              {subiendoImagen ? 'Subiendo…' : datos.imagen_url ? 'Cambiar imagen' : 'Subir imagen'}
-              <input
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                hidden
-                onChange={e => handleImagen(e.target.files?.[0])}
-                disabled={subiendoImagen}
-              />
-            </label>
-          </div>
+          <ImagenInput
+            value={datos.imagen_url}
+            onChange={url => campo('imagen_url', url)}
+            onSubirArchivo={subirImagenEvento}
+            onReemplazarUrlAnterior={url => { borrarImagenEvento(url).catch(() => {}); }}
+          />
         </label>
 
         {error && <p className="admin-form-error">{error}</p>}
@@ -187,16 +143,9 @@ export default function EventoForm({ inicial, onGuardar, onCancelar }: Props) {
           </button>
           <button
             type="button"
-            className="btn-ghost admin-preview-btn"
-            onClick={() => setVistaPrevia(v => !v)}
-          >
-            <Eye size={15} /> {vistaPrevia ? 'Ocultar vista previa' : 'Vista previa'}
-          </button>
-          <button
-            type="button"
             className="btn-gold"
             onClick={e => handleSubmit(e, 'borrador')}
-            disabled={guardando || subiendoImagen}
+            disabled={guardando}
           >
             {guardando ? <Loader2 size={16} className="admin-spin" /> : null} Guardar borrador
           </button>
@@ -204,21 +153,21 @@ export default function EventoForm({ inicial, onGuardar, onCancelar }: Props) {
             type="button"
             className="btn-primary"
             onClick={e => handleSubmit(e, 'publicado')}
-            disabled={guardando || subiendoImagen}
+            disabled={guardando}
           >
             {guardando ? <Loader2 size={16} className="admin-spin" /> : null} Publicar
           </button>
         </div>
       </form>
 
-      {vistaPrevia && (
-        <div className="admin-preview">
-          <p className="admin-preview__label">Así se verá en el sitio:</p>
-          <div className="admin-preview__stage">
-            <EventoCard evento={datos} />
-          </div>
+      {/* Vista previa siempre visible al lado (se apila abajo en pantallas
+          angostas — ver .admin-evento-form en admin.css). */}
+      <div className="admin-preview">
+        <p className="admin-preview__label">Así se verá en el sitio:</p>
+        <div className="admin-preview__stage">
+          <EventoCard evento={datos} />
         </div>
-      )}
+      </div>
     </div>
   );
 }

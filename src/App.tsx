@@ -40,6 +40,7 @@ const RosarioLibro = lazy(() => import('./pages/RosarioLibro'));
 // público general.
 const AdminLayout = lazy(() => import('./admin/AdminLayout'));
 const EventosAdmin = lazy(() => import('./admin/eventos/EventosAdmin'));
+const EvangeliosAdmin = lazy(() => import('./admin/evangelio/EvangeliosAdmin'));
 
 // React Router conserva la posición de scroll al cambiar de ruta; esto hace
 // que cada página nueva abra siempre desde arriba. 'instant' evita que el
@@ -68,7 +69,9 @@ function Home() {
         <Horarios />
         <VirgenDolores />
         <SectionDivider tone="cream" />
-        <EvangelioDia />
+        <ErrorBoundary seccion="Evangelio del Día">
+          <EvangelioDia />
+        </ErrorBoundary>
         <RezaRosario />
         <SectionDivider tone="dark" />
         <ErrorBoundary seccion="Eventos">
@@ -134,6 +137,7 @@ export default function App() {
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<Navigate to="/admin/eventos" replace />} />
         <Route path="eventos" element={<EventosAdmin />} />
+        <Route path="evangelio" element={<EvangeliosAdmin />} />
       </Route>
     </Routes>
     </Suspense>

@@ -2,6 +2,21 @@
   background: var(--white-pure);
 }
 
+.evangelio__cargando {
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 0;
+  color: var(--terracotta-dark);
+}
+
+.evangelio__spin {
+  animation: evangelio-spin 0.8s linear infinite;
+}
+
+@keyframes evangelio-spin {
+  to { transform: rotate(360deg); }
+}
+
 .evangelio__card {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;

@@ -334,11 +334,7 @@
 
 @media (max-width: 700px) {
   .eventos__foto--destacada {
-    height: 320px;
-  }
-
-  .eventos__destacado-contenido {
-    padding: 1.5rem 1.25rem;
+    height: 260px;
   }
 
   .eventos__sello--destacado {
@@ -380,6 +376,78 @@
 
   .eventos__sello-dia {
     font-size: 1.4rem;
+  }
+}
+
+/* Móvil: el texto superpuesto sobre la foto (título largo + descripción +
+   hora/lugar) no cabe en una imagen baja sin solaparse con el sello de
+   fecha, las flechas del carrusel y los puntos. A partir de aquí la tarjeta
+   destacada pasa a flujo normal: foto arriba (sin texto encima, solo el
+   sello de fecha) y el contenido normal debajo, igual que la tarjeta
+   compacta — deja de depender de que el texto quepa dentro de la imagen.
+   Este bloque va DESPUÉS del @media(600px) de arriba a propósito: comparte
+   selector con .eventos__foto--destacada y necesita ganar por cascada. */
+@media (max-width: 560px) {
+  .eventos__card--destacado {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .eventos__foto--destacada {
+    position: relative;
+    height: 200px;
+  }
+
+  .eventos__foto-velo--destacado {
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 55%);
+  }
+
+  .eventos__destacado-contenido {
+    position: static;
+    padding: 1.1rem 1.25rem 1.35rem;
+    background: var(--white-pure);
+    gap: 0.5rem;
+  }
+
+  /* El badge de tipo se ancla a la foto (relative), no al bloque de texto
+     (que ahora es static) — se ve en la esquina de la imagen, igual que en
+     la tarjeta compacta. */
+  .eventos__foto--destacada .eventos__badge--sobre-foto {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .eventos__title--destacado {
+    color: var(--red-deep);
+    font-size: 1.3rem;
+    text-shadow: none;
+  }
+
+  .eventos__desc--destacado {
+    color: var(--stone-dark);
+    text-shadow: none;
+  }
+
+  .eventos__meta-item--destacado {
+    color: var(--stone-dark);
+    text-shadow: none;
+    font-size: 0.85rem;
+  }
+
+  .eventos__meta-item--destacado svg {
+    color: var(--gold-mid);
+  }
+
+  .eventos__sello--destacado {
+    width: 56px;
+    height: 56px;
+    top: 0.75rem;
+    left: 0.75rem;
+  }
+
+  .eventos__sello--destacado .eventos__sello-dia {
+    font-size: 1.35rem;
   }
 }
 
@@ -491,6 +559,24 @@
   .eventos__carrusel-flecha {
     width: 36px;
     height: 36px;
+  }
+}
+
+/* A partir de aquí la tarjeta destacada del carrusel apila foto + texto
+   (ver el breakpoint de .eventos__card--destacado arriba), así que ya no
+   mide lo mismo que la foto sola: las flechas y puntos, que están anclados
+   a .eventos__carrusel (toda la tarjeta), se reposicionan para quedar
+   centrados solo en la franja de la foto en vez de a la mitad de la tarjeta
+   completa (que caería sobre el texto blanco de abajo). */
+@media (max-width: 560px) {
+  .eventos__carrusel-flecha {
+    top: 100px;
+    transform: none;
+  }
+
+  .eventos__carrusel-puntos {
+    top: 172px;
+    bottom: auto;
   }
 }
 
