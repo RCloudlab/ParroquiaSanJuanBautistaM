@@ -23,6 +23,21 @@
 }
 
 /* Aviso "Próximamente" */
+.eventos__cargando {
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 0;
+  color: var(--terracotta-dark);
+}
+
+.eventos__spin {
+  animation: eventos-spin 0.8s linear infinite;
+}
+
+@keyframes eventos-spin {
+  to { transform: rotate(360deg); }
+}
+
 .eventos__aviso {
   display: flex;
   align-items: flex-start;
@@ -100,39 +115,72 @@
   box-shadow: 0 14px 36px rgba(139,26,26,0.18);
 }
 
-.eventos__date {
+/* Foto protagonista (o fondo de color si no hay imagen) */
+.eventos__foto {
+  position: relative;
+  height: 190px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.eventos__foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.eventos__card:hover .eventos__foto img {
+  transform: scale(1.06);
+}
+
+.eventos__foto-velo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 45%);
+}
+
+.eventos__foto--vacia .eventos__foto-velo {
+  background: linear-gradient(to top, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 60%);
+}
+
+/* Sello de fecha grande, tipo estampilla, sobre la esquina de la foto */
+.eventos__sello {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
   color: var(--white-pure);
-  min-width: 64px;
-  transition: filter 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
 }
 
-.eventos__card:hover .eventos__date {
-  filter: brightness(1.12);
-}
-
-.eventos__day {
+.eventos__sello-dia {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: 900;
   line-height: 1;
 }
 
-.eventos__month {
+.eventos__sello-mes {
   font-family: var(--font-body);
-  font-size: 0.78rem;
+  font-size: 0.66rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  opacity: 0.9;
+  letter-spacing: 0.1em;
+  opacity: 0.95;
 }
 
 .eventos__content {
-  padding: 1.25rem 1.5rem 1.5rem;
+  padding: 1.1rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -149,6 +197,16 @@
   padding: 0.15rem 0.55rem;
   border-radius: 20px;
   align-self: flex-start;
+}
+
+/* La insignia de tipo, cuando va sobre la foto en vez de sobre el fondo
+   crema de la tarjeta, necesita relleno sólido para leerse bien. */
+.eventos__badge--sobre-foto {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  border: none;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
 }
 
 .eventos__title {
@@ -187,6 +245,112 @@
   flex-shrink: 0;
 }
 
+/* ─── Tarjeta destacada: eventos grandes (fiestas patronales, etc.) ──────
+   Foto a todo lo alto con el contenido superpuesto encima, en vez de foto
+   arriba + texto abajo como la tarjeta normal. Se usa sola o al frente del
+   listado, nunca dentro de la grilla de varias columnas. */
+.eventos__card--destacado {
+  margin-bottom: 2rem;
+}
+
+.eventos__foto--destacada {
+  height: clamp(320px, 42vw, 480px);
+}
+
+.eventos__foto-velo--destacado {
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.78) 0%,
+    rgba(0,0,0,0.35) 45%,
+    rgba(0,0,0,0.05) 75%
+  );
+}
+
+.eventos__sello--destacado {
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
+  top: 1.25rem;
+  left: 1.25rem;
+}
+
+.eventos__sello--destacado .eventos__sello-dia {
+  font-size: 2.2rem;
+}
+
+.eventos__sello--destacado .eventos__sello-mes {
+  font-size: 0.8rem;
+}
+
+.eventos__destacado-contenido {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.eventos__destacado-contenido .eventos__badge--sobre-foto {
+  position: static;
+}
+
+.eventos__title--destacado {
+  color: var(--white-pure);
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+
+.eventos__desc--destacado {
+  color: rgba(255,255,255,0.9);
+  font-size: 1rem;
+  max-width: 640px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+}
+
+.eventos__meta--destacado {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 0.4rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+.eventos__meta-item--destacado {
+  color: var(--white-pure);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+}
+
+.eventos__meta-item--destacado svg {
+  color: var(--gold-light);
+}
+
+@media (max-width: 700px) {
+  .eventos__foto--destacada {
+    height: 320px;
+  }
+
+  .eventos__destacado-contenido {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .eventos__sello--destacado {
+    width: 64px;
+    height: 64px;
+  }
+
+  .eventos__sello--destacado .eventos__sello-dia {
+    font-size: 1.6rem;
+  }
+}
+
 /* CTA bar */
 .eventos__more {
   display: flex;
@@ -203,5 +367,365 @@
 @media (max-width: 600px) {
   .eventos__grid {
     grid-template-columns: 1fr;
+  }
+
+  .eventos__foto {
+    height: 160px;
+  }
+
+  .eventos__sello {
+    width: 54px;
+    height: 54px;
+  }
+
+  .eventos__sello-dia {
+    font-size: 1.4rem;
+  }
+}
+
+/* Tarjetas clicables (abren el modal de detalle) */
+.eventos__card {
+  cursor: pointer;
+}
+
+/* ─── Carrusel de eventos destacados (2+ eventos "especial") ─────────────── */
+.eventos__carrusel {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.eventos__carrusel .eventos__card--destacado {
+  margin-bottom: 0;
+}
+
+/* ─── Transición tipo slide ───────────────────────────────────────────────
+   Todas las tarjetas viven en una sola fila (.eventos__carrusel-track) que
+   se desplaza horizontalmente con translateX; el viewport recorta lo que no
+   corresponde mostrar. Cada slide ocupa el 100% del ancho del viewport. */
+.eventos__carrusel-viewport {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.eventos__carrusel-track {
+  display: flex;
+  transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eventos__carrusel-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.eventos__carrusel-slide .eventos__card--destacado {
+  margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eventos__carrusel-track {
+    transition: none;
+  }
+}
+
+.eventos__carrusel-flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.35);
+  color: var(--white-pure);
+  cursor: pointer;
+  transition: background 0.18s;
+  z-index: 2;
+}
+
+.eventos__carrusel-flecha:hover {
+  background: rgba(0,0,0,0.55);
+}
+
+.eventos__carrusel-flecha--izq {
+  left: 1rem;
+}
+
+.eventos__carrusel-flecha--der {
+  right: 1rem;
+}
+
+.eventos__carrusel-puntos {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.eventos__carrusel-punto {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.45);
+  cursor: pointer;
+  transition: background 0.18s, transform 0.18s;
+  padding: 0;
+}
+
+.eventos__carrusel-punto:hover {
+  background: rgba(255,255,255,0.75);
+}
+
+.eventos__carrusel-punto--activo {
+  background: var(--gold-light);
+  transform: scale(1.3);
+}
+
+@media (max-width: 600px) {
+  .eventos__carrusel-flecha {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ─── Modal de detalle de evento ─────────────────────────────────────────── */
+.evento-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 18, 10, 0.65);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 1000;
+  animation: evento-modal-fade 0.2s ease;
+}
+
+.evento-modal {
+  position: relative;
+  background: var(--white-pure);
+  border-radius: var(--radius-lg);
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+  animation: evento-modal-pop 0.22s ease;
+}
+
+/* Foto vertical (más alta que ancha): en pantallas grandes el modal pasa a
+   dos columnas para mostrarla completa en vez de recortarla como banner. */
+@media (min-width: 701px) {
+  .evento-modal--vertical {
+    max-width: 880px;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .evento-modal--vertical .evento-modal__foto--vertical {
+    flex: 0 0 42%;
+    height: auto;
+    max-height: 85vh;
+  }
+
+  .evento-modal--vertical .evento-modal__body {
+    flex: 1;
+    min-width: 0;
+    border-top: none;
+    border-left: 3px solid var(--gold-mid);
+    overflow-y: auto;
+  }
+}
+
+.evento-modal__cerrar {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  color: var(--red-deep);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.evento-modal__cerrar:hover {
+  background: var(--white-pure);
+}
+
+.evento-modal__foto {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* El botón que envuelve la imagen ocupa el mismo lugar que ocupaba el <img>
+   suelto antes (position:absolute, inset:0), para no alterar el layout. */
+.evento-modal__ampliar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+
+.evento-modal__ampliar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.evento-modal__ampliar-icono {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.45);
+  color: var(--white-pure);
+  opacity: 0;
+  transition: opacity 0.18s, background 0.18s;
+}
+
+.evento-modal__ampliar:hover .evento-modal__ampliar-icono,
+.evento-modal__ampliar:focus-visible .evento-modal__ampliar-icono {
+  opacity: 1;
+}
+
+.evento-modal__ampliar:hover .evento-modal__ampliar-icono {
+  background: rgba(0,0,0,0.65);
+}
+
+/* Vertical: se muestra completa (sin recortar) sobre un fondo oscuro que
+   rellena el espacio sobrante, en vez de forzar un recorte tipo banner. */
+.evento-modal__foto--vertical {
+  height: 60vh;
+  background: var(--brown-deep);
+}
+
+.evento-modal__foto--vertical .evento-modal__ampliar img {
+  object-fit: contain;
+}
+
+.evento-modal__foto-velo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 40%);
+  pointer-events: none; /* decorativo: no debe tapar el clic del botón de ampliar */
+}
+
+.evento-modal__badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white-pure);
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+.evento-modal__body {
+  padding: 1.75rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 3px solid var(--gold-mid);
+}
+
+.evento-modal__titulo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--red-deep);
+  line-height: 1.25;
+}
+
+.evento-modal__fecha {
+  font-size: 0.95rem;
+  color: var(--terracotta-dark);
+  font-weight: 600;
+}
+
+.evento-modal__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding: 0.75rem 0;
+  border-top: 1px dashed rgba(107,101,96,0.2);
+  border-bottom: 1px dashed rgba(107,101,96,0.2);
+}
+
+.evento-modal__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--stone-dark);
+  font-weight: 600;
+}
+
+.evento-modal__meta-item svg {
+  color: var(--gold-mid);
+  flex-shrink: 0;
+}
+
+.evento-modal__desc {
+  font-size: 0.98rem;
+  color: var(--stone-dark);
+  line-height: 1.75;
+}
+
+@keyframes evento-modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes evento-modal-pop {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (max-width: 700px) {
+  .evento-modal__foto {
+    height: 200px;
+  }
+
+  /* Apilada (no hay espacio para dos columnas): más alta y sin recortar. */
+  .evento-modal__foto--vertical {
+    height: 50vh;
+  }
+
+  .evento-modal__body {
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+
+  /* Sin hover en táctil: el ícono de ampliar queda siempre visible. */
+  .evento-modal__ampliar-icono {
+    opacity: 1;
   }
 }

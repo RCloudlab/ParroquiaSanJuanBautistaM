@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Eventos from '../sections/Eventos';
+import { ErrorBoundary } from '../components/ErrorBoundary';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
 import Seo from '../components/Seo';
 
@@ -16,7 +17,9 @@ export default function EventosPage() {
       />
       <Navbar />
       <main className="page-standalone">
-        <Eventos />
+        <ErrorBoundary seccion="Eventos">
+          <Eventos />
+        </ErrorBoundary>
       </main>
       <Footer />
     </>

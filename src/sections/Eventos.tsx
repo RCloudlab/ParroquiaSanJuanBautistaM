@@ -1,40 +1,46 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Clock, ArrowRight, CalendarClock } from 'lucide-react';
+import { ArrowRight, CalendarClock, Loader2 } from 'lucide-react';
+import type { EventoRow } from '../lib/database.types';
+import { listarEventosPublicados } from '../admin/eventos/eventosApi';
+import EventoCard from '../components/EventoCard';
+import EventoModal from '../components/EventoModal';
+import EventosCarrusel from './EventosCarrusel';
 import './Eventos.css';
 
-interface Evento {
-  id: number;
-  fecha: string;
-  mes: string;
-  titulo: string;
-  descripcion: string;
-  lugar: string;
-  hora: string;
-  tipo: 'liturgico' | 'pastoral' | 'social' | 'especial';
-}
-
-// Aún no hay eventos confirmados: la sección muestra solo el aviso
-// "Próximamente". Cuando haya eventos reales, agrégalos aquí y la grilla
-// y el botón de calendario reaparecen solos.
-const EVENTOS: Evento[] = [];
-
-const TIPO_COLORS: Record<string, string> = {
-  especial: 'var(--gold-mid)',
-  liturgico: 'var(--terracotta)',
-  pastoral:  'var(--red-mid)',
-  social:    'var(--teal-zocalo)',
-  cultural:  'var(--purple-sorrow)',
-};
-
-const TIPO_LABELS: Record<string, string> = {
-  especial:  'Patronal',
-  liturgico: 'Litúrgico',
-  pastoral:  'Pastoral',
-  social:    'Social',
-  cultural:  'Cultural',
-};
-
 export default function Eventos() {
+  const [eventos, setEventos] = useState<EventoRow[] | null>(null);
+  const [abierto, setAbierto] = useState<EventoRow | null>(null);
+
+  useEffect(() => {
+    let vivo = true;
+    listarEventosPublicados()
+      .then(data => { if (vivo) setEventos(data); })
+      .catch(err => {
+        // No se oculta el error: si algo falla (RLS, red, etc.) queda
+        // registrado en consola en vez de mostrar silenciosamente "no hay
+        // eventos" cuando en realidad sí los hay pero la consulta truena.
+        console.error('No se pudieron cargar los eventos:', err);
+        if (vivo) setEventos([]);
+      });
+    return () => { vivo = false; };
+  }, []);
+
+  useEffect(() => {
+    if (!abierto) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setAbierto(null); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [abierto]);
+
+  const hayEventos = !!eventos && eventos.length > 0;
+  // eventos ya viene ordenado por fecha desde listarEventosPublicados().
+  // Los de tipo "especial" (fiestas patronales, etc.) se destacan arriba en
+  // grande: uno solo como tarjeta fija, dos o más como carrusel. Además
+  // siguen apareciendo también abajo, en su lugar normal dentro de la
+  // grilla junto al resto — el destacado es un adelanto, no un reemplazo.
+  const destacados = eventos?.filter(ev => ev.tipo === 'especial') ?? [];
+
   return (
     <section id="eventos" className="eventos">
       {/* Banner con foto real del interior en celebración */}
@@ -48,60 +54,54 @@ export default function Eventos() {
 
       <div className="section-container" style={{ paddingTop: '3rem' }}>
 
-        <div className="eventos__aviso reveal">
-          <CalendarClock size={20} className="eventos__aviso-icon" />
-          <p>
-            <strong>Próximamente.</strong> Aquí se publicarán los eventos y actividades
-            de la parroquia.
-          </p>
-        </div>
+        {eventos === null ? (
+          <div className="eventos__cargando">
+            <Loader2 size={22} className="eventos__spin" />
+          </div>
+        ) : !hayEventos ? (
+          <div className="eventos__aviso reveal">
+            <CalendarClock size={20} className="eventos__aviso-icon" />
+            <p>
+              <strong>Próximamente.</strong> Aquí se publicarán los eventos y actividades
+              de la parroquia.
+            </p>
+          </div>
+        ) : (
+          <>
+            {destacados.length === 1 && (
+              <EventoCard
+                evento={destacados[0]}
+                destacado
+                className="reveal"
+                onClick={() => setAbierto(destacados[0])}
+              />
+            )}
+            {destacados.length > 1 && (
+              <EventosCarrusel eventos={destacados} onAbrir={setAbierto} />
+            )}
 
-        {EVENTOS.length > 0 && (
-        <div className="eventos__grid">
-          {EVENTOS.map((ev, i) => (
-            <article
-              key={ev.id}
-              className="card eventos__card reveal"
-              style={{ transitionDelay: `${Math.min(i, 4) * 60}ms` }}
-            >
-              {/* Fecha */}
-              <div className="eventos__date" style={{ background: TIPO_COLORS[ev.tipo] }}>
-                <span className="eventos__day">{ev.fecha}</span>
-                <span className="eventos__month">{ev.mes}</span>
-              </div>
+            <div className="eventos__grid">
+              {eventos.map((ev, i) => (
+                <EventoCard
+                  key={ev.id}
+                  evento={ev}
+                  className="reveal"
+                  style={{ transitionDelay: `${Math.min(i, 4) * 60}ms` }}
+                  onClick={() => setAbierto(ev)}
+                />
+              ))}
+            </div>
 
-              {/* Contenido */}
-              <div className="eventos__content">
-                <span
-                  className="eventos__badge"
-                  style={{ borderColor: TIPO_COLORS[ev.tipo], color: TIPO_COLORS[ev.tipo] }}
-                >
-                  {TIPO_LABELS[ev.tipo]}
-                </span>
-                <h3 className="eventos__title">{ev.titulo}</h3>
-                <p className="eventos__desc">{ev.descripcion}</p>
-                <div className="eventos__meta">
-                  <span className="eventos__meta-item">
-                    <Clock size={14} /> {ev.hora}
-                  </span>
-                  <span className="eventos__meta-item">
-                    <MapPin size={14} /> {ev.lugar}
-                  </span>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-        )}
-
-        {EVENTOS.length > 0 && (
-        <div className="eventos__more">
-          <Link to="/eventos" className="btn-gold">
-            Ver calendario completo <ArrowRight size={16} />
-          </Link>
-        </div>
+            <div className="eventos__more">
+              <Link to="/eventos" className="btn-gold">
+                Ver calendario completo <ArrowRight size={16} />
+              </Link>
+            </div>
+          </>
         )}
       </div>
+
+      {abierto && <EventoModal evento={abierto} onCerrar={() => setAbierto(null)} />}
     </section>
   );
 }

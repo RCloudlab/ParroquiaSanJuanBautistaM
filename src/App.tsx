@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SectionDivider from './components/SectionDivider';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import Hero from './sections/Hero';
 import Horarios from './sections/Horarios';
 import EvangelioDia from './sections/EvangelioDia';
@@ -34,6 +35,12 @@ const RosarioGuiado = lazy(() => import('./pages/RosarioGuiado'));
 const RosarioContador = lazy(() => import('./pages/RosarioContador'));
 const RosarioLibro = lazy(() => import('./pages/RosarioLibro'));
 
+// El panel /admin (Supabase, formularios, sidebar) es código que solo el
+// administrador visita; separado del bundle principal para no pesarle al
+// público general.
+const AdminLayout = lazy(() => import('./admin/AdminLayout'));
+const EventosAdmin = lazy(() => import('./admin/eventos/EventosAdmin'));
+
 // React Router conserva la posición de scroll al cambiar de ruta; esto hace
 // que cada página nueva abra siempre desde arriba. 'instant' evita que el
 // scroll-behavior: smooth global anime el salto entre páginas.
@@ -64,7 +71,9 @@ function Home() {
         <EvangelioDia />
         <RezaRosario />
         <SectionDivider tone="dark" />
-        <Eventos />
+        <ErrorBoundary seccion="Eventos">
+          <Eventos />
+        </ErrorBoundary>
         <SectionDivider tone="dark" />
         <Galeria />
         <VaticanNews />
@@ -121,6 +130,10 @@ export default function App() {
       <Route path="/sacramentos" element={<SacramentosLayout />}>
         <Route index element={<Navigate to={`/sacramentos/${REQUISITOS[0].id}`} replace />} />
         <Route path=":id" element={<Sacramento />} />
+      </Route>
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<Navigate to="/admin/eventos" replace />} />
+        <Route path="eventos" element={<EventosAdmin />} />
       </Route>
     </Routes>
     </Suspense>
