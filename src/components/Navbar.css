@@ -475,6 +475,11 @@
 /* Etiqueta "Nuevo" en submenús (eventos especiales), con brillo que la cruza */
 .navbar__nuevo {
   position: relative;
+  /* inline-block: en el menú móvil el enlace no es flex y, como inline, el
+     overflow no recortaría el brillo (se saldría sobre el texto). */
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.4;
   overflow: hidden;
   margin-left: auto;
   padding: 0.12rem 0.45rem;

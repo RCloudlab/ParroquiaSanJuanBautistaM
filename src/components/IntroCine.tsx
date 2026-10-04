@@ -8,7 +8,7 @@ const DURACION_INTRO = 4500;
 /**
  * Entrada de cine: cinta de conteo de proyector antiguo (3·2·1 con barrido
  * circular), carrete corriendo a los lados, rayones y parpadeo; luego el
- * rótulo "Parroquia San Juan Bautista presenta" y un destello de proyector
+ * rótulo "Parroquia San Juan Bautista & Come and See presentan" y un destello de proyector
  * que deja ver la página. Se puede saltar con el botón o con Esc.
  */
 export default function IntroCine({ onFin }: { onFin: () => void }) {
@@ -49,7 +49,9 @@ export default function IntroCine({ onFin }: { onFin: () => void }) {
 
         <div className="chosen-intro__rotulo">
           <span className="chosen-intro__rotulo-linea">Parroquia San Juan Bautista</span>
-          <span className="chosen-intro__rotulo-presenta">presenta</span>
+          <span className="chosen-intro__rotulo-y">&amp;</span>
+          <span className="chosen-intro__rotulo-linea">Come and See</span>
+          <span className="chosen-intro__rotulo-presenta">presentan</span>
         </div>
       </div>
 

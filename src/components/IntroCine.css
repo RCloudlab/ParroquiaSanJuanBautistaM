@@ -70,9 +70,11 @@
   opacity: 0;
 }
 
-.chosen-intro__num--3 { animation: intro-num 0.75s steps(1) 0.3s both; }
-.chosen-intro__num--2 { animation: intro-num 0.75s steps(1) 1.05s both; }
-.chosen-intro__num--1 { animation: intro-num 0.75s steps(1) 1.8s both; }
+/* Sin fill-mode: cada número solo es visible durante su propia ventana
+   (antes, con "both", los tres se mostraban encimados mientras esperaban). */
+.chosen-intro__num--3 { animation: intro-num 0.75s linear 0.3s; }
+.chosen-intro__num--2 { animation: intro-num 0.75s linear 1.05s; }
+.chosen-intro__num--1 { animation: intro-num 0.75s linear 1.8s; }
 
 /* Rótulo de presentación */
 .chosen-intro__rotulo {
@@ -97,6 +99,13 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.chosen-intro__rotulo-y {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.6vw, 1.8rem);
+  line-height: 1;
+  color: #9c7a3e;
 }
 
 .chosen-intro__rotulo-presenta {
@@ -203,8 +212,7 @@
 }
 
 @keyframes intro-num {
-  0%   { opacity: 1; }
-  100% { opacity: 0; }
+  0%, 100% { opacity: 1; }
 }
 
 @keyframes intro-ocultar {

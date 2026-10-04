@@ -66,6 +66,19 @@ body {
   color: var(--stone-dark);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  /* Oculta el cursor de texto parpadeante que aparece al dar clic sobre
+     títulos o párrafos cuando el navegador tiene activada la "navegación
+     con cursor" (F7 en Chrome/Edge): el contenido no es editable y la
+     línea confunde. El texto se sigue pudiendo seleccionar y copiar. */
+  caret-color: transparent;
+}
+
+/* Donde sí se escribe (formularios, panel admin) el cursor vuelve. */
+input,
+textarea,
+select,
+[contenteditable]:not([contenteditable="false"]) {
+  caret-color: auto;
 }
 
 /* Guardián: ningún elemento decorativo (parallax, 100vw, etc.) debe
