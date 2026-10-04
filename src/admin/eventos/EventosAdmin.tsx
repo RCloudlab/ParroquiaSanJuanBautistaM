@@ -4,7 +4,7 @@ import {
 } from 'lucide-react';
 import type { EventoInsert, EventoRow, EventoEstado, EventoTipo } from '../../lib/database.types';
 import {
-  listarEventosAdmin, crearEvento, actualizarEvento, borrarEvento,
+  listarEventosAdmin, crearEvento, actualizarEvento, borrarEvento, limpiarEventosVencidos,
 } from './eventosApi';
 import EventoForm from './EventoForm';
 
@@ -13,17 +13,6 @@ const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'o
 function fechaCorta(iso: string) {
   const [y, m, d] = iso.split('-').map(Number);
   return `${d} ${MESES[(m - 1 + 12) % 12]} ${y}`;
-}
-
-// Mismo margen de 3 días que usa el sitio público (ver eventosApi.ts) antes
-// de dejar de mostrar un evento: aquí solo se usa para la etiqueta visual,
-// el evento nunca se borra ni se despublica solo.
-function estaVencido(fechaIso: string): boolean {
-  const [y, m, d] = fechaIso.split('-').map(Number);
-  const limite = new Date(y, m - 1, d);
-  limite.setDate(limite.getDate() + 3);
-  limite.setHours(23, 59, 59, 999);
-  return new Date() > limite;
 }
 
 const TIPO_LABELS: Record<EventoTipo, string> = {
@@ -66,7 +55,14 @@ export default function EventosAdmin() {
     }
   }, []);
 
-  useEffect(() => { cargar(); }, [cargar]);
+  useEffect(() => {
+    // Limpieza perezosa: borra eventos de más de 3 días de antigüedad (con
+    // su imagen) antes de mostrar la lista, para que el bucket y la tabla
+    // no vayan acumulando eventos que ya pasaron hace mucho.
+    limpiarEventosVencidos()
+      .catch(err => console.error('No se pudo limpiar eventos vencidos:', err))
+      .finally(cargar);
+  }, [cargar]);
 
   const eventosFiltrados = useMemo(() => {
     if (!eventos) return null;
@@ -219,11 +215,6 @@ export default function EventosAdmin() {
                 <span className={`admin-badge admin-badge--${ev.estado}`}>
                   {ev.estado === 'publicado' ? 'Publicado' : 'Borrador'}
                 </span>
-                {estaVencido(ev.fecha) && (
-                  <span className="admin-badge admin-badge--vencido" title="Ya no se muestra en el sitio: pasaron más de 3 días desde la fecha del evento">
-                    Vencido
-                  </span>
-                )}
               </div>
 
               <div className="admin-list__actions">

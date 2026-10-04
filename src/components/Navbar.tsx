@@ -7,6 +7,8 @@ import './Navbar.css';
 interface NavChild {
   label: string;
   route: string;
+  /** Muestra la etiqueta dorada "Nuevo" (eventos especiales). */
+  nuevo?: boolean;
 }
 
 interface NavLink {
@@ -38,7 +40,14 @@ const NAV_LINKS: NavLink[] = [
     route: '/sacramentos',
     children: REQUISITOS.map(r => ({ label: r.titulo, route: `/sacramentos/${r.id}` })),
   },
-  { label: 'Eventos', route: '/eventos' },
+  {
+    label: 'Eventos',
+    route: '/eventos',
+    children: [
+      { label: 'Calendario de eventos', route: '/eventos' },
+      { label: 'The Chosen T6', route: '/eventos/the-chosen', nuevo: true },
+    ],
+  },
 ];
 
 export default function Navbar() {
@@ -97,8 +106,9 @@ export default function Navbar() {
     return false;
   };
 
-  const isChildActive = (child: NavChild) =>
-    pathname === child.route || pathname.startsWith(child.route + '/');
+  // Coincidencia exacta: con startsWith, "Calendario de eventos" (/eventos)
+  // quedaría marcado también dentro de /eventos/the-chosen.
+  const isChildActive = (child: NavChild) => pathname === child.route;
 
   return (
     <header
@@ -157,6 +167,7 @@ export default function Navbar() {
                         role="menuitem"
                       >
                         {child.label}
+                        {child.nuevo && <span className="navbar__nuevo">Nuevo</span>}
                       </Link>
                     ))}
                   </div>
@@ -245,6 +256,7 @@ export default function Navbar() {
                       to={child.route}
                     >
                       {child.label}
+                      {child.nuevo && <span className="navbar__nuevo">Nuevo</span>}
                     </Link>
                   ))}
                 </div>

@@ -471,3 +471,36 @@
     height: 68px;
   }
 }
+
+/* Etiqueta "Nuevo" en submenús (eventos especiales), con brillo que la cruza */
+.navbar__nuevo {
+  position: relative;
+  overflow: hidden;
+  margin-left: auto;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1a140c;
+  background: linear-gradient(135deg, #b8944e, #f0d9a0 50%, #b8944e);
+}
+
+.navbar__nuevo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.7) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: navbar-nuevo-brillo 3s ease-in-out infinite;
+}
+
+@keyframes navbar-nuevo-brillo {
+  0%, 55% { transform: translateX(-120%); }
+  100%    { transform: translateX(120%); }
+}
+
+.navbar__drawer-sublink .navbar__nuevo {
+  margin-left: 0.5rem;
+}

@@ -1,0 +1,261 @@
+/* Intro tipo cine de /eventos/the-chosen. Línea de tiempo (4.5 s):
+   0.0–0.3  aparece el cuadro          2.6–3.9  rótulo "presenta"
+   0.3–2.6  conteo 3 · 2 · 1           3.8–4.5  destello de proyector y salida */
+.chosen-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #0b0906;
+  animation: intro-salida 0.6s ease-in 3.9s forwards;
+}
+
+/* Cuadro de la película (proporción 4:3 de las cintas antiguas) */
+.chosen-intro__cuadro {
+  position: relative;
+  width: min(78vw, 120vh);
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at center, #3a3125 0%, #1b1610 60%, #0b0906 100%);
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.9);
+  animation:
+    intro-aparece 0.3s ease-out both,
+    intro-vaiven 0.12s steps(2) infinite;
+}
+
+.chosen-intro__conteo {
+  position: relative;
+  width: 62%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  animation: intro-ocultar 0.15s linear 2.55s forwards;
+}
+
+/* Barrido circular del conteo: un cono que gira una vuelta por número */
+.chosen-intro__barrido {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(217, 192, 138, 0.38) 0deg, rgba(217, 192, 138, 0.38) var(--a, 0deg), transparent var(--a, 0deg));
+  animation: intro-barrido 0.75s linear 0.3s 3;
+}
+
+@property --a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.chosen-intro__mira {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: rgba(240, 225, 190, 0.75);
+  stroke-width: 1.5;
+}
+
+.chosen-intro__num {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: min(30vw, 34vh);
+  line-height: 1;
+  color: #f0e1be;
+  text-shadow: 0 0 30px rgba(240, 200, 120, 0.35);
+  opacity: 0;
+}
+
+.chosen-intro__num--3 { animation: intro-num 0.75s steps(1) 0.3s both; }
+.chosen-intro__num--2 { animation: intro-num 0.75s steps(1) 1.05s both; }
+.chosen-intro__num--1 { animation: intro-num 0.75s steps(1) 1.8s both; }
+
+/* Rótulo de presentación */
+.chosen-intro__rotulo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0 8%;
+  text-align: center;
+  opacity: 0;
+  animation: intro-rotulo 1.3s ease 2.6s both;
+}
+
+.chosen-intro__rotulo-linea {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 4.2vw, 3rem);
+  letter-spacing: 0.08em;
+  background: linear-gradient(180deg, #fff3d4, #d9c08a 60%, #9c7a3e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.chosen-intro__rotulo-presenta {
+  font-size: clamp(0.7rem, 1.6vw, 1rem);
+  letter-spacing: 0.6em;
+  text-transform: uppercase;
+  color: #d9c08a;
+}
+
+/* Carrete corriendo a los lados: perforaciones que bajan sin parar */
+.chosen-intro__carrete {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(26px, 5vw, 56px);
+  background:
+    radial-gradient(closest-side, #0b0906 70%, transparent 74%) center top / 60% 44px repeat-y,
+    #2a231a;
+  background-blend-mode: normal;
+  animation: intro-carrete 0.25s linear infinite;
+}
+
+.chosen-intro__carrete--izq { left: 0; }
+.chosen-intro__carrete--der { right: 0; }
+
+/* Rayones verticales que saltan de lugar */
+.chosen-intro__rayones span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 245, 220, 0.35);
+  animation: intro-rayon 0.6s steps(3) infinite;
+}
+
+.chosen-intro__rayones span:nth-child(1) { left: 22%; }
+.chosen-intro__rayones span:nth-child(2) { left: 61%; animation-duration: 0.9s; animation-delay: 0.2s; }
+.chosen-intro__rayones span:nth-child(3) { left: 83%; animation-duration: 0.45s; animation-delay: 0.1s; width: 2px; }
+
+.chosen-intro__grano {
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: intro-grano 0.5s steps(5) infinite;
+}
+
+/* Parpadeo de la lámpara del proyector */
+.chosen-intro__parpadeo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: #fff3d4;
+  opacity: 0;
+  animation: intro-parpadeo 0.18s steps(2) infinite;
+}
+
+/* Destello final: la luz del proyector se abre y deja ver la portada */
+.chosen-intro__destello {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, #fffaf0 0%, rgba(255, 236, 190, 0.9) 25%, rgba(255, 220, 160, 0) 60%);
+  opacity: 0;
+  transform: scale(0.2);
+  animation: intro-destello 0.8s cubic-bezier(0.3, 0, 0.2, 1) 3.75s both;
+}
+
+.chosen-intro__saltar {
+  position: absolute;
+  right: max(1.2rem, env(safe-area-inset-right));
+  bottom: max(1.2rem, env(safe-area-inset-bottom));
+  z-index: 2;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(217, 192, 138, 0.4);
+  background: rgba(0, 0, 0, 0.5);
+  color: #d9c08a;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  animation: intro-aparece 0.4s ease 0.6s both;
+}
+
+.chosen-intro__saltar:hover {
+  color: #f0d9a0;
+  border-color: #d9c08a;
+}
+
+@keyframes intro-aparece {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes intro-vaiven {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(0.5px, -1px); }
+}
+
+@keyframes intro-barrido {
+  from { --a: 0deg; }
+  to   { --a: 360deg; }
+}
+
+@keyframes intro-num {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes intro-ocultar {
+  to { opacity: 0; }
+}
+
+@keyframes intro-rotulo {
+  0%   { opacity: 0; transform: scale(1.06); filter: blur(4px); }
+  25%  { opacity: 1; transform: none; filter: none; }
+  80%  { opacity: 1; }
+  100% { opacity: 0.9; transform: scale(0.98); }
+}
+
+@keyframes intro-carrete {
+  from { background-position: center 0, 0 0; }
+  to   { background-position: center 44px, 0 0; }
+}
+
+@keyframes intro-rayon {
+  0%   { transform: translateX(0); opacity: 0.8; }
+  50%  { transform: translateX(-30px); opacity: 0.2; }
+  100% { transform: translateX(14px); opacity: 0.6; }
+}
+
+@keyframes intro-grano {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-5%, 3%); }
+  50%  { transform: translate(4%, -6%); }
+  75%  { transform: translate(-2%, 7%); }
+  100% { transform: translate(6%, 1%); }
+}
+
+@keyframes intro-parpadeo {
+  0%   { opacity: 0.025; }
+  100% { opacity: 0.06; }
+}
+
+@keyframes intro-destello {
+  0%   { opacity: 0; transform: scale(0.2); }
+  45%  { opacity: 1; transform: scale(1.6); }
+  100% { opacity: 1; transform: scale(3); }
+}
+
+@keyframes intro-salida {
+  0%   { opacity: 1; }
+  60%  { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chosen-intro {
+    display: none;
+  }
+}

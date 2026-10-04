@@ -208,10 +208,16 @@
 /* Mientras no hay grabación del día */
 .evangelio-page__reproductor--vacio {
   display: flex;
-  align-items: center;
-  gap: 0.9rem;
+  flex-direction: column;
+  gap: 1rem;
   background: rgba(201,168,76,0.08);
   box-shadow: none;
+}
+
+.evangelio-page__reproductor--vacio-aviso {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
 }
 
 .evangelio-page__reproductor--vacio .evangelio-page__reproductor-icono {
@@ -219,6 +225,7 @@
   height: 42px;
   background: var(--gold-mid);
   color: var(--stone-dark);
+  flex-shrink: 0;
 }
 
 .evangelio-page__reproductor-pendiente {
@@ -228,14 +235,102 @@
   line-height: 1.5;
 }
 
+/* ─── Lector de voz (Web Speech API), cuando no hay audio grabado ────────── */
+.evangelio-page__lector {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  background: var(--white-pure);
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.1rem;
+}
+
+.evangelio-page__lector-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  color: var(--white-pure);
+  flex-shrink: 0;
+}
+
+.evangelio-page__lector-texto {
+  flex: 1;
+  min-width: 180px;
+}
+
+.evangelio-page__lector-titulo {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--red-deep);
+}
+
+.evangelio-page__lector-sub {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--stone);
+  line-height: 1.4;
+}
+
+.evangelio-page__lector-controles {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.evangelio-page__lector-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--white-pure);
+  background: var(--terracotta);
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.evangelio-page__lector-btn:hover {
+  background: var(--terracotta-dark);
+}
+
+.evangelio-page__lector-btn--detener {
+  background: none;
+  color: var(--stone-dark);
+  border: 1px solid rgba(107,101,96,0.3);
+}
+
+.evangelio-page__lector-btn--detener:hover {
+  background: var(--cream);
+}
+
 @media (max-width: 560px) {
   .evangelio-page__reproductor {
     padding: 1.25rem 1.1rem;
   }
 
-  .evangelio-page__reproductor--vacio {
+  .evangelio-page__reproductor--vacio-aviso {
     flex-direction: column;
     text-align: center;
+  }
+
+  .evangelio-page__lector {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .evangelio-page__lector-controles {
+    width: 100%;
+    justify-content: center;
   }
 }
 

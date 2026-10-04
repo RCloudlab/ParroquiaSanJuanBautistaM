@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { BookOpenText, Headphones, ArrowLeft, Sparkles } from 'lucide-react';
 import type { EvangelioRow } from '../lib/database.types';
 import { fechaLargaEvangelio } from './evangelioFormato';
+import LectorVoz from './LectorVoz';
 import '../pages/EvangelioPage.css';
 
 interface Props {
@@ -57,12 +58,16 @@ export default function EvangelioLectura({ evangelio, conAcciones = true }: Prop
           </div>
         ) : (
           <div className="evangelio-page__reproductor evangelio-page__reproductor--vacio reveal">
-            <span className="evangelio-page__reproductor-icono">
-              <Headphones size={22} />
-            </span>
-            <p className="evangelio-page__reproductor-pendiente">
-              El audio de hoy se publicará en breve. Mientras tanto, puedes leer el evangelio completo aquí abajo.
-            </p>
+            <div className="evangelio-page__reproductor--vacio-aviso">
+              <span className="evangelio-page__reproductor-icono">
+                <Headphones size={22} />
+              </span>
+              <p className="evangelio-page__reproductor-pendiente">
+                El audio de hoy se publicará en breve. Mientras tanto, puedes leer el evangelio completo aquí abajo,
+                o usar la lectura en voz automática.
+              </p>
+            </div>
+            {evangelio.texto.length > 0 && <LectorVoz parrafos={evangelio.texto} />}
           </div>
         )}
 

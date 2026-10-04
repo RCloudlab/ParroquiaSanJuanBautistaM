@@ -18,19 +18,22 @@ function fechaHaceDias(dias: number): string {
   return d.toLocaleDateString('en-CA'); // en-CA formatea como YYYY-MM-DD
 }
 
+const LIMITE_EVENTOS_PUBLICOS = 6;
+
 /**
- * Eventos publicados, para el sitio público. Un evento sigue visible hasta
- * 3 días después de su fecha (para que la gente que llega tarde aún vea que
- * "acaba de pasar"); pasado ese margen se oculta solo, sin borrarse — sigue
- * disponible en el panel para editar/reactivar o borrar.
+ * Eventos publicados, para el sitio público: desde el de ayer (para que
+ * quien llega tarde aún vea que "acaba de pasar") hasta los próximos
+ * LIMITE_EVENTOS_PUBLICOS más próximos en el futuro, sin importar cuántos
+ * haya cargados más adelante en el calendario.
  */
 export async function listarEventosPublicados(): Promise<EventoRow[]> {
   const { data, error } = await supabase
     .from('eventos')
     .select('*')
     .eq('estado', 'publicado')
-    .gte('fecha', fechaHaceDias(3))
-    .order('fecha', { ascending: true });
+    .gte('fecha', fechaHaceDias(1))
+    .order('fecha', { ascending: true })
+    .limit(LIMITE_EVENTOS_PUBLICOS);
   if (error) throw error;
   return data;
 }
@@ -60,6 +63,28 @@ export async function borrarEvento(id: string, imagenUrl: string | null): Promis
   const { error } = await supabase.from('eventos').delete().eq('id', id);
   if (error) throw error;
   if (imagenUrl) await borrarImagenEvento(imagenUrl).catch(() => {});
+}
+
+/**
+ * Borra los eventos de más de 3 días de antigüedad (con su imagen) para no
+ * acumular basura en el bucket ni en la tabla. No hay tarea programada en el
+ * servidor (el plan gratis de Supabase no la ofrece sin infraestructura
+ * extra); en su lugar, esta limpieza corre cada vez que se abre el panel de
+ * Eventos — "limpieza perezosa", igual que la del Evangelio.
+ */
+export async function limpiarEventosVencidos(): Promise<void> {
+  const limite = fechaHaceDias(3);
+  const { data, error } = await supabase
+    .from('eventos')
+    .select('id, imagen_url')
+    .lt('fecha', limite);
+  if (error) throw error;
+  const vencidos = data as Pick<EventoRow, 'id' | 'imagen_url'>[] | null;
+  if (!vencidos || vencidos.length === 0) return;
+
+  await Promise.all(
+    vencidos.map(ev => borrarEvento(ev.id, ev.imagen_url).catch(() => {}))
+  );
 }
 
 /** Sube una imagen al bucket "eventos" y devuelve su URL pública. */

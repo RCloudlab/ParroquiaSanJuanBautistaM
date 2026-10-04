@@ -21,6 +21,7 @@ import VirgenDoloresPage from './pages/VirgenDoloresPage';
 import HorariosPage from './pages/HorariosPage';
 import EvangelioPage from './pages/EvangelioPage';
 import EventosPage from './pages/EventosPage';
+import TheChosenPage from './pages/TheChosenPage';
 import ContactoPage from './pages/ContactoPage';
 import CapillasPage from './pages/CapillasPage';
 import { REQUISITOS } from './data/requisitos';
@@ -123,6 +124,7 @@ export default function App() {
       <Route path="/evangelio" element={<EvangelioPage />} />
       <Route path="/virgen-de-los-dolores" element={<VirgenDoloresPage />} />
       <Route path="/eventos" element={<EventosPage />} />
+      <Route path="/eventos/the-chosen" element={<TheChosenPage />} />
       <Route path="/galeria" element={<GaleriaPage />} />
       <Route path="/contacto" element={<ContactoPage />} />
       <Route path="/capillas" element={<CapillasPage />} />
