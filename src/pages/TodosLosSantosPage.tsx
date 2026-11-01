@@ -11,7 +11,7 @@ import TapeteAserrin from '../components/TapeteAserrin';
 import IntroSantos from '../components/IntroSantos';
 import Veladora, { Cirio, type ColorVeladora } from '../components/Veladora';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
-import { DETALLES, SANTOS, type Santo } from '../data/todosLosSantos';
+import { CELEBRACIONES, DETALLES, SANTOS, type Santo } from '../data/todosLosSantos';
 import './TodosLosSantosPage.css';
 
 // Página /eventos/todos-los-santos: Solemnidad de Todos los Santos (1 nov).
@@ -762,7 +762,14 @@ export default function TodosLosSantosPage() {
               <TapeteAserrin className="tls-cierre__tapete">
                 <p className="tls-cierre__misa-etiqueta">Te esperamos a celebrar</p>
                 <p className="tls-cierre__misa-fecha">{DETALLES.fecha}</p>
-                <p className="tls-cierre__misa-horario">{DETALLES.horario}</p>
+                <ul className="tls-cierre__misa-lista">
+                  {CELEBRACIONES.map(c => (
+                    <li key={c.lugar} className="tls-cierre__misa-item">
+                      <span className="tls-cierre__misa-lugar">{c.lugar}</span>
+                      <span className="tls-cierre__misa-horario">{c.horario}</span>
+                    </li>
+                  ))}
+                </ul>
                 <Link className="tls-btn" to="/eventos">Ver más eventos de la parroquia</Link>
               </TapeteAserrin>
               <Rincon lado="der" semilla={80} />

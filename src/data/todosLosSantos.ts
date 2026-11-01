@@ -1,14 +1,23 @@
 // Datos de la página especial /eventos/todos-los-santos (Solemnidad de
 // Todos los Santos, 1 de noviembre). Todo lo editable vive aquí para no
 // tocar los componentes.
-//
-// TODO: confirmar el horario real de la Misa solemne — el de abajo es un
-// placeholder de ejemplo. El 1 de noviembre de 2026 cae en domingo.
 
 export const DETALLES = {
   fecha: 'Domingo 1 de noviembre',
-  horario: '11:00 a.m. y 6:00 p.m. — Misa solemne',
 };
+
+export interface Celebracion {
+  lugar: string;
+  horario: string;
+}
+
+/** Las distintas celebraciones eucarísticas del día, tal como las publica
+ *  la parroquia (cartel oficial). */
+export const CELEBRACIONES: Celebracion[] = [
+  { lugar: 'Celebración Eucarística en la Parroquia', horario: '7:00 am · 12:00 md · 7:00 pm' },
+  { lugar: 'Celebración Eucarística en el Panteón Municipal "San Martín"', horario: '1:00 pm' },
+  { lugar: 'Celebración Eucarística en las Criptas (Parroquia)', horario: '5:00 pm' },
+];
 
 /** Símbolo dibujado en la estampa y en el papel picado — ver SimboloSanto.tsx. */
 export type SimboloSanto =

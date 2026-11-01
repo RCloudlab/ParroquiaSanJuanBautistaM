@@ -1102,10 +1102,40 @@
   color: #8A1430;
 }
 
-.tls-cierre__misa-horario {
-  margin: 0.4rem 0 1.4rem;
+.tls-cierre__misa-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: 0.7rem 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.tls-cierre__misa-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.1rem 0.5rem;
+  line-height: 1.3;
+}
+
+.tls-cierre__misa-lugar {
   font-weight: 700;
   color: #4A2A18;
+}
+
+.tls-cierre__misa-horario {
+  font-weight: 700;
+  color: #8A1430;
+  white-space: nowrap;
+}
+
+.tls-cierre__misa-horario::before {
+  content: '·';
+  margin-right: 0.5rem;
+  color: #4A2A18;
+  font-weight: 400;
 }
 
 /* ─── Movimiento reducido ─── */
