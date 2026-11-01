@@ -389,6 +389,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'juan-bosco',
+    imagen: '/todos-los-santos/santos/juan-bosco.webp',
     nombre: 'San Juan Bosco',
     fiesta: '31 de enero',
     patronazgo: 'Patrono de la juventud',
@@ -404,6 +405,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'frassati',
+    imagen: '/todos-los-santos/santos/frassati.webp',
     nombre: 'San Pier Giorgio Frassati',
     fiesta: '4 de julio',
     patronazgo: 'Modelo para estudiantes y deportistas',

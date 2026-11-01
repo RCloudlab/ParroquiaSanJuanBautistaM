@@ -27,6 +27,12 @@
   margin-top: var(--alto-papel-menu);
 }
 
+/* Las que arrancan con foto o banner a sangre (Rosario, Eventos,
+   Evangelio): el papel picado cuelga sobre la imagen, sin dejar hueco. */
+.temporada-santos .page-standalone:has(> .eventos:first-child, > .rosario-inicio:first-child, > .evangelio-page:first-child) {
+  margin-top: 0;
+}
+
 /* Estas páginas reemplazan el espacio del menú por un padding propio más
    corto; en temporada se les da el alto del menú + el papel picado. */
 .temporada-santos :is(.historia-page, .sacramentos-layout, .galeria-page) {
@@ -66,6 +72,9 @@
   top: 100%;
   left: 0;
   right: 0;
+  /* Detrás del contenido del menú: los submenús desplegables (Eventos,
+     Parroquia…) quedan siempre por encima del papel picado. */
+  z-index: -1;
   pointer-events: none;
   transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
