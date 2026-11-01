@@ -73,7 +73,7 @@ export default function IntroSantos() {
           <span className="intro__titulo-pre">Día de</span>
           <span className="intro__titulo-main">Todos los Santos</span>
         </p>
-        <p className="intro__fecha">1 de noviembre</p>
+        <p className="intro__fecha">2 de noviembre</p>
       </div>
 
       <button type="button" className="intro__saltar" onClick={terminar}>

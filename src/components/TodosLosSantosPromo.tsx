@@ -14,13 +14,13 @@ export default function TodosLosSantosPromo() {
     <Link
       to="/eventos/todos-los-santos"
       className="santos-promo reveal"
-      aria-label="Día de Todos los Santos, 1 de noviembre. Conoce las historias de los santos"
+      aria-label="Día de Todos los Santos, 2 de noviembre. Conoce las historias de los santos"
     >
       <PapelPicado tiras={TIRA} className="santos-promo__papel" />
 
       <div className="santos-promo__cuerpo">
         <div className="santos-promo__contenido">
-          <span className="santos-promo__tag">1 de noviembre</span>
+          <span className="santos-promo__tag">2 de noviembre</span>
           <span className="santos-promo__titulo">Día de <em>Todos los Santos</em></span>
           <span className="santos-promo__sub">
             Conoce las historias de hombres y mujeres que hicieron de su vida un camino hacia Dios.

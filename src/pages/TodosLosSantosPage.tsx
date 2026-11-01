@@ -441,12 +441,8 @@ function ConoceUnSanto({ onHistoria }: { onHistoria: (s: Santo) => void }) {
                 </p>
                 <h3 className="tls-estampita__nombre">{santo.nombre}</h3>
                 <p className="tls-estampita__patrono">{santo.patronazgo}</p>
-                <p className="tls-estampita__descripcion">{santo.descripcion}</p>
-                <div className="tls-estampita__dato">
-                  <Lightbulb size={17} aria-hidden="true" />
-                  <p><strong>Dato interesante.</strong> {santo.dato}</p>
-                </div>
                 <blockquote className="tls-estampita__frase">«{santo.frase}»</blockquote>
+                <p className="tls-estampita__descripcion">{santo.descripcion}</p>
                 <button type="button" className="tls-btn tls-btn--contorno" onClick={() => onHistoria(santo)}>
                   <BookOpen size={17} /> Conocer su historia <ChevronRight size={17} className="tls-btn__flecha" />
                 </button>
@@ -611,15 +607,16 @@ function HistoriaSanto({ santo, onCerrar }: { santo: Santo | null; onCerrar: () 
             <p className="tls-estampita__fiesta"><CalendarDays size={15} /> {santo.fiesta}</p>
             <h2 id="tls-historia-titulo" className="tls-historia__nombre">{santo.nombre}</h2>
             <p className="tls-estampita__patrono">{santo.patronazgo}</p>
-            {santo.historia.map((p, i) => <p key={i} className="tls-historia__parrafo">{p}</p>)}
-            <div className="tls-estampita__dato">
-              <Lightbulb size={17} aria-hidden="true" />
-              <p><strong>Dato interesante.</strong> {santo.dato}</p>
-            </div>
             <blockquote className="tls-historia__frase">
               <Quote size={18} aria-hidden="true" />
               {santo.frase}
             </blockquote>
+            {/* Solo el primer párrafo: más fácil de leer de un vistazo. */}
+            <p className="tls-historia__parrafo">{santo.historia[0]}</p>
+            <div className="tls-estampita__dato">
+              <Lightbulb size={17} aria-hidden="true" />
+              <p><strong>Dato interesante.</strong> {santo.dato}</p>
+            </div>
           </div>
         </div>
       )}
@@ -641,7 +638,7 @@ export default function TodosLosSantosPage() {
     <>
       <Seo
         titulo="Día de Todos los Santos"
-        descripcion="1 de noviembre, Solemnidad de Todos los Santos en la Parroquia San Juan Bautista: descubre la historia de hombres y mujeres que hicieron de su vida un camino hacia Dios."
+        descripcion="2 de noviembre, Solemnidad de Todos los Santos en la Parroquia San Juan Bautista: descubre la historia de hombres y mujeres que hicieron de su vida un camino hacia Dios."
       />
       <IntroSantos />
       <Navbar />
@@ -670,7 +667,7 @@ export default function TodosLosSantosPage() {
             <div className="tls-hero__contenido">
               <p className="tls-hero__fecha">
                 <span aria-hidden="true" className="tls-hero__fecha-linea" />
-                1 de noviembre
+                2 de noviembre
                 <span aria-hidden="true" className="tls-hero__fecha-linea" />
               </p>
               <h1 className="tls-hero__titulo">

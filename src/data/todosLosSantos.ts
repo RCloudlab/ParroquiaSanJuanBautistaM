@@ -1,9 +1,9 @@
-// Datos de la página especial /eventos/todos-los-santos (Solemnidad de
-// Todos los Santos, 1 de noviembre). Todo lo editable vive aquí para no
+// Datos de la página especial /eventos/todos-los-santos (celebración en
+// la parroquia el 2 de noviembre). Todo lo editable vive aquí para no
 // tocar los componentes.
 
 export const DETALLES = {
-  fecha: 'Domingo 1 de noviembre',
+  fecha: 'Lunes 2 de noviembre',
 };
 
 export interface Celebracion {
