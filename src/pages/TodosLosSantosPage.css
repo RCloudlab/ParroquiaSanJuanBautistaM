@@ -1575,3 +1575,12 @@
   }
 }
 
+
+/* Crédito de la imagen, bajo la estampa en "Conocer su historia" */
+.tls-historia__credito {
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--tls-suave);
+}

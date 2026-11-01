@@ -35,6 +35,9 @@ export interface Santo {
   /** Foto o pintura del santo (en public/). Si falta, la estampa se dibuja
    *  con su símbolo. */
   imagen?: string;
+  /** Autor o fuente de la imagen; se muestra bajo la estampa en "Conocer
+   *  su historia". */
+  credito?: string;
 }
 
 /** Catálogo curado: santos muy queridos en México y algunos cercanos a los
@@ -59,6 +62,7 @@ export const SANTOS: Santo[] = [
   {
     id: 'juan-diego',
     imagen: '/todos-los-santos/santos/juan-diego.webp',
+    credito: 'Pintura: Miguel Cabrera (dominio público)',
     nombre: 'San Juan Diego',
     fiesta: '9 de diciembre',
     patronazgo: 'Patrono de los pueblos indígenas',
@@ -123,6 +127,7 @@ export const SANTOS: Santo[] = [
   {
     id: 'jose-sanchez-del-rio',
     imagen: '/todos-los-santos/santos/jose-sanchez-del-rio.webp',
+    credito: 'Imagen: Arquidiócesis de Morelia (@ArquiMorelia)',
     nombre: 'San José Sánchez del Río',
     fiesta: '10 de febrero',
     patronazgo: 'Modelo de fe para niños y adolescentes',
@@ -203,6 +208,7 @@ export const SANTOS: Santo[] = [
   {
     id: 'rita-casia',
     imagen: '/todos-los-santos/santos/rita-casia.webp',
+    credito: 'Pintura: Miguel Cabrera (dominio público)',
     nombre: 'Santa Rita de Casia',
     fiesta: '22 de mayo',
     patronazgo: 'Patrona de las causas imposibles',
@@ -234,6 +240,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'carlo-acutis',
+    imagen: '/todos-los-santos/santos/carlo-acutis.webp',
     nombre: 'San Carlo Acutis',
     fiesta: '12 de octubre',
     patronazgo: 'Intercesor de los jóvenes en el mundo digital',
@@ -249,6 +256,8 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'clara-asis',
+    imagen: '/todos-los-santos/santos/clara-asis.webp',
+    credito: 'Fresco: Simone Martini, Asís (dominio público)',
     nombre: 'Santa Clara de Asís',
     fiesta: '11 de agosto',
     patronazgo: 'Patrona de la televisión',
@@ -264,6 +273,8 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'cecilia',
+    imagen: '/todos-los-santos/santos/cecilia.webp',
+    credito: 'Pintura: Simon Vouet (dominio público)',
     nombre: 'Santa Cecilia',
     fiesta: '22 de noviembre',
     patronazgo: 'Patrona de los músicos',
@@ -279,6 +290,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'isidro-labrador',
+    imagen: '/todos-los-santos/santos/isidro-labrador.webp',
     nombre: 'San Isidro Labrador',
     fiesta: '15 de mayo',
     patronazgo: 'Patrono de los agricultores y del campo',
@@ -294,6 +306,8 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'ignacio-loyola',
+    imagen: '/todos-los-santos/santos/ignacio-loyola.webp',
+    credito: 'Pintura: Pedro Pablo Rubens (dominio público)',
     nombre: 'San Ignacio de Loyola',
     fiesta: '31 de julio',
     patronazgo: 'Patrono de los Ejercicios Espirituales',
@@ -309,6 +323,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'monica',
+    imagen: '/todos-los-santos/santos/monica.webp',
     nombre: 'Santa Mónica',
     fiesta: '27 de agosto',
     patronazgo: 'Patrona de las madres',
@@ -324,6 +339,8 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'agustin',
+    imagen: '/todos-los-santos/santos/agustin.webp',
+    credito: 'Pintura: Philippe de Champaigne (dominio público)',
     nombre: 'San Agustín de Hipona',
     fiesta: '28 de agosto',
     patronazgo: 'Patrono de los teólogos y de quienes buscan la verdad',
@@ -339,6 +356,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'pio-pietrelcina',
+    imagen: '/todos-los-santos/santos/pio-pietrelcina.webp',
     nombre: 'San Pío de Pietrelcina',
     fiesta: '23 de septiembre',
     patronazgo: 'Intercesor de los enfermos y de quienes sufren',
@@ -354,6 +372,8 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'teresa-calcuta',
+    imagen: '/todos-los-santos/santos/teresa-calcuta.webp',
+    credito: 'Foto: Kingkongphoto & celebrity-photos.com, CC BY-SA 2.0',
     nombre: 'Santa Teresa de Calcuta',
     fiesta: '5 de septiembre',
     patronazgo: 'Modelo de servicio a los más pobres',

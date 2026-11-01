@@ -605,6 +605,7 @@ function HistoriaSanto({ santo, onCerrar }: { santo: Santo | null; onCerrar: () 
           </button>
           <div className="tls-historia__imagen">
             <EstampaEnMarco santo={santo} />
+            {santo.credito && <p className="tls-historia__credito">{santo.credito}</p>}
           </div>
           <div className="tls-historia__texto">
             <p className="tls-estampita__fiesta"><CalendarDays size={15} /> {santo.fiesta}</p>
