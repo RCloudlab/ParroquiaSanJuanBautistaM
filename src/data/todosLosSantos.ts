@@ -32,6 +32,9 @@ export interface Santo {
   historia: string[];
   simbolo: SimboloSanto;
   tono: TonoSanto;
+  /** Foto o pintura del santo (en public/). Si falta, la estampa se dibuja
+   *  con su símbolo. */
+  imagen?: string;
 }
 
 /** Catálogo curado: santos muy queridos en México y algunos cercanos a los
@@ -39,6 +42,7 @@ export interface Santo {
 export const SANTOS: Santo[] = [
   {
     id: 'juan-bautista',
+    imagen: '/todos-los-santos/santos/juan-bautista.webp',
     nombre: 'San Juan Bautista',
     fiesta: '24 de junio',
     patronazgo: 'Patrono de nuestra parroquia',
@@ -54,6 +58,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'juan-diego',
+    imagen: '/todos-los-santos/santos/juan-diego.webp',
     nombre: 'San Juan Diego',
     fiesta: '9 de diciembre',
     patronazgo: 'Patrono de los pueblos indígenas',
@@ -69,6 +74,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'jose',
+    imagen: '/todos-los-santos/santos/jose.webp',
     nombre: 'San José',
     fiesta: '19 de marzo',
     patronazgo: 'Patrono de la Iglesia universal y de los trabajadores',

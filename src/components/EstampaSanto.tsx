@@ -54,6 +54,33 @@ export default function EstampaSanto({ santo, className }: { santo: Santo; class
   const uid = useId().replace(/[^a-zA-Z0-9_-]/g, '');
   const tono = TONOS[santo.tono];
 
+  // Con foto o pintura: la imagen recortada en el mismo arco, con una
+  // sombra suave al pie, el filete dorado y el cempasúchil delante.
+  if (santo.imagen) {
+    return (
+      <svg className={className} viewBox="0 0 300 380" role="img" aria-label={santo.nombre}>
+        <defs>
+          <clipPath id={`${uid}-arco`}>
+            <path d={ARCO} />
+          </clipPath>
+          <linearGradient id={`${uid}-pie`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0.62" stopColor={tono.oscuro} stopOpacity="0" />
+            <stop offset="1" stopColor={tono.oscuro} stopOpacity="0.85" />
+          </linearGradient>
+        </defs>
+        <g clipPath={`url(#${uid}-arco)`}>
+          <rect width="300" height="380" fill={tono.oscuro} />
+          <image href={santo.imagen} width="300" height="380" preserveAspectRatio="xMidYMid slice" />
+          <rect width="300" height="380" fill={`url(#${uid}-pie)`} />
+          <Flor x={40} y={352} d={38} giro={15} />
+          <Flor x={150} y={350} d={44} />
+          <Flor x={260} y={352} d={38} giro={-15} />
+        </g>
+        <path d={ARCO_INTERIOR} fill="none" stroke="#E9C770" strokeWidth="1.6" opacity="0.9" />
+      </svg>
+    );
+  }
+
   return (
     <svg className={className} viewBox="0 0 300 380" role="img" aria-label={`Estampa de ${santo.nombre}`}>
       <defs>
