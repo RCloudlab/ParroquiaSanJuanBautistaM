@@ -90,6 +90,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'francisco-asis',
+    imagen: '/todos-los-santos/santos/francisco-asis.webp',
     nombre: 'San Francisco de Asís',
     fiesta: '4 de octubre',
     patronazgo: 'Patrono de la ecología y de los animales',
@@ -105,6 +106,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'felipe-de-jesus',
+    imagen: '/todos-los-santos/santos/felipe-de-jesus.webp',
     nombre: 'San Felipe de Jesús',
     fiesta: '5 de febrero',
     patronazgo: 'Patrono de la Ciudad de México',
@@ -120,6 +122,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'jose-sanchez-del-rio',
+    imagen: '/todos-los-santos/santos/jose-sanchez-del-rio.webp',
     nombre: 'San José Sánchez del Río',
     fiesta: '10 de febrero',
     patronazgo: 'Modelo de fe para niños y adolescentes',
@@ -135,6 +138,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'teresita',
+    imagen: '/todos-los-santos/santos/teresita.webp',
     nombre: 'Santa Teresita del Niño Jesús',
     fiesta: '1 de octubre',
     patronazgo: 'Patrona de las misiones',
@@ -150,6 +154,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'martin-de-porres',
+    imagen: '/todos-los-santos/santos/martin-de-porres.webp',
     nombre: 'San Martín de Porres',
     fiesta: '3 de noviembre',
     patronazgo: 'Patrono de la justicia social',
@@ -165,6 +170,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'judas-tadeo',
+    imagen: '/todos-los-santos/santos/judas-tadeo.webp',
     nombre: 'San Judas Tadeo',
     fiesta: '28 de octubre',
     patronazgo: 'Patrono de las causas difíciles',
@@ -180,6 +186,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'antonio-padua',
+    imagen: '/todos-los-santos/santos/antonio-padua.webp',
     nombre: 'San Antonio de Padua',
     fiesta: '13 de junio',
     patronazgo: 'Patrono de los pobres y de las cosas perdidas',
@@ -195,6 +202,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'rita-casia',
+    imagen: '/todos-los-santos/santos/rita-casia.webp',
     nombre: 'Santa Rita de Casia',
     fiesta: '22 de mayo',
     patronazgo: 'Patrona de las causas imposibles',
@@ -210,6 +218,7 @@ export const SANTOS: Santo[] = [
   },
   {
     id: 'juan-pablo-ii',
+    imagen: '/todos-los-santos/santos/juan-pablo-ii.webp',
     nombre: 'San Juan Pablo II',
     fiesta: '22 de octubre',
     patronazgo: 'Patrono de las familias y de la Jornada Mundial de la Juventud',
