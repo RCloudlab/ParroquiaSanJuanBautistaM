@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { OfrendaPie } from './AdornosTemporada';
+import { esTemporadaSantos } from '../lib/temporada';
 import './Footer.css';
 
 function IconFacebook() {
@@ -43,6 +45,9 @@ export default function Footer() {
     <footer className="footer">
       {/* Franja dorada */}
       <div className="footer__top-band" />
+
+      {/* Temporada de Todos los Santos: ofrenda sobre el borde y papel picado */}
+      {esTemporadaSantos() && <OfrendaPie />}
 
       <div className="footer__body">
         <div className="footer__inner">

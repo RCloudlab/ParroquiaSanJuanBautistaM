@@ -1,0 +1,63 @@
+/* Velas (veladora y cirio) — ver Veladora.tsx. */
+.vela {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.vela svg {
+  position: relative;
+  display: block;
+  overflow: visible;
+}
+
+/* La llama tiembla desde su base: se estira, se encoge y se ladea apenas */
+.vela__llama {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: vela-llama var(--ritmo, 2s) ease-in-out var(--retraso, 0s) infinite alternate;
+}
+
+@keyframes vela-llama {
+  0%   { transform: scale(1, 1) skewX(0deg); }
+  25%  { transform: scale(0.93, 1.08) skewX(-3deg); }
+  55%  { transform: scale(1.05, 0.94) skewX(2.5deg); }
+  80%  { transform: scale(0.97, 1.04) skewX(-1.5deg); }
+  100% { transform: scale(1.02, 0.98) skewX(1deg); }
+}
+
+/* Resplandor cálido centrado en la llama */
+.vela__resplandor {
+  position: absolute;
+  left: 50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 200, 110, 0.55), rgba(255, 150, 40, 0.16) 42%, transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: vela-resplandor var(--ritmo, 2s) ease-in-out var(--retraso, 0s) infinite alternate;
+}
+
+.vela--veladora .vela__resplandor {
+  top: calc(var(--alto) * 0.3);
+  width: calc(var(--alto) * 1.5);
+  height: calc(var(--alto) * 1.5);
+}
+
+.vela--cirio .vela__resplandor {
+  top: calc(var(--alto) * 0.1);
+  width: calc(var(--alto) * 0.5);
+  height: calc(var(--alto) * 0.5);
+}
+
+@keyframes vela-resplandor {
+  from { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vela__llama,
+  .vela__resplandor {
+    animation: none;
+  }
+}

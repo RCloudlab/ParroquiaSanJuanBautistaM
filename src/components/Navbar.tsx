@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown, Mail } from 'lucide-react';
 import { REQUISITOS } from '../data/requisitos';
+import { PapelPicadoMenu } from './AdornosTemporada';
+import { esTemporadaSantos } from '../lib/temporada';
 import './Navbar.css';
 
 interface NavChild {
@@ -45,7 +47,7 @@ const NAV_LINKS: NavLink[] = [
     route: '/eventos',
     children: [
       { label: 'Calendario de eventos', route: '/eventos' },
-      { label: 'The Chosen T6', route: '/eventos/the-chosen', nuevo: true },
+      { label: 'Todos los Santos', route: '/eventos/todos-los-santos', nuevo: true },
     ],
   },
 ];
@@ -58,6 +60,14 @@ export default function Navbar() {
   const lastScrollY = useRef(0);
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const temporada = esTemporadaSantos();
+
+  // En temporada de Todos los Santos, <html> lleva la clase que activa los
+  // adornos del sitio (franja del menú, flores en los divisores, espacio
+  // para el papel picado; ver AdornosTemporada.css).
+  useEffect(() => {
+    document.documentElement.classList.toggle('temporada-santos', temporada);
+  }, [temporada]);
 
   // Cierra el drawer móvil al cambiar de ruta
   useEffect(() => {
@@ -107,7 +117,7 @@ export default function Navbar() {
   };
 
   // Coincidencia exacta: con startsWith, "Calendario de eventos" (/eventos)
-  // quedaría marcado también dentro de /eventos/the-chosen.
+  // quedaría marcado también dentro de /eventos/todos-los-santos.
   const isChildActive = (child: NavChild) => pathname === child.route;
 
   return (
@@ -118,6 +128,11 @@ export default function Navbar() {
         hidden  ? 'navbar--hidden'  : '',
       ].filter(Boolean).join(' ')}
     >
+      {/* Temporada de Todos los Santos: papel picado colgando bajo el menú
+          (la página del evento ya trae el suyo en el hero; con el menú del
+          teléfono abierto se quita para no encimarse). */}
+      {temporada && !open && pathname !== '/eventos/todos-los-santos' && <PapelPicadoMenu />}
+
       <div className="navbar__inner">
         {/* Logo — Link limpio, sin setTimeout */}
         <Link

@@ -1,0 +1,116 @@
+/* Banner promocional (sección Eventos) hacia /eventos/todos-los-santos.
+   Misma estética que la página: papel marfil con grano, papel picado
+   colgando arriba y una estampita a la derecha. */
+.santos-promo {
+  position: relative;
+  display: block;
+  margin-bottom: 2.5rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  color: #4A3F3A;
+  background-color: #F8F1E3;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42  0 0 0 0 .3  0 0 0 0 .18  0 0 0 .075 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    radial-gradient(ellipse at 80% 60%, rgba(217, 176, 85, 0.2), transparent 55%);
+  border: 1px solid rgba(196, 147, 43, 0.3);
+  box-shadow: 0 18px 40px -24px rgba(59, 36, 20, 0.45);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+}
+
+.santos-promo.reveal--visible:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 48px -24px rgba(59, 36, 20, 0.5);
+}
+
+.santos-promo__cuerpo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0.5rem 2.4rem 2.2rem;
+}
+
+.santos-promo__contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  max-width: 540px;
+}
+
+.santos-promo__tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #8A651B;
+}
+
+.santos-promo__titulo {
+  font-family: 'Cormorant Garamond', var(--font-display), serif;
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  font-weight: 600;
+  line-height: 1.05;
+  color: #2E2422;
+}
+
+.santos-promo__titulo em {
+  color: #7E2433;
+  font-style: normal;
+}
+
+.santos-promo__sub {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #74675E;
+}
+
+.santos-promo__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  background: #7E2433;
+  color: #FBF3E3;
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: 0 10px 20px -12px rgba(100, 27, 40, 0.75);
+}
+
+.santos-promo__flecha {
+  transition: transform 0.3s;
+}
+
+.santos-promo:hover .santos-promo__flecha {
+  transform: translateX(4px);
+}
+
+.santos-promo__estampa {
+  flex-shrink: 0;
+  width: 132px;
+  transform: rotate(3deg);
+  filter: drop-shadow(0 12px 14px rgba(59, 36, 20, 0.22));
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.santos-promo__estampa svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.santos-promo:hover .santos-promo__estampa {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+@media (max-width: 640px) {
+  .santos-promo__cuerpo {
+    padding: 0.3rem 1.3rem 1.8rem;
+  }
+
+  .santos-promo__estampa {
+    display: none;
+  }
+}

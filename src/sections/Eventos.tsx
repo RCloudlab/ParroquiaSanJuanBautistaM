@@ -6,7 +6,7 @@ import { listarEventosPublicados } from '../admin/eventos/eventosApi';
 import EventoCard from '../components/EventoCard';
 import EventoModal from '../components/EventoModal';
 import EventosCarrusel from './EventosCarrusel';
-import TheChosenPromo from '../components/TheChosenPromo';
+import TodosLosSantosPromo from '../components/TodosLosSantosPromo';
 import './Eventos.css';
 
 export default function Eventos() {
@@ -54,7 +54,7 @@ export default function Eventos() {
       </div>
 
       <div className="section-container" style={{ paddingTop: '3rem' }}>
-        <TheChosenPromo />
+        <TodosLosSantosPromo />
 
         {eventos === null ? (
           <div className="eventos__cargando">

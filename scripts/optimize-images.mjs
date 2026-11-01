@@ -37,12 +37,6 @@ const IMAGES = [
   // Carl Bloch, "El Sermón de la Montaña" (1877) — dominio público,
   // vía Wikimedia Commons. Ilustra el Evangelio del día.
   { src: 'evangelio-sermon-montana.jpg', name: 'evangelio-sermon-montana' },
-  // Evento especial: The Chosen T6 (página /eventos/the-chosen)
-  { src: 'the-chosen-panoramica.png', name: 'the-chosen-panoramica' },
-  { src: 'the-chosen-vertical.png', name: 'the-chosen-vertical' },
-  { src: 'the-chosen-poster.png', name: 'the-chosen-poster' },
-  // Boleto con fondo transparente (PNG con alfa)
-  { src: 'the-chosen-boleto.png', name: 'the-chosen-boleto' },
 ];
 
 async function main() {

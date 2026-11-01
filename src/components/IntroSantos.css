@@ -1,0 +1,162 @@
+/* Intro de Todos los Santos — ver IntroSantos.tsx.
+   Línea de tiempo: 0.15 s cae el papel picado · 1.0 s se enciende la
+   veladora y su luz se abre · 1.6 s aparece el título · 4.6 s se desvanece. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #0E1230;
+  background-image:
+    radial-gradient(ellipse 80% 55% at 50% 0%, #2B2566 0%, transparent 70%),
+    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(242, 140, 27, 0.14), transparent 70%),
+    linear-gradient(180deg, #0C1030 0%, #161339 55%, #1C1431 100%);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.intro--saliendo {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+.intro__papel {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+}
+
+/* La luz de la veladora que se abre sobre la noche */
+.intro__luz {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 140vmax;
+  height: 140vmax;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 190, 100, 0.32), rgba(242, 140, 27, 0.1) 22%, transparent 45%);
+  transform: translate(-50%, -50%) scale(0);
+  animation: intro-luz 2.2s cubic-bezier(0.22, 1, 0.36, 1) 1.05s forwards;
+  pointer-events: none;
+}
+
+.intro__centro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.intro__vela {
+  margin-bottom: 1.6rem;
+  animation: intro-subir 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+/* La llama nace a los ~1 s y luego sigue temblando */
+.intro__vela .vela__llama {
+  animation:
+    vela-llama var(--ritmo, 2s) ease-in-out var(--retraso, 0s) infinite alternate,
+    intro-encender 0.8s ease-out 1s backwards;
+}
+
+.intro__vela .vela__resplandor {
+  animation:
+    vela-resplandor var(--ritmo, 2s) ease-in-out var(--retraso, 0s) infinite alternate,
+    intro-resplandor 1s ease-out 1s backwards;
+}
+
+.intro__parroquia {
+  margin-bottom: 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #F2C46B;
+  animation: intro-subir 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.5s both;
+}
+
+.intro__titulo {
+  font-family: 'Cormorant Garamond', var(--font-display), serif;
+  line-height: 0.95;
+  color: #F2A93B;
+}
+
+.intro__titulo-pre {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-style: italic;
+  color: #F7963A;
+  animation: intro-subir 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.7s both;
+}
+
+.intro__titulo-main {
+  display: block;
+  font-size: clamp(2.8rem, 10vw, 6.6rem);
+  font-weight: 600;
+  text-shadow: 0 0 40px rgba(242, 140, 27, 0.4);
+  animation: intro-enfocar 1.4s cubic-bezier(0.22, 1, 0.36, 1) 1.85s both;
+}
+
+.intro__fecha {
+  margin-top: 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #E8DCC6;
+  animation: intro-subir 0.9s cubic-bezier(0.22, 1, 0.36, 1) 2.4s both;
+}
+
+.intro__saltar {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid rgba(242, 169, 59, 0.4);
+  border-radius: 999px;
+  background: rgba(20, 18, 48, 0.6);
+  color: #F2C46B;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  animation: intro-subir 0.6s ease-out 0.8s both;
+}
+
+.intro__saltar:hover {
+  background: rgba(242, 169, 59, 0.15);
+}
+
+@keyframes intro-luz {
+  to { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes intro-subir {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes intro-enfocar {
+  from { opacity: 0; filter: blur(12px); letter-spacing: 0.08em; }
+  to   { opacity: 1; filter: none; letter-spacing: 0; }
+}
+
+@keyframes intro-encender {
+  0%   { opacity: 0; transform: scale(0.15, 0.1); }
+  55%  { opacity: 1; transform: scale(1.2, 1.4); }
+  100% { opacity: 1; transform: scale(1, 1); }
+}
+
+@keyframes intro-resplandor {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+  to   { opacity: 0.85; transform: translate(-50%, -50%) scale(1); }
+}

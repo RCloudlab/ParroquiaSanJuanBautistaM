@@ -1,0 +1,113 @@
+/* Adornos de temporada — ver AdornosTemporada.tsx. Las reglas con
+   .temporada-santos dependen de la clase que el Navbar pone en <html>. */
+
+/* Menú: franja de colores de papel picado en el borde inferior */
+.temporada-santos .navbar {
+  border-bottom-color: transparent;
+}
+
+.temporada-santos .navbar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: repeating-linear-gradient(90deg,
+    #E0287D 0 48px, #F2B705 48px 96px, #0E8FA8 96px 144px, #F07A12 144px 192px,
+    #7B2D8E 192px 240px, #2E9E44 240px 288px, #D7263D 288px 336px, #2457A6 336px 384px);
+  pointer-events: none;
+}
+
+/* Páginas interiores: el contenido baja lo que mide el papel picado del
+   menú, para que cuelgue en su propio espacio y no tape los títulos. En las
+   que abren con foto a sangre (inicio, Virgen de los Dolores) cuelga sobre
+   la imagen y no hace falta. */
+.temporada-santos .page-standalone {
+  margin-top: var(--alto-papel-menu);
+}
+
+/* Estas páginas reemplazan el espacio del menú por un padding propio más
+   corto; en temporada se les da el alto del menú + el papel picado. */
+.temporada-santos :is(.historia-page, .sacramentos-layout, .galeria-page) {
+  margin-top: 0;
+  padding-top: calc(var(--alto-menu) + var(--alto-papel-menu) + 1.25rem);
+}
+
+:root {
+  --alto-menu: 76px; /* igual que .navbar__inner y .page-standalone */
+  --alto-papel-menu: 98px;
+}
+
+@media (max-width: 900px) {
+  :root { --alto-menu: 74px; }
+}
+
+@media (max-width: 480px) {
+  :root { --alto-menu: 68px; }
+}
+
+/* Remate de los títulos de sección: el rombo dorado se vuelve cempasúchil */
+.temporada-santos .gold-divider::after {
+  width: 18px;
+  height: 18px;
+  background: url('/todos-los-santos/flor-cempasuchil.webp') center / contain no-repeat;
+  border-radius: 0;
+  transform: translate(-50%, -50%);
+}
+
+.temporada-santos .gold-divider::before {
+  background: linear-gradient(90deg, transparent, #E8780F 30%, var(--gold-mid) 50%, #E8780F 70%, transparent);
+}
+
+/* Bajo el menú fijo: cuelga de su borde inferior y se recoge al bajar */
+.adorno-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navbar--scrolled .adorno-menu {
+  opacity: 0;
+  transform: translateY(-24px);
+}
+
+/* Pie de página: la repisa se asienta sobre el borde superior */
+.adorno-pie {
+  position: relative;
+}
+
+.adorno-pie__repisa {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(0.2rem, 1.2vw, 0.9rem);
+  padding-bottom: 2px;
+  pointer-events: none;
+}
+
+.adorno-pie__flor {
+  width: clamp(28px, 3.4vw, 46px);
+  height: auto;
+  margin-bottom: -6px;
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.3));
+}
+
+.adorno-pie__papel {
+  margin-bottom: -1.5rem;
+}
+
+@media (max-width: 640px) {
+  /* En teléfono, solo el centro de la repisa */
+  .adorno-pie__repisa > :nth-child(-n + 4),
+  .adorno-pie__repisa > :nth-last-child(-n + 4) {
+    display: none;
+  }
+}

@@ -1,0 +1,94 @@
+/* Papel picado — ver PapelPicado.tsx. Las banderas cuelgan desde su borde
+   superior y se mecen apenas, como con una corriente de aire. */
+.pp {
+  position: relative;
+  width: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pp__defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.pp__tira {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.pp__cuerda {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: visible;
+}
+
+.pp__cuerda path {
+  fill: none;
+  stroke: #a89476; /* mecate rústico */
+  stroke-width: 2.5px;
+  filter: drop-shadow(0 2px 1.5px rgba(59, 36, 20, 0.25));
+}
+
+.pp__bandera {
+  position: absolute;
+}
+
+.pp__papel {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: 50% 2%;
+  transform: rotate(var(--giro, 0deg));
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.18));
+  animation: pp-vaiven var(--dur, 7s) ease-in-out var(--retraso, 0s) infinite alternate;
+  will-change: transform;
+}
+
+.pp__tira--fondo {
+  opacity: 0.92;
+  filter: brightness(0.94);
+}
+
+.pp__tira--fondo .pp__papel {
+  animation-duration: calc(var(--dur, 7s) * 1.3);
+}
+
+/* El rotateX inclina el papel hacia atrás como si lo empujara el aire. */
+@keyframes pp-vaiven {
+  0%   { transform: perspective(600px) rotate(calc(var(--giro, 0deg) + 0.8deg)) rotateX(0deg) skewX(0.5deg); }
+  50%  { transform: perspective(600px) rotate(calc(var(--giro, 0deg) - 1deg)) rotateX(10deg) skewX(-1deg); }
+  100% { transform: perspective(600px) rotate(calc(var(--giro, 0deg) + 1.2deg)) rotateX(2deg) skewX(0.8deg); }
+}
+
+/* Entrada: cada bandera cae desde arriba, se pasa un poco de largo y se
+   columpia hasta colgar (el vaivén continuo sigue en .pp__papel). */
+.pp--entrada .pp__bandera {
+  transform-origin: 50% 0;
+  animation: pp-caer 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(0.15s + var(--orden, 0) * 70ms);
+}
+
+.pp--entrada .pp__tira--fondo .pp__bandera {
+  animation-delay: calc(0.45s + var(--orden, 0) * 70ms);
+}
+
+@keyframes pp-caer {
+  0%   { opacity: 0; transform: translateY(-140%) rotate(-14deg); }
+  45%  { opacity: 1; transform: translateY(6%) rotate(7deg); }
+  70%  { transform: translateY(-2%) rotate(-3.5deg); }
+  88%  { transform: translateY(0) rotate(1.2deg); }
+  100% { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pp__papel,
+  .pp--entrada .pp__bandera {
+    animation: none;
+  }
+}

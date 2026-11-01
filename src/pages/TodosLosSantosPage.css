@@ -1,0 +1,1577 @@
+/* Página /eventos/todos-los-santos — estética mexicana artesanal: papel
+   marfil, papel picado, estampitas. Colores profundos y apagados (vino,
+   terracota, azul, olivo, mostaza), nada de neón. */
+.tls {
+  --tls-vino: #A11D36;
+  --tls-vino-hondo: #7E1229;
+  --tls-terracota: #C04E33;
+  --tls-azul: #2C6A8E;
+  --tls-olivo: #3F8A3A;
+  --tls-mostaza: #D4A017;
+  --tls-oro: #E8B422;
+  --tls-oro-texto: #8A651B;
+  --tls-marfil: #F8F1E3;
+  --tls-papel: #FDF9F1;
+  --tls-tinta: #2E2422;
+  --tls-texto: #4A3F3A;
+  --tls-suave: #74675E;
+  --tls-serif: 'Cormorant Garamond', 'Cinzel', Georgia, serif;
+
+  color: var(--tls-texto);
+  background-color: var(--tls-marfil);
+  /* Grano de papel artesanal + manchas de luz cálidas muy tenues */
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42  0 0 0 0 .3  0 0 0 0 .18  0 0 0 .075 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    radial-gradient(ellipse at 12% 8%, rgba(217, 176, 85, 0.1), transparent 45%),
+    radial-gradient(ellipse at 90% 40%, rgba(180, 90, 51, 0.06), transparent 50%),
+    radial-gradient(ellipse at 20% 85%, rgba(95, 109, 51, 0.06), transparent 50%);
+  overflow: hidden;
+}
+
+.tls h1, .tls h2, .tls h3 {
+  letter-spacing: 0;
+}
+
+.tls-contenedor {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-inline: 1.5rem;
+}
+
+.tls-ornamento {
+  display: block;
+  width: min(260px, 72%);
+  height: auto;
+  margin: 0 auto 1.1rem;
+}
+
+/* ─── Marco de estampa (pieza ilustrada) con la ilustración del santo ─── */
+.tls-marco {
+  display: flex;
+  align-items: center;
+  aspect-ratio: 190 / 280;
+  padding: 15% 15.5% 13%;
+  background: center / 100% 100% no-repeat;
+}
+
+.tls-marco svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ─── Candelería: cirios a los lados del título ─── */
+.tls-candeleria {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(0.4rem, 1.2vw, 1rem);
+}
+
+
+/* ─── Franja de iconografía ─── */
+.tls-iconografia {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.6rem clamp(1rem, 2.6vw, 2.2rem);
+  margin: 0 auto 3.2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.tls-iconografia li {
+  animation: tls-flotar 5.5s ease-in-out infinite alternate;
+}
+
+.tls-iconografia img {
+  display: block;
+  height: 44px;
+  width: auto;
+  filter: drop-shadow(0 3px 3px rgba(59, 36, 20, 0.12));
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tls-iconografia li:hover img {
+  transform: scale(1.15) rotate(-4deg);
+}
+
+@keyframes tls-flotar {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-5px); }
+}
+
+.tls-btn__flecha {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tls-btn:hover .tls-btn__flecha {
+  transform: translateX(4px);
+}
+
+.tls-encabezado {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.2rem;
+}
+
+.tls-titulo {
+  font-family: var(--tls-serif);
+  font-weight: 600;
+  font-size: clamp(2.3rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  color: var(--tls-vino);
+  margin-bottom: 0.9rem;
+}
+
+.tls-lead {
+  font-size: 1.12rem;
+  line-height: 1.7;
+  color: var(--tls-suave);
+}
+
+/* ─── Botones ─── */
+.tls-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.9rem 1.6rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--tls-vino);
+  color: #FBF3E3;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 10px 22px -12px rgba(100, 27, 40, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s, box-shadow 0.35s, color 0.3s;
+}
+
+.tls-btn:hover {
+  background: var(--tls-vino-hondo);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px -14px rgba(100, 27, 40, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.tls-btn:focus-visible,
+.tls-carta__boton:focus-visible,
+.tls-reverso:focus-visible,
+.tls-volver:focus-visible,
+.tls-historia__cerrar:focus-visible {
+  outline: 2px solid var(--tls-mostaza);
+  outline-offset: 3px;
+}
+
+.tls-btn--grande {
+  margin-top: 1.6rem;
+  padding: 1.15rem 2.4rem;
+  font-size: 1.08rem;
+}
+
+.tls-btn--contorno {
+  background: transparent;
+  color: var(--tls-vino);
+  border-color: rgba(126, 36, 51, 0.4);
+  box-shadow: none;
+}
+
+.tls-btn--contorno:hover {
+  background: rgba(126, 36, 51, 0.06);
+  box-shadow: none;
+}
+
+.tls-btn--suave {
+  background: rgba(253, 249, 241, 0.7);
+  color: var(--tls-vino);
+  border-color: rgba(126, 36, 51, 0.2);
+  box-shadow: 0 8px 20px -14px rgba(59, 36, 20, 0.4);
+}
+
+.tls-btn--suave:hover {
+  background: var(--tls-papel);
+  box-shadow: 0 12px 24px -14px rgba(59, 36, 20, 0.45);
+}
+
+/* ─── Hero ─── */
+.tls-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 1000px);
+  padding-top: 76px; /* navbar fija */
+}
+
+.tls-hero__papel {
+  z-index: 3;
+}
+
+.tls-hero__barra {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  margin-top: -1.5rem;
+}
+
+.tls-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--tls-suave);
+  transition: color 0.25s;
+}
+
+.tls-volver:hover {
+  color: var(--tls-vino);
+}
+
+.tls-hero__composicion {
+  position: relative;
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.5rem 7rem;
+}
+
+/* Arco de cempasúchil que enmarca el título, con las patas hasta el
+   camino de veladoras. */
+.tls-hero__arco {
+  position: absolute;
+  top: 0;
+  bottom: 3.2rem;
+  left: 50%;
+  width: min(1060px, 96vw);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.tls-hero__velas {
+  position: absolute;
+  left: 50%;
+  bottom: 0.6rem;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(0.6rem, 2vw, 1.4rem);
+  transform: translateX(-50%);
+}
+
+.tls-hero__cirios {
+  position: absolute;
+  bottom: 2.2rem;
+  pointer-events: none;
+}
+
+.tls-hero__cirios--izq {
+  left: max(1.5rem, calc(50% - 600px));
+}
+
+.tls-hero__cirios--der {
+  right: max(1.5rem, calc(50% - 600px));
+  flex-direction: row-reverse;
+}
+
+.tls-hero__contenido {
+  position: relative;
+  z-index: 3;
+  max-width: 820px;
+  text-align: center;
+}
+
+.tls-hero__fecha {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--tls-oro-texto);
+}
+
+.tls-hero__fecha-linea {
+  width: 38px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.tls-hero__titulo {
+  font-family: var(--tls-serif);
+  font-weight: 500;
+  line-height: 0.95;
+  color: var(--tls-tinta);
+}
+
+.tls-hero__titulo-pre {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-style: italic;
+  color: var(--tls-terracota);
+}
+
+.tls-hero__titulo-main {
+  display: block;
+  font-size: clamp(2.7rem, 10.5vw, 7.4rem);
+  font-weight: 600;
+  color: var(--tls-vino);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7), 0 14px 30px rgba(126, 36, 51, 0.12);
+}
+
+.tls-hero__ornamento {
+  margin-top: 1.6rem;
+}
+
+.tls-hero__texto {
+  max-width: 36ch;
+  margin: 0 auto 2.2rem;
+  font-size: clamp(1.08rem, 1.7vw, 1.3rem);
+  line-height: 1.65;
+  color: var(--tls-texto);
+}
+
+.tls-hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+/* ─── Pétalos que caen ───
+   Tres capas de movimiento por pétalo: .tls-petalo cae, __vaiven lo mece
+   de lado a lado y el svg gira en 3D (al ponerse de canto se "afina", como
+   un pétalo real). El contenedor recorta la caída al alto del hero. */
+.tls-petalos {
+  position: absolute;
+  inset: 76px 0 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.tls-petalos__defs {
+  position: absolute;
+}
+
+.tls-petalo {
+  position: absolute;
+  top: -50px;
+  opacity: 0;
+  animation: tls-caer linear infinite;
+  will-change: transform, opacity;
+}
+
+.tls-petalo--cerca {
+  z-index: 4;
+  filter: blur(1.4px);
+}
+
+.tls-petalo__vaiven {
+  display: block;
+  animation: tls-mecer ease-in-out infinite alternate;
+}
+
+.tls-petalo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 3px 2px rgba(120, 50, 10, 0.18));
+  animation: tls-girar-petalo linear infinite;
+}
+
+@keyframes tls-caer {
+  0%   { transform: translateY(0); opacity: 0; }
+  8%   { opacity: 0.9; }
+  82%  { opacity: 0.9; }
+  100% { transform: translateY(1050px); opacity: 0; }
+}
+
+@keyframes tls-mecer {
+  from { transform: translateX(calc(var(--amplitud) * -1)) rotate(-16deg); }
+  to   { transform: translateX(var(--amplitud)) rotate(18deg); }
+}
+
+@keyframes tls-girar-petalo {
+  to { transform: rotate3d(1, 0.35, 0.15, 360deg); }
+}
+
+/* ─── Conoce a un santo ─── */
+.tls-conoce {
+  position: relative;
+  padding: 6rem 0;
+  background: linear-gradient(180deg, transparent, rgba(217, 176, 85, 0.09) 22%, rgba(217, 176, 85, 0.09) 78%, transparent);
+}
+
+.tls-conoce__escenario {
+  display: flex;
+  justify-content: center;
+  /* La sombra va aquí y no en la tarjeta: la máscara del borde calado de la
+     estampita recortaría su propio box-shadow. */
+  filter: drop-shadow(0 22px 26px rgba(59, 36, 20, 0.16)) drop-shadow(0 2px 3px rgba(59, 36, 20, 0.12));
+  scroll-margin: 96px;
+}
+
+.tls-reverso {
+  width: min(100%, 280px);
+  aspect-ratio: 190 / 280; /* proporción del marco de estampa */
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tls-reverso.reveal--visible:hover {
+  transform: translateY(-6px) rotate(-1deg);
+}
+
+.tls-reverso__marco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  height: 100%;
+  background: center / 100% 100% no-repeat;
+}
+
+.tls-reverso__emblema {
+  width: 48%;
+  filter: drop-shadow(0 2px 2px rgba(120, 80, 20, 0.25));
+  animation: tls-flotar 6s ease-in-out infinite alternate;
+}
+
+.tls-reverso__texto {
+  font-family: var(--tls-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--tls-vino);
+}
+
+/* Estampita: borde calado como las estampas de encaje, doble filete dorado */
+.tls-estampita {
+  --borde: 16px;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) 1fr;
+  gap: 2.6rem;
+  align-items: center;
+  width: min(100%, 940px);
+  padding: 2rem;
+  /* El borde transparente es la franja calada: la primera capa de la
+     máscara deja sólido el interior y la segunda perfora toda la caja. */
+  border: var(--borde) solid transparent;
+  border-radius: 6px;
+  background: var(--tls-papel);
+  -webkit-mask:
+    linear-gradient(#000 0 0) padding-box,
+    radial-gradient(circle, transparent 2.3px, #000 2.9px) 0 0 / 11px 11px border-box;
+  mask:
+    linear-gradient(#000 0 0) padding-box,
+    radial-gradient(circle, transparent 2.3px, #000 2.9px) 0 0 / 11px 11px border-box;
+  animation: tls-voltear 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.tls-estampita::before,
+.tls-estampita::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+.tls-estampita::before {
+  inset: 8px;
+  border: 1px solid rgba(196, 147, 43, 0.6);
+}
+
+.tls-estampita::after {
+  inset: 13px;
+  border: 1px solid rgba(196, 147, 43, 0.28);
+}
+
+@keyframes tls-voltear {
+  from { opacity: 0; transform: perspective(1400px) rotateY(-70deg) translateY(12px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+.tls-estampita__imagen svg,
+.tls-carta__imagen svg,
+.tls-historia__imagen svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tls-estampita__fiesta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tls-oro-texto);
+}
+
+.tls-estampita__nombre {
+  font-family: var(--tls-serif);
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.05;
+  color: var(--tls-vino);
+  margin-bottom: 0.4rem;
+}
+
+.tls-estampita__patrono {
+  margin-bottom: 1.1rem;
+  font-family: var(--tls-serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--tls-azul);
+}
+
+.tls-estampita__descripcion {
+  margin-bottom: 1.2rem;
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.tls-estampita__dato {
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 1.3rem;
+  padding: 0.9rem 1rem;
+  border-left: 2px solid var(--tls-mostaza);
+  border-radius: 0 4px 4px 0;
+  background: rgba(217, 176, 85, 0.11);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.tls-estampita__dato svg {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--tls-oro-texto);
+}
+
+.tls-estampita__dato strong {
+  color: var(--tls-tinta);
+}
+
+.tls-estampita__frase {
+  margin-bottom: 1.6rem;
+  font-family: var(--tls-serif);
+  font-size: 1.4rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--tls-terracota);
+}
+
+/* ─── Galería ─── */
+.tls-historias {
+  padding: 6rem 0 5rem;
+}
+
+.tls-contenedor--altar {
+  max-width: 1340px;
+  /* Contenedor de consultas: el altar calcula con cqw dónde quedan las
+     patas del arco (ver --cintura abajo). */
+  container-type: inline-size;
+}
+
+/* ─── Altar escalonado ───
+   Arco de cempasúchil alrededor; arriba papel picado y la cruz; cada
+   escalón es una fila de santos sobre un mantel bordado con encaje y un
+   frente de azulejo de talavera; al pie, jarros de barro y veladoras. */
+.tls-altar {
+  --carta: clamp(128px, calc((100vw - 330px) / 6.6), 182px);
+  /* Geometría del arco (igual que en ArcoCempasuchil): las patas van a
+     --margen-arco de la orilla y dejan de curvarse a la altura --cintura,
+     donde se amarra el papel picado. */
+  --margen-arco: 22.5px; /* 0.75 × flor (30 px) */
+  --cintura: calc(var(--margen-arco) + 0.62 * (50cqw - var(--margen-arco)));
+  --alto-papel: 190px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--cintura) + var(--alto-papel)) clamp(46px, 5vw, 72px) 0;
+}
+
+.tls-altar__arco {
+  position: absolute;
+  inset: 0 0 0.5rem;
+  pointer-events: none;
+}
+
+.tls-altar__cabecera {
+  position: absolute;
+  top: var(--cintura);
+  left: var(--margen-arco);
+  right: var(--margen-arco);
+}
+
+.tls-altar__corona {
+  position: absolute;
+  top: calc(var(--cintura) * 0.38);
+  left: 50%;
+  width: clamp(80px, 11cqw, 140px);
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 14px rgba(255, 190, 90, 0.35));
+}
+
+.tls-escalon {
+  position: relative;
+  isolation: isolate; /* el mantel (z-index -1) queda detrás de las cartas */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.8rem;
+  max-width: 100%;
+  margin-top: 1.4rem;
+  padding: 0 0.6rem 2.4rem;
+}
+
+/* Mantel: tela blanca con cenefa bordada (punto de cruz) y orilla de encaje,
+   sobre el frente del escalón forrado de azulejo de talavera. */
+.tls-escalon__mantel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  height: 3.4rem;
+  border-radius: 3px 3px 0 0;
+  background:
+    /* cenefa bordada */
+    linear-gradient(90deg, #C2185B 0 3px, transparent 3px 9px, #2C6A8E 9px 12px, transparent 12px 18px, #D4A017 18px 21px, transparent 21px) 0 0.75rem / 24px 3px repeat-x,
+    radial-gradient(circle, #3F8A3A 1.4px, transparent 1.9px) 6px 1.35rem / 12px 6px repeat-x,
+    linear-gradient(90deg, #C2185B 0 3px, transparent 3px 9px, #2C6A8E 9px 12px, transparent 12px 18px, #D4A017 18px 21px, transparent 21px) 12px 1.85rem / 24px 3px repeat-x,
+    /* tela */
+    linear-gradient(180deg, #FFFDF8, #F1E9DA);
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.9) inset, 0 14px 20px -12px rgba(59, 36, 20, 0.35);
+}
+
+/* Orilla de encaje: semicírculos calados colgando del mantel */
+.tls-escalon__mantel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 10px;
+  background:
+    radial-gradient(circle at 50% 0, #F1E9DA 0 5px, transparent 5.5px) 0 0 / 14px 10px repeat-x,
+    radial-gradient(circle at 50% 2px, rgba(59, 36, 20, 0.12) 0 1.4px, transparent 1.8px) 0 0 / 14px 10px repeat-x;
+  filter: drop-shadow(0 2px 1px rgba(59, 36, 20, 0.12));
+}
+
+/* Frente del escalón: azulejo de talavera azul y blanco */
+.tls-escalon__mantel::before {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: calc(100% + 6px);
+  height: 1.1rem;
+  background:
+    radial-gradient(circle at 50% 50%, #1F4E8C 0 2.5px, transparent 3px),
+    radial-gradient(circle at 0 0, #1F4E8C 0 4px, transparent 4.5px),
+    radial-gradient(circle at 100% 100%, #1F4E8C 0 4px, transparent 4.5px),
+    radial-gradient(circle at 100% 0, #E59A1E 0 2.5px, transparent 3px),
+    radial-gradient(circle at 0 100%, #E59A1E 0 2.5px, transparent 3px),
+    #F7F2E6;
+  background-size: 18px 18px;
+  border-top: 1px solid rgba(31, 78, 140, 0.4);
+  border-bottom: 2px solid #7A3418;
+  opacity: 0.95;
+}
+
+.tls-escalon__santos {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.tls-escalon .tls-carta {
+  width: var(--carta);
+  flex-shrink: 0;
+  padding: 8px 8px 1rem;
+}
+
+.tls-escalon .tls-carta__imagen {
+  width: 100%;
+}
+
+.tls-escalon .tls-carta__cuerpo {
+  padding: 0.6rem 0.3rem 0;
+}
+
+.tls-escalon .tls-carta__nombre {
+  font-size: 1.18rem;
+}
+
+.tls-escalon .tls-carta__descripcion {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.tls-escalon .tls-carta__boton {
+  font-size: 0.78rem;
+}
+
+.tls-escalon__vela {
+  margin-bottom: 0.4rem;
+}
+
+.tls-altar__pie {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 0 0.5rem 1.4rem;
+}
+
+.tls-altar__velas {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(0.8rem, 3vw, 2.4rem);
+}
+
+/* Jarro de barro con flores */
+.tls-jarro {
+  position: relative;
+  display: block;
+  width: clamp(84px, 9vw, 120px);
+  aspect-ratio: 60 / 110;
+}
+
+.tls-jarro__barro {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 8px rgba(59, 36, 20, 0.3));
+}
+
+.tls-jarro__flor {
+  position: absolute;
+  height: auto;
+  filter: drop-shadow(0 4px 4px rgba(59, 36, 20, 0.22));
+}
+
+.tls-jarro__flor--a { width: 78%; left: 4%;  top: 0;   rotate: -12deg; }
+.tls-jarro__flor--b { width: 56%; left: 44%; top: 14%; rotate: 10deg; }
+.tls-jarro__flor--c { width: 50%; left: -6%; top: 22%; }
+.tls-jarro__flor--d { width: 44%; left: 26%; top: 30%; }
+
+.tls-jarro--der {
+  transform: scaleX(-1);
+}
+
+.tls-carta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px 1.4rem;
+  border-radius: 5px;
+  background: var(--tls-papel);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 1px 2px rgba(59, 36, 20, 0.08), 0 14px 28px -20px rgba(59, 36, 20, 0.4);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tls-carta::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(196, 147, 43, 0.3);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.tls-carta.reveal--visible:hover,
+.tls-carta.reveal--visible:focus-within {
+  transform: translateY(-8px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 2px 4px rgba(59, 36, 20, 0.08), 0 28px 40px -22px rgba(59, 36, 20, 0.48);
+}
+
+.tls-carta__imagen {
+  width: 86%;
+  margin: 0 auto;
+}
+
+.tls-carta__imagen svg {
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tls-carta:hover .tls-carta__imagen svg {
+  transform: scale(1.035);
+}
+
+.tls-carta__cuerpo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.1rem 0.6rem 0;
+  text-align: center;
+}
+
+.tls-carta__fiesta {
+  margin-bottom: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tls-oro-texto);
+}
+
+.tls-carta__nombre {
+  margin-bottom: 0.55rem;
+  font-family: var(--tls-serif);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--tls-vino);
+}
+
+.tls-carta__descripcion {
+  flex: 1;
+  margin-bottom: 1rem;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--tls-suave);
+}
+
+.tls-carta__boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  align-self: center;
+  padding: 0.35rem 0.2rem;
+  border: none;
+  border-bottom: 1px solid rgba(126, 36, 51, 0.35);
+  background: none;
+  color: var(--tls-vino);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Toda la carta responde al clic: el área del botón se estira sobre ella. */
+.tls-carta__boton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+}
+
+.tls-carta:hover .tls-carta__boton,
+.tls-carta:focus-within .tls-carta__boton {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .tls-carta__boton {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.tls-galeria__mas {
+  display: flex;
+  justify-content: center;
+  margin-top: 3.2rem;
+}
+
+/* ─── Historia (diálogo) ─── */
+.tls-sin-scroll {
+  overflow: hidden;
+}
+
+.tls-historia {
+  width: min(960px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  overflow: visible;
+}
+
+.tls-historia::backdrop {
+  background: rgba(40, 24, 18, 0.55);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.tls-historia[open] {
+  animation: tls-aparecer 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes tls-aparecer {
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+.tls-historia__panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2.4rem;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  padding: 2.6rem;
+  border-radius: 6px;
+  background: var(--tls-papel);
+  color: var(--tls-texto);
+  box-shadow: 0 30px 60px -20px rgba(30, 16, 10, 0.5);
+}
+
+.tls-historia__panel::before {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(196, 147, 43, 0.4);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.tls-historia__cerrar {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(126, 36, 51, 0.2);
+  border-radius: 50%;
+  background: var(--tls-papel);
+  color: var(--tls-vino);
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.tls-historia__cerrar:hover {
+  background: rgba(126, 36, 51, 0.07);
+}
+
+.tls-historia__imagen {
+  align-self: start;
+  position: sticky;
+  top: 0;
+}
+
+.tls-historia__nombre {
+  margin-bottom: 0.4rem;
+  padding-right: 2.5rem;
+  font-family: var(--tls-serif);
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  line-height: 1.05;
+  color: var(--tls-vino);
+}
+
+.tls-historia__parrafo {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.tls-historia__frase {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+  font-family: var(--tls-serif);
+  font-size: 1.4rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--tls-terracota);
+}
+
+.tls-historia__frase svg {
+  flex-shrink: 0;
+  margin-top: 0.3rem;
+  color: var(--tls-mostaza);
+}
+
+/* ─── Cierre ─── */
+.tls-cierre {
+  position: relative;
+  padding: 2rem 0 8rem;
+}
+
+/* De orilla a orilla: la cuerda queda amarrada a los lados de la pantalla */
+.tls-cierre__papel {
+  margin: 0 0 4rem;
+}
+
+
+
+
+.tls-cierre__contenido {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  text-align: center;
+}
+
+.tls-cierre__titulo {
+  margin-bottom: 1.6rem;
+  font-family: var(--tls-serif);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 6.4vw, 4.8rem);
+  line-height: 1.04;
+  color: var(--tls-vino);
+}
+
+.tls-cierre__texto {
+  margin-bottom: 1.2rem;
+  font-size: 1.12rem;
+  line-height: 1.85;
+}
+
+.tls-cierre__cita {
+  margin: 2.6rem auto 0;
+  max-width: 34em;
+  font-family: var(--tls-serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--tls-azul);
+}
+
+.tls-cierre__cita cite {
+  display: block;
+  margin-top: 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tls-oro-texto);
+}
+
+.tls-cierre__tapete {
+  margin-top: 3.8rem;
+}
+
+
+.tls-cierre__misa-etiqueta {
+  margin-bottom: 0.5rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #6E2A12;
+}
+
+.tls-cierre__misa-fecha {
+  font-family: var(--tls-serif);
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: #8A1430;
+}
+
+.tls-cierre__misa-horario {
+  margin: 0.4rem 0 1.4rem;
+  font-weight: 700;
+  color: #4A2A18;
+}
+
+/* ─── Movimiento reducido ─── */
+@media (prefers-reduced-motion: reduce) {
+  .tls-petalo,
+  .tls-petalo__vaiven,
+  .tls-petalo svg,
+  .tls-iconografia li,
+  .tls-reverso__emblema {
+    animation: none;
+  }
+  .tls,
+  .tls * {
+    transition-duration: 0.01s !important;
+  }
+  .tls-estampita {
+    animation-duration: 0.01s;
+  }
+}
+
+/* ─── Tableta ─── */
+@media (max-width: 900px) {
+  .tls-estampita {
+    grid-template-columns: 220px 1fr;
+    gap: 1.8rem;
+  }
+  .tls-historia__panel {
+    grid-template-columns: 220px 1fr;
+    gap: 1.8rem;
+    padding: 2rem;
+  }
+}
+
+/* ─── Teléfono ─── */
+@media (max-width: 640px) {
+  .tls-contenedor {
+    padding-inline: 1rem;
+  }
+
+  .tls-iconografia {
+    gap: 0.6rem 1.1rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .tls-iconografia li:nth-child(n + 7) {
+    display: none;
+  }
+
+  .tls-iconografia img {
+    height: 34px;
+  }
+
+  /* En pantalla chica, la mitad de pétalos para no saturar */
+  .tls-petalo:nth-of-type(even) {
+    display: none;
+  }
+
+  .tls-hero {
+    min-height: auto;
+  }
+
+  .tls-hero__barra {
+    margin-top: -0.5rem;
+  }
+
+  .tls-hero__composicion {
+    padding: 1.5rem 1rem 9rem;
+  }
+
+  .tls-hero__cirios {
+    bottom: 0.8rem;
+  }
+
+  .tls-hero__cirios--izq { left: 0.4rem; }
+  .tls-hero__cirios--der { right: 0.4rem; }
+
+  .tls-hero__fecha {
+    letter-spacing: 0.26em;
+  }
+
+  .tls-hero__acciones .tls-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .tls-conoce,
+  .tls-historias {
+    padding: 4.5rem 0;
+  }
+
+  .tls-encabezado {
+    margin-bottom: 2.4rem;
+  }
+
+  .tls-btn--grande {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .tls-estampita {
+    --borde: 11px;
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+    padding: 1.4rem 1.2rem 1.6rem;
+    text-align: center;
+  }
+
+  .tls-estampita__imagen {
+    width: min(100%, 230px);
+    margin: 0 auto;
+  }
+
+  .tls-estampita__dato {
+    text-align: left;
+  }
+
+  .tls-estampita__frase {
+    font-size: 1.25rem;
+  }
+
+  .tls-galeria {
+    gap: 1.6rem;
+  }
+
+  .tls-historia {
+    width: calc(100% - 16px);
+    max-height: calc(100dvh - 16px);
+  }
+
+  .tls-historia__panel {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    max-height: calc(100dvh - 16px);
+    padding: 1.6rem 1.3rem 2rem;
+  }
+
+  .tls-historia__imagen {
+    position: static;
+    width: 170px;
+    margin: 0 auto;
+  }
+
+  .tls-cierre {
+    padding-bottom: 10rem;
+  }
+
+  .tls-cierre__papel {
+    margin-bottom: 3rem;
+  }
+
+
+  .tls-cierre__texto {
+    font-size: 1.04rem;
+  }
+
+  .tls-cierre__misa-etiqueta {
+    letter-spacing: 0.14em;
+  }
+}
+
+/* ─── Altar en pantallas angostas ───
+   Los escalones no caben completos: cada uno se vuelve una repisa que se
+   desliza de lado, conservando el mantel y el arco alrededor. */
+@media (max-width: 1100px) {
+  .tls-altar {
+    --carta: min(200px, 54vw);
+    --alto-papel: 150px;
+    padding: calc(var(--cintura) + var(--alto-papel)) clamp(26px, 5vw, 46px) 0;
+  }
+
+  .tls-escalon {
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  .tls-escalon__vela {
+    display: none;
+  }
+
+  .tls-escalon__santos {
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0.8rem 0.8rem 0.4rem;
+    scrollbar-width: none;
+  }
+
+  .tls-escalon__santos::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Centrado "seguro": con margin auto no se corta el primer santo al
+     desbordar (justify-content: center sí lo cortaría). */
+  .tls-escalon__santos > :first-child { margin-left: auto; }
+  .tls-escalon__santos > :last-child { margin-right: auto; }
+
+  .tls-escalon .tls-carta {
+    scroll-snap-align: center;
+  }
+
+  .tls-jarro {
+    width: 62px;
+  }
+
+  .tls-altar__velas {
+    gap: 0.6rem;
+  }
+}
+
+/* ─── Cielo nocturno (solo de noche) ─── */
+.tls-cielo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s;
+  /* Campo de estrellas fijo (sin parpadeo): dos mosaicos de puntos */
+  background:
+    radial-gradient(1px 1px at 22px 38px, #FFF6DD, transparent),
+    radial-gradient(1px 1px at 120px 90px, #FFF6DD, transparent),
+    radial-gradient(1.4px 1.4px at 190px 20px, #FFF6DD, transparent),
+    radial-gradient(1px 1px at 70px 160px, #FFF6DD, transparent),
+    radial-gradient(1.2px 1.2px at 160px 190px, #FFE8B0, transparent) 0 0 / 230px 230px,
+    radial-gradient(1px 1px at 60px 60px, rgba(255, 246, 221, 0.7), transparent),
+    radial-gradient(1.6px 1.6px at 260px 140px, rgba(255, 246, 221, 0.8), transparent),
+    radial-gradient(1px 1px at 300px 300px, rgba(255, 246, 221, 0.6), transparent) 0 0 / 370px 370px;
+  -webkit-mask: linear-gradient(180deg, #000 40%, transparent 92%);
+  mask: linear-gradient(180deg, #000 40%, transparent 92%);
+}
+
+.tls-cielo__luna {
+  position: absolute;
+  top: clamp(150px, 18vw, 210px);
+  right: clamp(6%, 9vw, 12%);
+  width: clamp(44px, 5vw, 70px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: inset 11px -5px 0 0 #F4E4B8, 0 0 40px 4px rgba(244, 228, 184, 0.12);
+  transform: rotate(-20deg);
+}
+
+/* ─── Diseño de noche ───
+   Cielo azul profundo, luz cálida de veladoras desde abajo. Los papeles
+   (cartas, estampita, historia, misa) recuperan los colores de día para
+   que se lean como papel iluminado por las velas. */
+.tls {
+  transition: background-color 0.9s, color 0.9s;
+}
+
+.tls[data-modo="noche"] {
+  --tls-vino: #F2A93B;
+  --tls-vino-hondo: #FFBE55;
+  --tls-terracota: #F7963A;
+  --tls-azul: #A9CBEA;
+  --tls-oro-texto: #F2C46B;
+  --tls-tinta: #FFF4DE;
+  --tls-texto: #E8DCC6;
+  --tls-suave: #C2B6A4;
+
+  color: var(--tls-texto);
+  background-color: #10142E;
+  background-image:
+    /* Estrellas de talavera muy tenues, como azulejo bajo la luz de las velas */
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><g fill='none' stroke='%23F2C46B' stroke-opacity='.075'><rect x='35' y='35' width='26' height='26'/><rect x='35' y='35' width='26' height='26' transform='rotate(45 48 48)'/><circle cx='48' cy='48' r='5'/><path d='M0 48h22M74 48h22M48 0v22M48 74v22' stroke-dasharray='2 4'/></g><g fill='%23F2C46B' fill-opacity='.09'><circle r='2.5'/><circle cx='96' r='2.5'/><circle cy='96' r='2.5'/><circle cx='96' cy='96' r='2.5'/></g></svg>"),
+    radial-gradient(ellipse 80% 50% at 50% 0%, #2B2566 0%, transparent 70%),
+    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(242, 140, 27, 0.16), transparent 70%),
+    linear-gradient(180deg, #0C1030 0%, #161339 45%, #1C1431 100%);
+}
+
+.tls[data-modo="noche"] .tls-cielo {
+  opacity: 1;
+}
+
+.tls[data-modo="noche"] :is(.tls-carta, .tls-estampita, .tls-historia__panel, .tapete__contenido, .tls-reverso) {
+  --tls-vino: #A11D36;
+  --tls-vino-hondo: #7E1229;
+  --tls-terracota: #C04E33;
+  --tls-azul: #2C6A8E;
+  --tls-oro-texto: #8A651B;
+  --tls-tinta: #2E2422;
+  --tls-texto: #4A3F3A;
+  --tls-suave: #74675E;
+  --tls-papel: #F7EBD3;
+  color: var(--tls-texto);
+}
+
+.tls[data-modo="noche"] .tls-carta {
+  box-shadow: 0 0 0 1px rgba(242, 169, 59, 0.22), 0 22px 40px -18px rgba(0, 0, 0, 0.7), 0 0 46px -14px rgba(242, 140, 27, 0.35);
+}
+
+.tls[data-modo="noche"] .tls-conoce__escenario {
+  filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 30px rgba(242, 140, 27, 0.22));
+}
+
+.tls[data-modo="noche"] .tls-conoce {
+  background: linear-gradient(180deg, transparent, rgba(242, 140, 27, 0.06) 25%, rgba(242, 140, 27, 0.06) 75%, transparent);
+}
+
+.tls[data-modo="noche"] .tls-btn:not(.tls-btn--contorno):not(.tls-btn--suave) {
+  color: #1E1533;
+  box-shadow: 0 10px 26px -10px rgba(242, 140, 27, 0.6);
+}
+
+.tls[data-modo="noche"] .tls-btn--contorno {
+  border-color: rgba(242, 169, 59, 0.5);
+}
+
+.tls[data-modo="noche"] .tls-btn--suave {
+  background: rgba(255, 244, 222, 0.08);
+  border-color: rgba(242, 169, 59, 0.35);
+}
+
+.tls[data-modo="noche"] .tapete__contenido .tls-btn:not(.tls-btn--contorno):not(.tls-btn--suave) {
+  color: #FBF3E3;
+  box-shadow: 0 10px 22px -12px rgba(100, 27, 40, 0.75);
+}
+
+.tls[data-modo="noche"] .tls-hero__titulo-main {
+  text-shadow: 0 0 34px rgba(242, 140, 27, 0.35), 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+
+.tls[data-modo="noche"] .arco-cempa {
+  filter: drop-shadow(0 0 12px rgba(255, 150, 40, 0.3));
+}
+
+.tls[data-modo="noche"] .pp__papel {
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45)) brightness(0.9);
+}
+
+
+.tls[data-modo="noche"] .pp__cuerda path {
+  stroke: #C9A97A;
+}
+
+.tls[data-modo="noche"] :is(.tls-ornamento, .tls-iconografia img) {
+  filter: brightness(1.35) drop-shadow(0 0 6px rgba(255, 210, 150, 0.3));
+}
+
+.tls[data-modo="noche"] .tls-jarro {
+  filter: brightness(0.88);
+}
+
+.tls[data-modo="noche"] .tls-escalon__mantel {
+  filter: brightness(0.9) sepia(0.15);
+}
+
+/* Camino de veladoras al pie del tapete */
+.tls-cierre__velas {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(0.7rem, 2.6vw, 1.6rem);
+  margin-top: 1.4rem;
+}
+
+@media (max-width: 640px) {
+  .tls-hero__composicion {
+    padding-inline: 2.6rem;
+  }
+
+  /* En teléfono el arco usa flores de 20 px (ver esMovil en la página) */
+  .tls-altar {
+    --margen-arco: 15px;
+  }
+}
+
+/* ─── Horizonte del pueblo (hero) ─── */
+.tls-pueblo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 100%;
+  height: clamp(110px, 12vw, 170px);
+  pointer-events: none;
+}
+
+/* El hero termina en el pueblo; la siguiente sección arranca en el mismo
+   azul oscuro para que no se note el corte. */
+.tls[data-modo="noche"] .tls-hero {
+  background: linear-gradient(180deg, transparent 70%, #070919 calc(100% - 1px));
+}
+
+/* ─── Separadores entre secciones ───
+   Papel picado de orilla a orilla: la cuerda queda amarrada a los lados de
+   la pantalla, nunca corta a media página. */
+.tls-separador {
+  margin: 1rem 0;
+}
+
+/* ─── Rincones de ofrenda (veladoras y cempasúchil a los costados) ─── */
+.tls-conoce {
+  position: relative;
+}
+
+.tls-rincon {
+  position: absolute;
+  bottom: 3rem;
+  width: 200px;
+  height: 150px;
+  pointer-events: none;
+}
+
+.tls-conoce > .tls-rincon--izq { left: max(1rem, calc(50% - 690px)); }
+.tls-conoce > .tls-rincon--der { right: max(1rem, calc(50% - 690px)); }
+
+.tls-rincon__velas {
+  position: absolute;
+  bottom: 20px;
+  left: 34px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.tls-rincon__flor {
+  position: absolute;
+  height: auto;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.35)) brightness(0.92);
+}
+
+.tls-rincon__flor--a { width: 64px; left: 0; bottom: 0; }
+.tls-rincon__flor--b { width: 52px; left: 112px; bottom: -6px; }
+.tls-rincon__flor--c { width: 40px; left: 66px; bottom: 2px; }
+
+/* Lado derecho en espejo (sin transform, para no chocar con .reveal) */
+.tls-rincon--der .tls-rincon__velas { left: auto; right: 34px; flex-direction: row-reverse; }
+.tls-rincon--der .tls-rincon__flor--a { left: auto; right: 0; }
+.tls-rincon--der .tls-rincon__flor--b { left: auto; right: 112px; }
+.tls-rincon--der .tls-rincon__flor--c { left: auto; right: 66px; }
+
+/* Pétalos sueltos regados al pie */
+.tls-rincon__petalos {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -10px;
+  height: 18px;
+  background:
+    radial-gradient(ellipse 5px 3px at 8% 40%, #F28C1B 90%, transparent),
+    radial-gradient(ellipse 4px 2.5px at 22% 80%, #FFB12E 90%, transparent),
+    radial-gradient(ellipse 5px 3px at 41% 30%, #E8740C 90%, transparent),
+    radial-gradient(ellipse 4px 2.5px at 57% 75%, #C2185B 90%, transparent),
+    radial-gradient(ellipse 5px 3px at 73% 45%, #F28C1B 90%, transparent),
+    radial-gradient(ellipse 4px 2.5px at 90% 70%, #FFB12E 90%, transparent);
+  opacity: 0.9;
+}
+
+.tls-cierre__ofrenda {
+  position: relative;
+}
+
+.tls-cierre__ofrenda > .tls-rincon {
+  bottom: -2.4rem;
+}
+
+.tls-cierre__ofrenda > .tls-rincon--izq { left: -240px; }
+.tls-cierre__ofrenda > .tls-rincon--der { right: -240px; }
+
+/* Solo donde hay espacio a los costados */
+@media (max-width: 1320px) {
+  .tls-rincon {
+    display: none;
+  }
+}
+
